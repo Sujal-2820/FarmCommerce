@@ -18,7 +18,7 @@ export function AdminLayout({ sidebar, children, onExit }) {
           <div className={cn('flex items-center gap-3 overflow-hidden transition-all', open ? 'opacity-100' : 'opacity-0')}>
             <span className="badge-brand text-xs uppercase tracking-wide">Admin</span>
             <div>
-              <p className="text-sm font-semibold text-surface-foreground">AgroCart HQ</p>
+              <p className="text-sm font-semibold text-surface-foreground">IRA Sathi</p>
               <p className="text-xs text-muted-foreground">Super Administrator</p>
             </div>
           </div>
@@ -47,7 +47,7 @@ export function AdminLayout({ sidebar, children, onExit }) {
               </button>
               <div>
                 <p className="text-xs uppercase tracking-wide text-muted-foreground">Admin Control Center</p>
-                <h1 className="text-xl font-semibold text-surface-foreground">AgroCart Super Admin</h1>
+                <h1 className="text-xl font-semibold text-surface-foreground">IRA Sathi Super Admin</h1>
               </div>
             </div>
             <div className="flex items-center gap-3">

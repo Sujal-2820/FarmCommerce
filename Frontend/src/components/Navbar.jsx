@@ -24,7 +24,7 @@ const defaultCta = {
 }
 
 export function Navbar({
-  brand = { name: 'AgroCart', logo: null },
+  brand = { name: 'IRA Sathi', logo: null },
   links = defaultLinks,
   cta = defaultCta,
 }) {

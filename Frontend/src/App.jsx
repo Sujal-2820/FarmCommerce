@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes, Link, useNavigate } from 'react-router-dom'
 import { AdminDashboardRoute as AdminDashboardModuleRoute, AdminLogin } from './modules/Admin'
-import { UserDashboard, UserLogin } from './modules/User'
+import { UserDashboardPage, UserLogin } from './modules/User'
 import {
   VendorRouteContainer,
   VendorLoginPage,
@@ -28,7 +28,7 @@ function Home() {
     <div className="min-h-screen bg-surface px-6 py-12 text-surface-foreground">
       <div className="mx-auto flex max-w-4xl flex-col gap-6">
         <header>
-          <p className="text-xs uppercase tracking-wide text-muted-foreground">IRA Sathi Platform</p>
+          <p className="text-xs uppercase tracking-wide text-muted-foreground">IRA Sathi</p>
           <h1 className="mt-2 text-3xl font-semibold text-surface-foreground">Access Console Routes</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Choose a portal to continue. Authentication is mocked at the moment; each dashboard renders the respective
@@ -75,13 +75,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<VendorDashboardPage />} />
 
         <Route path="/admin/login" element={<AdminLoginRoute />} />
         <Route path="/admin/dashboard" element={<AdminDashboardRoute />} />
 
         <Route path="/user/login" element={<UserLoginRoute />} />
-        <Route path="/user/dashboard" element={<UserDashboard />} />
+        <Route path="/user/dashboard" element={<UserDashboardPage />} />
 
         <Route path="/vendor" element={<VendorRouteContainer />}>
           <Route path="language" element={<VendorLanguagePage />} />

@@ -86,7 +86,7 @@ export function VendorLogin({ onBack, onRegister, onSuccess }) {
           </div>
         </form>
         <p className="text-center text-xs text-muted-foreground">
-          New to AgroCart?{' '}
+          New to IRA Sathi?{' '}
           <button type="button" className="font-semibold text-brand underline-offset-2" onClick={onRegister}>
             Register here
           </button>

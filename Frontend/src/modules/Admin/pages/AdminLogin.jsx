@@ -18,7 +18,7 @@ export function AdminLogin({ onSubmit }) {
       <div className="w-full max-w-sm rounded-3xl border border-muted/60 bg-white/90 p-6 shadow-card">
         <div className="mb-6 text-center">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Admin Access</p>
-          <h1 className="mt-2 text-2xl font-semibold text-surface-foreground">Sign in to IRA Sathi Control</h1>
+          <h1 className="mt-2 text-2xl font-semibold text-surface-foreground">Sign in to IRA Sathi</h1>
         </div>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-1.5">

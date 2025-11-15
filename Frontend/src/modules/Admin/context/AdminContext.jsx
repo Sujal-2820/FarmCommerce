@@ -4,7 +4,7 @@ const AdminStateContext = createContext(null)
 const AdminDispatchContext = createContext(() => {})
 
 const initialState = {
-  activeTenant: 'AgroCart Super Admin',
+  activeTenant: 'IRA Sathi Super Admin',
   filters: {
     region: 'All',
     period: '30d',
