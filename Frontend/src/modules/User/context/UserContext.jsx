@@ -21,6 +21,8 @@ const initialState = {
   orders: [],
   addresses: [],
   paymentMethods: [],
+  favourites: [],
+  notifications: [],
 }
 
 function reducer(state, action) {
@@ -103,6 +105,44 @@ function reducer(state, action) {
           ...addr,
           isDefault: addr.id === action.payload.id,
         })),
+      }
+    case 'ADD_TO_FAVOURITES':
+      if (state.favourites.includes(action.payload.productId)) {
+        return state
+      }
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload.productId],
+      }
+    case 'REMOVE_FROM_FAVOURITES':
+      return {
+        ...state,
+        favourites: state.favourites.filter((id) => id !== action.payload.productId),
+      }
+    case 'ADD_NOTIFICATION':
+      return {
+        ...state,
+        notifications: [
+          {
+            id: Date.now().toString(),
+            ...action.payload,
+            read: false,
+            timestamp: new Date().toISOString(),
+          },
+          ...state.notifications,
+        ],
+      }
+    case 'MARK_NOTIFICATION_READ':
+      return {
+        ...state,
+        notifications: state.notifications.map((notif) =>
+          notif.id === action.payload.id ? { ...notif, read: true } : notif,
+        ),
+      }
+    case 'MARK_ALL_NOTIFICATIONS_READ':
+      return {
+        ...state,
+        notifications: state.notifications.map((notif) => ({ ...notif, read: true })),
       }
     default:
       return state

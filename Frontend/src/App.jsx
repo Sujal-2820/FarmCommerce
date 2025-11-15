@@ -75,7 +75,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<VendorDashboardPage />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="/admin/login" element={<AdminLoginRoute />} />
         <Route path="/admin/dashboard" element={<AdminDashboardRoute />} />

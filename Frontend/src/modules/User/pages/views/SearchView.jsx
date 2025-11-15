@@ -1,14 +1,16 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useRef, useEffect } from 'react'
 import { userSnapshot } from '../../services/userData'
 import { ProductCard } from '../../components/ProductCard'
-import { FilterIcon } from '../../components/icons'
+import { FilterIcon, ChevronDownIcon } from '../../components/icons'
 import { cn } from '../../../../lib/cn'
 
-export function SearchView({ query = '', onProductClick, onAddToCart, categoryId }) {
+export function SearchView({ query = '', onProductClick, onAddToCart, onToggleFavourite, categoryId, favourites = [] }) {
   const [showFilters, setShowFilters] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState(categoryId || 'all')
   const [sortBy, setSortBy] = useState('popular')
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 })
+  const [showSortDropdown, setShowSortDropdown] = useState(false)
+  const [maxPrice, setMaxPrice] = useState(10000)
+  const sortDropdownRef = useRef(null)
 
   const filteredProducts = useMemo(() => {
     let products = [...userSnapshot.products]
@@ -30,7 +32,7 @@ export function SearchView({ query = '', onProductClick, onAddToCart, categoryId
     }
 
     // Filter by price
-    products = products.filter((p) => p.price >= priceRange.min && p.price <= priceRange.max)
+    products = products.filter((p) => p.price >= 0 && p.price <= maxPrice)
 
     // Sort
     switch (sortBy) {
@@ -50,7 +52,22 @@ export function SearchView({ query = '', onProductClick, onAddToCart, categoryId
     }
 
     return products
-  }, [query, selectedCategory, sortBy, priceRange])
+  }, [query, selectedCategory, sortBy, maxPrice])
+
+  // Close sort dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sortDropdownRef.current && !sortDropdownRef.current.contains(event.target)) {
+        setShowSortDropdown(false)
+      }
+    }
+    if (showSortDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showSortDropdown])
 
   return (
     <div className="space-y-4">
@@ -109,41 +126,104 @@ export function SearchView({ query = '', onProductClick, onAddToCart, categoryId
               ))}
             </div>
           </div>
-          <div>
+          <div className="user-search-view__sort-section">
             <label className="block text-sm font-semibold text-[rgba(26,42,34,0.75)] mb-2 uppercase tracking-[0.05em]">Sort By</label>
-            <select
-              className="w-full px-4 py-2.5 rounded-2xl border border-[rgba(34,94,65,0.2)] bg-white text-sm font-semibold text-[#172022] focus:outline-none focus:border-[#1b8f5b] focus:ring-2 focus:ring-[rgba(43,118,79,0.2)]"
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-            >
-              <option value="popular">Most Popular</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Highest Rated</option>
-            </select>
+            <div className="user-search-view__sort-wrapper" ref={sortDropdownRef}>
+              <button
+                type="button"
+                className="user-search-view__sort-button"
+                onClick={() => setShowSortDropdown(!showSortDropdown)}
+              >
+                <span className="user-search-view__sort-button-text">
+                  {sortBy === 'popular' && 'Most Popular'}
+                  {sortBy === 'price-low' && 'Price: Low to High'}
+                  {sortBy === 'price-high' && 'Price: High to Low'}
+                  {sortBy === 'rating' && 'Highest Rated'}
+                </span>
+                <ChevronDownIcon className={cn('user-search-view__sort-chevron', showSortDropdown && 'user-search-view__sort-chevron--open')} />
+              </button>
+              {showSortDropdown && (
+                <div className="user-search-view__sort-dropdown">
+                  <button
+                    type="button"
+                    className={cn('user-search-view__sort-option', sortBy === 'popular' && 'user-search-view__sort-option--active')}
+                    onClick={() => {
+                      setSortBy('popular')
+                      setShowSortDropdown(false)
+                    }}
+                  >
+                    <span>Most Popular</span>
+                    {sortBy === 'popular' && (
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    className={cn('user-search-view__sort-option', sortBy === 'price-low' && 'user-search-view__sort-option--active')}
+                    onClick={() => {
+                      setSortBy('price-low')
+                      setShowSortDropdown(false)
+                    }}
+                  >
+                    <span>Price: Low to High</span>
+                    {sortBy === 'price-low' && (
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    className={cn('user-search-view__sort-option', sortBy === 'price-high' && 'user-search-view__sort-option--active')}
+                    onClick={() => {
+                      setSortBy('price-high')
+                      setShowSortDropdown(false)
+                    }}
+                  >
+                    <span>Price: High to Low</span>
+                    {sortBy === 'price-high' && (
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    className={cn('user-search-view__sort-option', sortBy === 'rating' && 'user-search-view__sort-option--active')}
+                    onClick={() => {
+                      setSortBy('rating')
+                      setShowSortDropdown(false)
+                    }}
+                  >
+                    <span>Highest Rated</span>
+                    {sortBy === 'rating' && (
+                      <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           <div>
             <label className="block text-sm font-semibold text-[rgba(26,42,34,0.75)] mb-2 uppercase tracking-[0.05em]">
-              Price Range: ₹{priceRange.min.toLocaleString('en-IN')} - ₹{priceRange.max.toLocaleString('en-IN')}
+              Price Range: ₹0 - ₹{maxPrice.toLocaleString('en-IN')}
             </label>
-            <div className="space-y-2">
+            <div className="user-search-view__price-slider-wrapper">
               <input
                 type="range"
                 min="0"
                 max="10000"
                 step="100"
-                value={priceRange.min}
-                onChange={(e) => setPriceRange({ ...priceRange, min: parseInt(e.target.value) })}
-                className="w-full h-2 bg-[rgba(34,94,65,0.12)] rounded-lg appearance-none cursor-pointer accent-[#1b8f5b]"
-              />
-              <input
-                type="range"
-                min="0"
-                max="10000"
-                step="100"
-                value={priceRange.max}
-                onChange={(e) => setPriceRange({ ...priceRange, max: parseInt(e.target.value) })}
-                className="w-full h-2 bg-[rgba(34,94,65,0.12)] rounded-lg appearance-none cursor-pointer accent-[#1b8f5b]"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                className="user-search-view__price-slider"
+                style={{
+                  '--slider-progress': `${(maxPrice / 10000) * 100}%`,
+                }}
               />
             </div>
           </div>
@@ -156,9 +236,10 @@ export function SearchView({ query = '', onProductClick, onAddToCart, categoryId
           {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
-              product={product}
+              product={{ ...product, isWishlisted: favourites.includes(product.id) }}
               onNavigate={onProductClick}
               onAddToCart={onAddToCart}
+              onWishlist={onToggleFavourite}
               className="h-full"
             />
           ))}

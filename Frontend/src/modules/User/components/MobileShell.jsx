@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { cn } from '../../../lib/cn'
-import { CloseIcon, MenuIcon, SearchIcon } from './icons'
+import { CloseIcon, MenuIcon, BellIcon, SearchIcon } from './icons'
 import iraSathiLogo from '../../../assets/IRA SathiNew.png'
 import { MapPinIcon } from './icons'
+import { NotificationsDropdown } from './NotificationsDropdown'
 
-export function MobileShell({ title, subtitle, children, navigation, menuContent, onSearchClick, cartCount = 0 }) {
+export function MobileShell({ title, subtitle, children, navigation, menuContent, onSearchClick, notificationsCount = 0 }) {
   const [open, setOpen] = useState(false)
   const [compact, setCompact] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
 
   useEffect(() => {
     let ticking = false
@@ -49,6 +51,19 @@ export function MobileShell({ title, subtitle, children, navigation, menuContent
               aria-label="Search"
             >
               <SearchIcon className="h-5 w-5 stroke-[2.5]" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setNotificationsOpen(!notificationsOpen)}
+              className="relative flex items-center justify-center w-10 h-10 rounded-2xl border-none bg-transparent text-[rgba(26,42,34,0.95)] transition-transform duration-200 hover:-translate-y-0.5 hover:opacity-85"
+              aria-label="Notifications"
+            >
+              <BellIcon className="h-5 w-5 stroke-[2.5]" />
+              {notificationsCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[0.65rem] font-bold text-white bg-red-500">
+                  {notificationsCount > 99 ? '99+' : notificationsCount}
+                </span>
+              )}
             </button>
             <button
               type="button"
@@ -115,6 +130,11 @@ export function MobileShell({ title, subtitle, children, navigation, menuContent
             : menuContent}
         </div>
       </aside>
+
+      <NotificationsDropdown
+        isOpen={notificationsOpen}
+        onClose={() => setNotificationsOpen(false)}
+      />
     </div>
   )
 }

@@ -2,12 +2,13 @@ import { useRef, useState, useEffect } from 'react'
 import { userSnapshot } from '../../services/userData'
 import { ProductCard } from '../../components/ProductCard'
 import { CategoryCard } from '../../components/CategoryCard'
-import { ChevronRightIcon } from '../../components/icons'
+import { ChevronRightIcon, MapPinIcon, TruckIcon, SearchIcon, FilterIcon } from '../../components/icons'
 import { cn } from '../../../../lib/cn'
 
-export function HomeView({ onProductClick, onCategoryClick, onAddToCart }) {
+export function HomeView({ onProductClick, onCategoryClick, onAddToCart, onSearchClick, onFilterClick, onToggleFavourite, favourites = [] }) {
   const [bannerIndex, setBannerIndex] = useState(0)
-  const bannerRef = useRef(null)
+  const categoriesRef = useRef(null)
+  const [selectedCategory, setSelectedCategory] = useState(userSnapshot.categories[0]?.id || null)
 
   const popularProducts = userSnapshot.popularProducts
     .map((id) => userSnapshot.products.find((p) => p.id === id))
@@ -20,38 +21,81 @@ export function HomeView({ onProductClick, onCategoryClick, onAddToCart }) {
     return () => clearInterval(interval)
   }, [])
 
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId)
+    onCategoryClick?.(categoryId)
+  }
+
+  // Prevent scrolling past the end
+  useEffect(() => {
+    const container = categoriesRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth
+      if (container.scrollLeft > maxScroll) {
+        container.scrollLeft = maxScroll
+      }
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    return () => container.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="space-y-6">
-      {/* Banner Carousel */}
-      <section className="relative -mx-5">
-        <div className="relative h-48 overflow-hidden rounded-b-3xl">
+    <div className="user-home-view space-y-6">
+      {/* Search Bar Section */}
+      <section id="home-search" className="home-search-section">
+        <div className="home-search-bar">
+          <div className="home-search-bar__input-wrapper">
+            <SearchIcon className="home-search-bar__icon" />
+            <input
+              type="text"
+              placeholder="Search Products, Seeds, Fertilizers, etc"
+              className="home-search-bar__input"
+              onClick={onSearchClick}
+              readOnly
+            />
+          </div>
+          <button
+            type="button"
+            className="home-search-bar__filter"
+            onClick={onFilterClick}
+            aria-label="Filter"
+          >
+            <FilterIcon className="h-5 w-5" />
+          </button>
+        </div>
+      </section>
+
+      {/* Hero Banner Section */}
+      <section id="home-hero" className="home-hero-section">
+        <div className="home-hero-banner">
           {userSnapshot.banners.map((banner, index) => (
             <div
               key={banner.id}
               className={cn(
-                'absolute inset-0 bg-cover bg-center transition-opacity duration-500',
-                index === bannerIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                'home-hero-banner__slide',
+                index === bannerIndex ? 'home-hero-banner__slide--active' : 'home-hero-banner__slide--hidden'
               )}
               style={{ backgroundImage: `url(${banner.image})` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                <h2 className="text-xl font-bold mb-1">{banner.title}</h2>
-                <p className="text-sm opacity-90">{banner.subtitle}</p>
+              <div className="home-hero-banner__overlay" />
+              <div className="home-hero-banner__content">
+                <h2 className="home-hero-banner__title">{banner.title}</h2>
+                <p className="home-hero-banner__subtitle">{banner.subtitle}</p>
               </div>
             </div>
           ))}
         </div>
-        <div className="flex justify-center gap-2 mt-3">
+        <div className="home-hero-banner__indicators">
           {userSnapshot.banners.map((_, index) => (
             <button
               key={index}
               type="button"
               className={cn(
-                'w-2 h-2 rounded-full transition-all duration-200',
-                index === bannerIndex
-                  ? 'bg-[#1b8f5b] scale-125'
-                  : 'bg-[rgba(24,39,31,0.24)]'
+                'home-hero-banner__indicator',
+                index === bannerIndex && 'home-hero-banner__indicator--active'
               )}
               onClick={() => setBannerIndex(index)}
               aria-label={`Go to banner ${index + 1}`}
@@ -60,75 +104,129 @@ export function HomeView({ onProductClick, onCategoryClick, onAddToCart }) {
         </div>
       </section>
 
-      {/* Categories */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-bold text-[#172022]">Categories</h3>
+      {/* Categories Section */}
+      <section id="home-categories" className="home-categories-section">
+        <div className="home-section-header">
+          <div className="home-section-header__content">
+            <h3 className="home-section-header__title">Categories</h3>
+          </div>
           <button
             type="button"
-            className="flex items-center gap-1 text-sm font-semibold text-[#1b8f5b] uppercase tracking-[0.08em]"
+            className="home-section-header__cta"
             onClick={() => onCategoryClick('all')}
           >
-            View All
-            <ChevronRightIcon className="h-4 w-4" />
+            See all
           </button>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div ref={categoriesRef} className="home-categories-rail">
           {userSnapshot.categories.map((category) => (
             <CategoryCard
               key={category.id}
               category={category}
-              onClick={onCategoryClick}
-              className="h-full"
+              onClick={handleCategoryClick}
+              isSelected={selectedCategory === category.id}
+              className="home-category-card"
             />
           ))}
         </div>
       </section>
 
-      {/* Popular Products */}
-      <section>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-bold text-[#172022]">Popular Products</h3>
+      {/* Popular Products Section */}
+      <section id="home-popular-products" className="home-products-section">
+        <div className="home-section-header">
+          <div className="home-section-header__content">
+            <h3 className="home-section-header__title">Popular Products</h3>
+            <p className="home-section-header__subtitle">Best sellers this week</p>
+          </div>
           <button
             type="button"
-            className="flex items-center gap-1 text-sm font-semibold text-[#1b8f5b] uppercase tracking-[0.08em]"
+            className="home-section-header__cta"
             onClick={() => onProductClick('all')}
           >
             View All
-            <ChevronRightIcon className="h-4 w-4" />
+            <ChevronRightIcon className="home-section-header__cta-icon" />
           </button>
         </div>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="home-products-grid">
           {popularProducts.map((product) => (
             <ProductCard
               key={product.id}
-              product={product}
+              product={{ ...product, isWishlisted: favourites.includes(product.id) }}
               onNavigate={onProductClick}
               onAddToCart={onAddToCart}
-              className="h-full"
+              onWishlist={onToggleFavourite}
+              className="home-product-card"
             />
           ))}
         </div>
       </section>
 
-      {/* Deals */}
-      <section>
-        <div className="mb-4">
-          <h3 className="text-lg font-bold text-[#172022]">Special Deals</h3>
+      {/* Special Deals Section */}
+      <section id="home-deals" className="home-deals-section">
+        <div className="home-section-header">
+          <div className="home-section-header__content">
+            <h3 className="home-section-header__title">Special Offers</h3>
+            <p className="home-section-header__subtitle">Limited time deals</p>
+          </div>
         </div>
-        <div className="grid grid-cols-1 gap-3">
+        <div className="home-deals-grid">
           {userSnapshot.deals.map((deal) => (
             <div
               key={deal.id}
-              className="p-4 rounded-2xl border border-[rgba(34,94,65,0.16)] bg-gradient-to-br from-white to-[rgba(241,244,236,0.9)] shadow-[0_18px_38px_-28px_rgba(13,38,24,0.35)]"
+              className="home-deal-card"
             >
-              <h4 className="text-base font-semibold text-[#172022] mb-1">{deal.title}</h4>
-              <p className="text-sm text-[rgba(26,42,34,0.66)]">{deal.subtitle}</p>
+              <div className="home-deal-card__badge">Special Offer</div>
+              <div className="home-deal-card__content">
+                <h4 className="home-deal-card__title">{deal.title}</h4>
+                <p className="home-deal-card__subtitle">{deal.subtitle}</p>
+              </div>
+              {deal.category && (
+                <button
+                  type="button"
+                  className="home-deal-card__cta"
+                  onClick={() => onCategoryClick(deal.category)}
+                >
+                  Shop Now
+                  <ChevronRightIcon className="home-deal-card__cta-icon" />
+                </button>
+              )}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Quick Stats Section */}
+      <section id="home-stats" className="home-stats-section">
+        <div className="home-stats-grid">
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon home-stat-card__icon--delivery">
+              <TruckIcon className="h-5 w-5" />
+            </div>
+            <div className="home-stat-card__content">
+              <p className="home-stat-card__label">Fast Delivery</p>
+              <span className="home-stat-card__value">3-4 Hours</span>
+            </div>
+          </div>
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon home-stat-card__icon--payment">
+              <MapPinIcon className="h-5 w-5" />
+            </div>
+            <div className="home-stat-card__content">
+              <p className="home-stat-card__label">Easy Payment</p>
+              <span className="home-stat-card__value">30% Advance</span>
+            </div>
+          </div>
+          <div className="home-stat-card">
+            <div className="home-stat-card__icon home-stat-card__icon--quality">
+              <TruckIcon className="h-5 w-5" />
+            </div>
+            <div className="home-stat-card__content">
+              <p className="home-stat-card__label">Quality Assured</p>
+              <span className="home-stat-card__value">100% Genuine</span>
+            </div>
+          </div>
         </div>
       </section>
     </div>
   )
 }
-

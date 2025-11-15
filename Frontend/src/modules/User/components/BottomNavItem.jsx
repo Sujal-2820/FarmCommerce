@@ -20,7 +20,7 @@ export function BottomNavItem({ label, icon, active, onClick, badge }) {
         }}
       >
         {icon}
-        {badge && badge > 0 && (
+        {badge !== undefined && badge !== null && badge > 0 && (
           <span className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[0.65rem] font-bold text-white bg-red-500">
             {badge > 99 ? '99+' : badge}
           </span>

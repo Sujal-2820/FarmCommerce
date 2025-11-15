@@ -3,7 +3,7 @@ import { useUserDispatch, useUserState } from '../context/UserContext'
 import { MobileShell } from '../components/MobileShell'
 import { BottomNavItem } from '../components/BottomNavItem'
 import { MenuList } from '../components/MenuList'
-import { HomeIcon, SearchIcon, CartIcon, UserIcon, MenuIcon } from '../components/icons'
+import { HomeIcon, SearchIcon, CartIcon, UserIcon, MenuIcon, HeartIcon, PackageIcon } from '../components/icons'
 import { userSnapshot, MIN_ORDER_VALUE } from '../services/userData'
 import { cn } from '../../../lib/cn'
 import { useToast, ToastProvider } from '../components/ToastNotification'
@@ -13,6 +13,9 @@ import { ProductDetailView } from './views/ProductDetailView'
 import { CartView } from './views/CartView'
 import { CheckoutView } from './views/CheckoutView'
 import { AccountView } from './views/AccountView'
+import { FavouritesView } from './views/FavouritesView'
+import { CategoryProductsView } from './views/CategoryProductsView'
+import { OrdersView } from './views/OrdersView'
 import '../user.css'
 
 const NAV_ITEMS = [
@@ -23,16 +26,22 @@ const NAV_ITEMS = [
     icon: HomeIcon,
   },
   {
-    id: 'search',
-    label: 'Search',
-    description: 'Find products',
-    icon: SearchIcon,
+    id: 'favourites',
+    label: 'Favourites',
+    description: 'Your favourite products',
+    icon: HeartIcon,
   },
   {
     id: 'cart',
     label: 'Cart',
     description: 'Your shopping cart',
     icon: CartIcon,
+  },
+  {
+    id: 'orders',
+    label: 'Orders',
+    description: 'Your orders',
+    icon: PackageIcon,
   },
   {
     id: 'account',
@@ -43,10 +52,11 @@ const NAV_ITEMS = [
 ]
 
 function UserDashboardContent({ onLogout }) {
-  const { profile, cart } = useUserState()
+  const { profile, cart, favourites, notifications, orders } = useUserState()
   const dispatch = useUserDispatch()
   const [activeTab, setActiveTab] = useState('home')
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState(null)
   const [showCheckout, setShowCheckout] = useState(false)
   const { toasts, dismissToast, success, error, warning, info } = useToast()
   const [searchMounted, setSearchMounted] = useState(false)
@@ -69,7 +79,97 @@ function UserDashboardContent({ onLogout }) {
     }
   }, [dispatch, profile])
 
+  // Initialize sample notifications
+  useEffect(() => {
+    if (notifications.length === 0) {
+      dispatch({
+        type: 'ADD_NOTIFICATION',
+        payload: {
+          title: 'Welcome to IRA Sathi!',
+          message: 'Start shopping for your farming needs',
+        },
+      })
+    }
+  }, [dispatch, notifications.length])
+
+  // Initialize sample delivered orders
+  useEffect(() => {
+    if (orders.length === 0) {
+      const sampleOrders = [
+        {
+          id: `ORD-${Date.now()}-1`,
+          date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+          status: 'delivered',
+          paymentStatus: 'fully_paid',
+          total: 3250,
+          items: [
+            {
+              name: 'NPK 19:19:19 Fertilizer',
+              price: 1250,
+              quantity: 2,
+              image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400',
+            },
+            {
+              name: 'Organic Compost',
+              price: 750,
+              quantity: 1,
+              image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400',
+            },
+          ],
+        },
+        {
+          id: `ORD-${Date.now() - 1000}-2`,
+          date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(), // 14 days ago
+          status: 'delivered',
+          paymentStatus: 'fully_paid',
+          total: 4500,
+          items: [
+            {
+              name: 'Wheat Seeds Premium',
+              price: 1500,
+              quantity: 2,
+              image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400',
+            },
+            {
+              name: 'Urea Fertilizer',
+              price: 1500,
+              quantity: 1,
+              image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400',
+            },
+          ],
+        },
+        {
+          id: `ORD-${Date.now() - 2000}-3`,
+          date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString(), // 21 days ago
+          status: 'delivered',
+          paymentStatus: 'fully_paid',
+          total: 2800,
+          items: [
+            {
+              name: 'Neem Oil Insecticide',
+              price: 850,
+              quantity: 2,
+              image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=400',
+            },
+            {
+              name: 'Potash Fertilizer',
+              price: 1100,
+              quantity: 1,
+              image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400',
+            },
+          ],
+        },
+      ]
+
+      sampleOrders.forEach((order) => {
+        dispatch({ type: 'ADD_ORDER', payload: order })
+      })
+    }
+  }, [dispatch, orders.length])
+
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart])
+  const favouritesCount = useMemo(() => favourites.length, [favourites])
+  const unreadNotificationsCount = useMemo(() => notifications.filter((n) => !n.read).length, [notifications])
 
   const handleAddToCart = (productId, quantity = 1) => {
     const product = userSnapshot.products.find((p) => p.id === productId)
@@ -117,6 +217,31 @@ function UserDashboardContent({ onLogout }) {
     }
     setShowCheckout(true)
     setActiveTab('checkout')
+  }
+
+  const handleToggleFavourite = (productId) => {
+    const isFavourite = favourites.includes(productId)
+    if (isFavourite) {
+      dispatch({ type: 'REMOVE_FROM_FAVOURITES', payload: { productId } })
+      success('Removed from favourites')
+    } else {
+      dispatch({ type: 'ADD_TO_FAVOURITES', payload: { productId } })
+      success('Added to favourites')
+    }
+  }
+
+  const handleFavouritesClick = () => {
+    setActiveTab('favourites')
+    setSelectedProduct(null)
+    setShowCheckout(false)
+  }
+
+  const handleSearchClick = () => {
+    openSearch()
+  }
+
+  const handleFilterClick = () => {
+    setActiveTab('search')
   }
 
   const openSearch = () => {
@@ -168,7 +293,8 @@ function UserDashboardContent({ onLogout }) {
       <MobileShell
         title={activeTab === 'home' ? `Hello ${profile.name.split(' ')[0]}` : null}
         subtitle={profile.location?.city ? `${profile.location.city}, ${profile.location.state}` : null}
-        onSearchClick={openSearch}
+        onSearchClick={handleSearchClick}
+        notificationsCount={unreadNotificationsCount}
         navigation={NAV_ITEMS.map((item) => (
           <BottomNavItem
             key={item.id}
@@ -177,10 +303,11 @@ function UserDashboardContent({ onLogout }) {
             onClick={() => {
               setActiveTab(item.id)
               setSelectedProduct(null)
+              setSelectedCategory(null)
               setShowCheckout(false)
             }}
-            icon={<item.icon active={activeTab === item.id} className="h-5 w-5" />}
-            badge={item.id === 'cart' ? cartCount : undefined}
+            icon={<item.icon active={activeTab === item.id} className="h-5 w-5" filled={item.id === 'favourites' ? favouritesCount > 0 : undefined} />}
+            badge={item.id === 'cart' ? (cartCount > 0 ? cartCount : undefined) : item.id === 'favourites' ? (favouritesCount > 0 ? favouritesCount : undefined) : undefined}
           />
         ))}
         menuContent={({ close }) => <MenuList items={buildMenuItems(close)} active={activeTab} />}
@@ -194,10 +321,42 @@ function UserDashboardContent({ onLogout }) {
                 setActiveTab('product-detail')
               }}
               onCategoryClick={(categoryId) => {
-                setActiveTab('search')
-                // Filter by category
+                setSelectedCategory(categoryId)
+                setActiveTab('category-products')
               }}
               onAddToCart={handleAddToCart}
+              onSearchClick={handleSearchClick}
+              onFilterClick={handleFilterClick}
+              onToggleFavourite={handleToggleFavourite}
+              favourites={favourites}
+            />
+          )}
+          {activeTab === 'favourites' && (
+            <FavouritesView
+              onProductClick={(productId) => {
+                setSelectedProduct(productId)
+                setActiveTab('product-detail')
+              }}
+              onAddToCart={handleAddToCart}
+              onRemoveFromFavourites={(productId) => {
+                success('Removed from favourites')
+              }}
+            />
+          )}
+          {activeTab === 'category-products' && selectedCategory && (
+            <CategoryProductsView
+              categoryId={selectedCategory}
+              onProductClick={(productId) => {
+                setSelectedProduct(productId)
+                setActiveTab('product-detail')
+              }}
+              onAddToCart={handleAddToCart}
+              onBack={() => {
+                setSelectedCategory(null)
+                setActiveTab('home')
+              }}
+              onToggleFavourite={handleToggleFavourite}
+              favourites={favourites}
             />
           )}
           {activeTab === 'search' && (
@@ -208,6 +367,8 @@ function UserDashboardContent({ onLogout }) {
                 setActiveTab('product-detail')
               }}
               onAddToCart={handleAddToCart}
+              onToggleFavourite={handleToggleFavourite}
+              favourites={favourites}
             />
           )}
           {activeTab === 'product-detail' && selectedProduct && (
@@ -242,6 +403,7 @@ function UserDashboardContent({ onLogout }) {
               }}
             />
           )}
+          {activeTab === 'orders' && <OrdersView />}
           {activeTab === 'account' && <AccountView />}
         </section>
       </MobileShell>
