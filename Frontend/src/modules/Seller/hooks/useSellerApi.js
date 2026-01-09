@@ -20,14 +20,14 @@ export function useSellerApi() {
         const result = await apiFunction()
         // Extract data from response: { success: true, data: {...} } -> {...}
         const responseData = result.success ? result.data : null
-        
+
         if (result.success && successAction && responseData) {
           dispatch(successAction(responseData))
         } else if (!result.success) {
           const errorMsg = result.error?.message || errorMessage || 'An error occurred'
           setError(errorMsg)
         }
-        
+
         return { data: responseData, error: result.error || null }
       } catch (err) {
         const errorMsg = errorMessage || err.message || 'An error occurred'
@@ -248,6 +248,39 @@ export function useSellerApi() {
     [handleApiCall],
   )
 
+  const getSupportTickets = useCallback(
+    async (params = {}) => {
+      return handleApiCall(
+        () => sellerApi.getSupportTickets(params),
+        null,
+        'Failed to fetch support tickets',
+      )
+    },
+    [handleApiCall],
+  )
+
+  const getSupportTicketDetails = useCallback(
+    async (ticketId) => {
+      return handleApiCall(
+        () => sellerApi.getSupportTicketDetails(ticketId),
+        null,
+        'Failed to fetch ticket details',
+      )
+    },
+    [handleApiCall],
+  )
+
+  const sendSupportMessage = useCallback(
+    async (ticketId, data) => {
+      return handleApiCall(
+        () => sellerApi.sendSupportMessage(ticketId, data),
+        null,
+        'Failed to send message',
+      )
+    },
+    [handleApiCall],
+  )
+
   // Commission APIs
   const getCommissionSummary = useCallback(async () => {
     return handleApiCall(
@@ -326,6 +359,9 @@ export function useSellerApi() {
     markNotificationRead,
     markAllNotificationsRead,
     reportIssue,
+    getSupportTickets,
+    getSupportTicketDetails,
+    sendSupportMessage,
     getCommissionSummary,
     getCommissionHistory,
     addBankAccount,

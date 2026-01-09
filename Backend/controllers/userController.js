@@ -4432,6 +4432,8 @@ exports.markAllNotificationsRead = async (req, res, next) => {
 // SUPPORT CONTROLLERS
 // ============================================================================
 
+const SupportTicket = require('../models/SupportTicket');
+
 /**
  * @desc    Create support ticket
  * @route   POST /api/users/support/tickets
@@ -4440,7 +4442,7 @@ exports.markAllNotificationsRead = async (req, res, next) => {
 exports.createSupportTicket = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { subject, description, category, orderId } = req.body;
+    const { subject, description, category, orderId, priority } = req.body;
 
     if (!subject || !description) {
       return res.status(400).json({
@@ -4449,7 +4451,17 @@ exports.createSupportTicket = async (req, res, next) => {
       });
     }
 
-    // Validate orderId if provided
+    // Get user info
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    // Validate orderId if provided and get order number
+    let orderNumber = null;
     if (orderId) {
       const order = await Order.findOne({ _id: orderId, userId });
       if (!order) {
@@ -4458,23 +4470,49 @@ exports.createSupportTicket = async (req, res, next) => {
           message: 'Order not found',
         });
       }
+      orderNumber = order.orderNumber;
     }
 
-    // TODO: Implement SupportTicket model when needed
-    // For now, return success with ticket info
+    // Create the support ticket
+    const ticket = new SupportTicket({
+      userType: 'user',
+      userId,
+      subject,
+      description,
+      category: category || 'general',
+      priority: priority || 'medium',
+      orderId: orderId || undefined,
+      orderNumber: orderNumber || undefined,
+      lastActivityBy: 'user',
+      // Add initial message (the description becomes the first message)
+      messages: [{
+        senderId: userId,
+        senderType: 'User',
+        senderName: user.name,
+        message: description,
+        isFromAdmin: false,
+        createdAt: new Date(),
+      }],
+    });
+
+    await ticket.save();
+
     res.status(201).json({
       success: true,
       data: {
         ticket: {
-          id: `TICKET_${Date.now()}`,
-          subject,
-          description,
-          category: category || 'general',
-          orderId: orderId || null,
-          status: 'open',
-          createdAt: new Date(),
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          subject: ticket.subject,
+          description: ticket.description,
+          category: ticket.category,
+          priority: ticket.priority,
+          status: ticket.status,
+          orderId: ticket.orderId,
+          orderNumber: ticket.orderNumber,
+          createdAt: ticket.createdAt,
         },
-        message: 'Support ticket created successfully (Feature coming soon)',
+        message: 'Support ticket created successfully',
       },
     });
   } catch (error) {
@@ -4492,19 +4530,43 @@ exports.getSupportTickets = async (req, res, next) => {
     const userId = req.user.userId;
     const { status, page = 1, limit = 20 } = req.query;
 
-    // TODO: Implement SupportTicket model when needed
-    // For now, return empty array
+    const query = { userType: 'user', userId };
+    if (status && ['open', 'in_progress', 'resolved', 'closed'].includes(status)) {
+      query.status = status;
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const total = await SupportTicket.countDocuments(query);
+
+    const tickets = await SupportTicket.find(query)
+      .sort({ lastActivityAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit))
+      .select('ticketId subject category priority status orderId orderNumber unreadByUser lastActivityAt createdAt')
+      .lean();
+
     res.status(200).json({
       success: true,
       data: {
-        tickets: [],
+        tickets: tickets.map(t => ({
+          id: t._id,
+          ticketId: t.ticketId,
+          subject: t.subject,
+          category: t.category,
+          priority: t.priority,
+          status: t.status,
+          orderId: t.orderId,
+          orderNumber: t.orderNumber,
+          hasUnread: t.unreadByUser,
+          lastActivityAt: t.lastActivityAt,
+          createdAt: t.createdAt,
+        })),
         pagination: {
           page: parseInt(page),
           limit: parseInt(limit),
-          total: 0,
-          pages: 0,
+          total,
+          pages: Math.ceil(total / parseInt(limit)),
         },
-        message: 'Support tickets feature coming soon',
       },
     });
   } catch (error) {
@@ -4522,13 +4584,57 @@ exports.getSupportTicketDetails = async (req, res, next) => {
     const userId = req.user.userId;
     const { ticketId } = req.params;
 
-    // TODO: Implement SupportTicket model when needed
+    const ticket = await SupportTicket.findOne({
+      $or: [
+        { _id: ticketId, userType: 'user', userId },
+        { ticketId: ticketId, userType: 'user', userId },
+      ],
+    }).lean();
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Mark as read by user
+    await SupportTicket.findByIdAndUpdate(ticket._id, {
+      unreadByUser: false,
+      $set: {
+        'messages.$[elem].readAt': new Date(),
+      },
+    }, {
+      arrayFilters: [{ 'elem.isFromAdmin': true, 'elem.readAt': null }],
+    });
+
     res.status(200).json({
       success: true,
       data: {
-        ticket: null,
-        messages: [],
-        message: 'Support ticket details feature coming soon',
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          subject: ticket.subject,
+          description: ticket.description,
+          category: ticket.category,
+          priority: ticket.priority,
+          status: ticket.status,
+          orderId: ticket.orderId,
+          orderNumber: ticket.orderNumber,
+          assignedToName: ticket.assignedToName,
+          resolution: ticket.resolution,
+          createdAt: ticket.createdAt,
+          resolvedAt: ticket.resolvedAt,
+          closedAt: ticket.closedAt,
+        },
+        messages: ticket.messages.map(m => ({
+          id: m._id,
+          message: m.message,
+          senderName: m.senderName,
+          isFromAdmin: m.isFromAdmin,
+          createdAt: m.createdAt,
+          readAt: m.readAt,
+        })),
       },
     });
   } catch (error) {
@@ -4547,18 +4653,62 @@ exports.sendSupportMessage = async (req, res, next) => {
     const { ticketId } = req.params;
     const { message } = req.body;
 
-    if (!message) {
+    if (!message || !message.trim()) {
       return res.status(400).json({
         success: false,
         message: 'Message is required',
       });
     }
 
-    // TODO: Implement SupportTicket and SupportMessage models when needed
+    // Find the ticket
+    const ticket = await SupportTicket.findOne({
+      $or: [
+        { _id: ticketId, userType: 'user', userId },
+        { ticketId: ticketId, userType: 'user', userId },
+      ],
+    });
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Check if ticket is closed
+    if (ticket.status === 'closed') {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot send message to a closed ticket',
+      });
+    }
+
+    // Get user info
+    const user = await User.findById(userId);
+
+    // Add message to ticket
+    ticket.addMessage(userId, 'User', user.name, message.trim(), false);
+
+    // If ticket was resolved, reopen it
+    if (ticket.status === 'resolved') {
+      ticket.status = 'open';
+    }
+
+    await ticket.save();
+
+    const newMessage = ticket.messages[ticket.messages.length - 1];
+
     res.status(200).json({
       success: true,
       data: {
-        message: 'Support message sent successfully (Feature coming soon)',
+        message: {
+          id: newMessage._id,
+          message: newMessage.message,
+          senderName: newMessage.senderName,
+          isFromAdmin: false,
+          createdAt: newMessage.createdAt,
+        },
+        ticketStatus: ticket.status,
       },
     });
   } catch (error) {

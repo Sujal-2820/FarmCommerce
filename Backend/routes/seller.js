@@ -363,6 +363,13 @@ router.get('/support/tickets', authorizeSeller, sellerController.getSupportTicke
  */
 router.get('/support/tickets/:ticketId', authorizeSeller, sellerController.getSupportTicketDetails);
 
+/**
+ * @route   POST /api/sellers/support/tickets/:ticketId/messages
+ * @desc    Send message on support ticket
+ * @access  Private (Seller)
+ */
+router.post('/support/tickets/:ticketId/messages', authorizeSeller, sellerController.sendSupportMessage);
+
 // ============================================================================
 // BANK ACCOUNT ROUTES
 // ============================================================================

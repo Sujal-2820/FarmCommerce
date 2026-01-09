@@ -2039,7 +2039,8 @@ function transformUser(backendUser) {
     email: backendUser.email,
     region: backendUser.location?.city || backendUser.location?.state || 'Unknown',
     sellerId: backendUser.seller?.sellerId || backendUser.sellerId || '',
-    orders: 0, // TODO: Count from orders when available
+    orders: backendUser.totalOrders || backendUser.orders || 0,
+    lastOrderDate: backendUser.lastOrderDate,
     payments: 'on_time', // TODO: Calculate from payment history
     supportTickets: 0, // TODO: Count from support tickets
     status: isBlocked ? 'blocked' : (isActive ? 'active' : 'inactive'),
@@ -3928,6 +3929,76 @@ export async function markTaskAsViewed(taskId) {
  */
 export async function markTaskAsCompleted(taskId) {
   return apiRequest(`/admin/tasks/${taskId}/complete`, {
+    method: 'PUT',
+  })
+}
+
+// ============================================================================
+// SUPPORT TICKET MANAGEMENT APIs
+// ============================================================================
+
+/**
+ * Get All Support Tickets
+ * GET /admin/support/tickets
+ * 
+ * @param {Object} params - { status, userType, priority, unread, search, page, limit }
+ * @returns {Promise<Object>} - { tickets: Array, stats: Object, pagination: Object }
+ */
+export async function getSupportTickets(params = {}) {
+  const queryParams = new URLSearchParams(params).toString()
+  return apiRequest(`/admin/support/tickets${queryParams ? `?${queryParams}` : ''}`)
+}
+
+/**
+ * Get Support Ticket Details
+ * GET /admin/support/tickets/:ticketId
+ * 
+ * @param {string} ticketId - Ticket ID or ticket code
+ * @returns {Promise<Object>} - { ticket: Object, messages: Array }
+ */
+export async function getSupportTicketDetails(ticketId) {
+  return apiRequest(`/admin/support/tickets/${ticketId}`)
+}
+
+/**
+ * Reply to Support Ticket
+ * POST /admin/support/tickets/:ticketId/reply
+ * 
+ * @param {string} ticketId - Ticket ID
+ * @param {Object} data - { message }
+ * @returns {Promise<Object>} - { message: Object, ticketStatus: string }
+ */
+export async function replyToSupportTicket(ticketId, data) {
+  return apiRequest(`/admin/support/tickets/${ticketId}/reply`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+}
+
+/**
+ * Update Support Ticket Status
+ * PUT /admin/support/tickets/:ticketId/status
+ * 
+ * @param {string} ticketId - Ticket ID
+ * @param {Object} data - { status, resolution?, priority? }
+ * @returns {Promise<Object>} - { ticket: Object, message: string }
+ */
+export async function updateSupportTicketStatus(ticketId, data) {
+  return apiRequest(`/admin/support/tickets/${ticketId}/status`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+}
+
+/**
+ * Assign Support Ticket
+ * PUT /admin/support/tickets/:ticketId/assign
+ * 
+ * @param {string} ticketId - Ticket ID
+ * @returns {Promise<Object>} - { ticket: Object, message: string }
+ */
+export async function assignSupportTicket(ticketId) {
+  return apiRequest(`/admin/support/tickets/${ticketId}/assign`, {
     method: 'PUT',
   })
 }

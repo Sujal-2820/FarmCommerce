@@ -28,7 +28,7 @@ async function handleResponse(response) {
  */
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem('user_token') // User authentication token
-  
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -882,9 +882,9 @@ export function initializeRealtimeConnection(onMessage) {
   //   onMessage(data)
   // }
   // return () => ws.close()
-  
+
   // For now, return a no-op cleanup function
-  return () => {}
+  return () => { }
 }
 
 /**
@@ -901,7 +901,7 @@ export function handleRealtimeNotification(notification) {
   // - 'order_delivered': When order is delivered
   // - 'offer': When new offers are available
   // - 'announcement': When admin posts announcements
-  
+
   return notification
 }
 

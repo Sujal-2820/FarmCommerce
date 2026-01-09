@@ -2430,37 +2430,254 @@ exports.trackShareAction = async (req, res, next) => {
 };
 
 // ============================================================================
-// SUPPORT ENDPOINTS (Placeholders - TODO: Implement SupportTicket model)
+// SUPPORT ENDPOINTS
 // ============================================================================
 
+const SupportTicket = require('../models/SupportTicket');
+
+/**
+ * @desc    Create support ticket (Report Issue)
+ * @route   POST /api/sellers/support/report
+ * @access  Private (Seller)
+ */
 exports.reportIssue = async (req, res, next) => {
   try {
-    const ticketId = `TICKET-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    res.status(200).json({
+    const seller = req.seller;
+    const { subject, description, category, priority } = req.body;
+
+    if (!subject || !description) {
+      return res.status(400).json({
+        success: false,
+        message: 'Subject and description are required',
+      });
+    }
+
+    // Create the support ticket
+    const ticket = new SupportTicket({
+      userType: 'seller',
+      sellerId: seller._id,
+      subject,
+      description,
+      category: category || 'general',
+      priority: priority || 'medium',
+      lastActivityBy: 'seller',
+      // Add initial message (the description becomes the first message)
+      messages: [{
+        senderId: seller._id,
+        senderType: 'Seller',
+        senderName: seller.name,
+        message: description,
+        isFromAdmin: false,
+        createdAt: new Date(),
+      }],
+    });
+
+    await ticket.save();
+
+    res.status(201).json({
       success: true,
-      data: { ticketId, message: 'Issue reported successfully' },
+      data: {
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          subject: ticket.subject,
+          description: ticket.description,
+          category: ticket.category,
+          priority: ticket.priority,
+          status: ticket.status,
+          createdAt: ticket.createdAt,
+        },
+        message: 'Support ticket created successfully',
+      },
     });
   } catch (error) {
     next(error);
   }
 };
 
+/**
+ * @desc    Get seller support tickets
+ * @route   GET /api/sellers/support/tickets
+ * @access  Private (Seller)
+ */
 exports.getSupportTickets = async (req, res, next) => {
   try {
+    const seller = req.seller;
+    const { status, page = 1, limit = 20 } = req.query;
+
+    const query = { userType: 'seller', sellerId: seller._id };
+    if (status && ['open', 'in_progress', 'resolved', 'closed'].includes(status)) {
+      query.status = status;
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const total = await SupportTicket.countDocuments(query);
+
+    const tickets = await SupportTicket.find(query)
+      .sort({ lastActivityAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit))
+      .select('ticketId subject category priority status unreadByUser lastActivityAt createdAt')
+      .lean();
+
     res.status(200).json({
       success: true,
-      data: { tickets: [], total: 0 },
+      data: {
+        tickets: tickets.map(t => ({
+          id: t._id,
+          ticketId: t.ticketId,
+          subject: t.subject,
+          category: t.category,
+          priority: t.priority,
+          status: t.status,
+          hasUnread: t.unreadByUser,
+          lastActivityAt: t.lastActivityAt,
+          createdAt: t.createdAt,
+        })),
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          pages: Math.ceil(total / parseInt(limit)),
+        },
+      },
     });
   } catch (error) {
     next(error);
   }
 };
 
+/**
+ * @desc    Get support ticket details
+ * @route   GET /api/sellers/support/tickets/:ticketId
+ * @access  Private (Seller)
+ */
 exports.getSupportTicketDetails = async (req, res, next) => {
   try {
-    res.status(404).json({
-      success: false,
-      message: 'Support ticket not found',
+    const seller = req.seller;
+    const { ticketId } = req.params;
+
+    const ticket = await SupportTicket.findOne({
+      $or: [
+        { _id: ticketId, userType: 'seller', sellerId: seller._id },
+        { ticketId: ticketId, userType: 'seller', sellerId: seller._id },
+      ],
+    }).lean();
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Mark as read by seller
+    await SupportTicket.findByIdAndUpdate(ticket._id, {
+      unreadByUser: false,
+      $set: {
+        'messages.$[elem].readAt': new Date(),
+      },
+    }, {
+      arrayFilters: [{ 'elem.isFromAdmin': true, 'elem.readAt': null }],
+    });
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          subject: ticket.subject,
+          description: ticket.description,
+          category: ticket.category,
+          priority: ticket.priority,
+          status: ticket.status,
+          assignedToName: ticket.assignedToName,
+          resolution: ticket.resolution,
+          createdAt: ticket.createdAt,
+          resolvedAt: ticket.resolvedAt,
+          closedAt: ticket.closedAt,
+        },
+        messages: ticket.messages.map(m => ({
+          id: m._id,
+          message: m.message,
+          senderName: m.senderName,
+          isFromAdmin: m.isFromAdmin,
+          createdAt: m.createdAt,
+          readAt: m.readAt,
+        })),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Send support message
+ * @route   POST /api/sellers/support/tickets/:ticketId/messages
+ * @access  Private (Seller)
+ */
+exports.sendSupportMessage = async (req, res, next) => {
+  try {
+    const seller = req.seller;
+    const { ticketId } = req.params;
+    const { message } = req.body;
+
+    if (!message || !message.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Message is required',
+      });
+    }
+
+    // Find the ticket
+    const ticket = await SupportTicket.findOne({
+      $or: [
+        { _id: ticketId, userType: 'seller', sellerId: seller._id },
+        { ticketId: ticketId, userType: 'seller', sellerId: seller._id },
+      ],
+    });
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Check if ticket is closed
+    if (ticket.status === 'closed') {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot send message to a closed ticket',
+      });
+    }
+
+    // Add message to ticket
+    ticket.addMessage(seller._id, 'Seller', seller.name, message.trim(), false);
+
+    // If ticket was resolved, reopen it
+    if (ticket.status === 'resolved') {
+      ticket.status = 'open';
+    }
+
+    await ticket.save();
+
+    const newMessage = ticket.messages[ticket.messages.length - 1];
+
+    res.status(200).json({
+      success: true,
+      data: {
+        message: {
+          id: newMessage._id,
+          message: newMessage.message,
+          senderName: newMessage.senderName,
+          isFromAdmin: false,
+          createdAt: newMessage.createdAt,
+        },
+        ticketStatus: ticket.status,
+      },
     });
   } catch (error) {
     next(error);

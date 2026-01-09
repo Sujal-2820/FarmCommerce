@@ -20,12 +20,12 @@ async function handleResponse(response) {
     const text = await response.text()
     data = text ? JSON.parse(text) : {}
   } catch (err) {
-    data = { 
+    data = {
       success: false,
       error: { message: 'An error occurred while parsing response' }
     }
   }
-  
+
   if (!response.ok) {
     // Return error in same format as success response for consistent error handling
     return {
@@ -36,7 +36,7 @@ async function handleResponse(response) {
       },
     }
   }
-  
+
   return data
 }
 
@@ -45,7 +45,7 @@ async function handleResponse(response) {
  */
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem('seller_token') // Seller authentication token
-  
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -662,6 +662,21 @@ export async function getSupportTicketDetails(ticketId) {
   return apiRequest(`/sellers/support/tickets/${ticketId}`)
 }
 
+/**
+ * Send Support Message
+ * POST /sellers/support/tickets/:ticketId/messages
+ * 
+ * @param {string} ticketId - Support ticket ID
+ * @param {Object} data - { message }
+ * @returns {Promise<Object>} - Created message data
+ */
+export async function sendSupportMessage(ticketId, data) {
+  return apiRequest(`/sellers/support/tickets/${ticketId}/messages`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+}
+
 // ============================================================================
 // NOTIFICATION PREFERENCES APIs
 // ============================================================================
@@ -711,9 +726,9 @@ export function initializeRealtimeConnection(onMessage) {
   //   onMessage(data)
   // }
   // return () => ws.close()
-  
+
   // For now, return a no-op cleanup function
-  return () => {}
+  return () => { }
 }
 
 /**
@@ -729,7 +744,7 @@ export function handleRealtimeNotification(notification) {
   // - 'announcement': When admin posts new announcement
   // - 'withdrawal_approved': When withdrawal request is approved
   // - 'withdrawal_rejected': When withdrawal request is rejected
-  
+
   return notification
 }
 

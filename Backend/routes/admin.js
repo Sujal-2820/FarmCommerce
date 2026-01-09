@@ -791,5 +791,44 @@ router.get('/reviews/:reviewId', authorizeAdmin, adminController.getReviewDetail
  */
 router.delete('/reviews/:reviewId', authorizeAdmin, adminController.deleteReview);
 
+// ============================================================================
+// SUPPORT TICKET MANAGEMENT ROUTES
+// ============================================================================
+
+/**
+ * @route   GET /api/admin/support/tickets
+ * @desc    Get all support tickets
+ * @access  Private (Admin)
+ */
+router.get('/support/tickets', authorizeAdmin, adminController.getSupportTickets);
+
+/**
+ * @route   GET /api/admin/support/tickets/:ticketId
+ * @desc    Get support ticket details
+ * @access  Private (Admin)
+ */
+router.get('/support/tickets/:ticketId', authorizeAdmin, adminController.getSupportTicketDetails);
+
+/**
+ * @route   POST /api/admin/support/tickets/:ticketId/reply
+ * @desc    Reply to support ticket
+ * @access  Private (Admin)
+ */
+router.post('/support/tickets/:ticketId/reply', authorizeAdmin, adminController.replyToSupportTicket);
+
+/**
+ * @route   PUT /api/admin/support/tickets/:ticketId/status
+ * @desc    Update support ticket status
+ * @access  Private (Admin)
+ */
+router.put('/support/tickets/:ticketId/status', authorizeAdmin, adminController.updateSupportTicketStatus);
+
+/**
+ * @route   PUT /api/admin/support/tickets/:ticketId/assign
+ * @desc    Assign support ticket to admin
+ * @access  Private (Admin)
+ */
+router.put('/support/tickets/:ticketId/assign', authorizeAdmin, adminController.assignSupportTicket);
+
 module.exports = router;
 

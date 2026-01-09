@@ -5250,12 +5250,26 @@ exports.getUsers = async (req, res, next) => {
       .populate('seller', 'sellerId name')
       .populate('assignedVendor', 'name phone');
 
+    // Fetch order counts and last order date for each user to distinguish active/inactive
+    const Order = require('../models/Order');
+    const usersWithCounts = await Promise.all(users.map(async (user) => {
+      const orderCount = await Order.countDocuments({ userId: user._id });
+      const lastOrder = await Order.findOne({ userId: user._id }).sort({ createdAt: -1 }).select('createdAt');
+
+      return {
+        ...user.toObject(),
+        totalOrders: orderCount,
+        orders: orderCount, // Providing both for frontend compatibility
+        lastOrderDate: lastOrder ? lastOrder.createdAt : null,
+      };
+    }));
+
     const total = await User.countDocuments(query);
 
     res.status(200).json({
       success: true,
       data: {
-        users,
+        users: usersWithCounts,
         pagination: {
           currentPage: pageNum,
           totalPages: Math.ceil(total / limitNum),
@@ -8950,6 +8964,373 @@ exports.deleteReview = async (req, res, next) => {
       success: true,
       data: {
         message: 'Review deleted successfully',
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// ============================================================================
+// SUPPORT TICKET MANAGEMENT
+// ============================================================================
+
+const SupportTicket = require('../models/SupportTicket');
+
+/**
+ * @desc    Get all support tickets
+ * @route   GET /api/admin/support/tickets
+ * @access  Private (Admin)
+ */
+exports.getSupportTickets = async (req, res, next) => {
+  try {
+    const { status, userType, priority, unread, page = 1, limit = 20, search } = req.query;
+
+    const query = {};
+
+    if (status && ['open', 'in_progress', 'resolved', 'closed'].includes(status)) {
+      query.status = status;
+    }
+    if (userType && ['user', 'seller'].includes(userType)) {
+      query.userType = userType;
+    }
+    if (priority && ['low', 'medium', 'high'].includes(priority)) {
+      query.priority = priority;
+    }
+    if (unread === 'true') {
+      query.unreadByAdmin = true;
+    }
+    if (search) {
+      query.$or = [
+        { ticketId: { $regex: search, $options: 'i' } },
+        { subject: { $regex: search, $options: 'i' } },
+      ];
+    }
+
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    const total = await SupportTicket.countDocuments(query);
+
+    const tickets = await SupportTicket.find(query)
+      .sort({ unreadByAdmin: -1, priority: -1, lastActivityAt: -1 })
+      .skip(skip)
+      .limit(parseInt(limit))
+      .populate('userId', 'name phone userId')
+      .populate('sellerId', 'name phone sellerId')
+      .populate('assignedTo', 'name')
+      .select('ticketId subject category priority status userType unreadByAdmin lastActivityAt createdAt')
+      .lean();
+
+    // Get stats
+    const stats = await SupportTicket.getStats();
+    const unreadCount = await SupportTicket.countDocuments({ unreadByAdmin: true, status: { $nin: ['closed'] } });
+
+    res.status(200).json({
+      success: true,
+      data: {
+        tickets: tickets.map(t => ({
+          id: t._id,
+          ticketId: t.ticketId,
+          subject: t.subject,
+          category: t.category,
+          priority: t.priority,
+          status: t.status,
+          userType: t.userType,
+          user: t.userType === 'user'
+            ? { name: t.userId?.name, phone: t.userId?.phone, id: t.userId?.userId }
+            : { name: t.sellerId?.name, phone: t.sellerId?.phone, id: t.sellerId?.sellerId },
+          assignedTo: t.assignedTo?.name || null,
+          unread: t.unreadByAdmin,
+          lastActivityAt: t.lastActivityAt,
+          createdAt: t.createdAt,
+        })),
+        stats,
+        unreadCount,
+        pagination: {
+          page: parseInt(page),
+          limit: parseInt(limit),
+          total,
+          pages: Math.ceil(total / parseInt(limit)),
+        },
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Get support ticket details
+ * @route   GET /api/admin/support/tickets/:ticketId
+ * @access  Private (Admin)
+ */
+exports.getSupportTicketDetails = async (req, res, next) => {
+  try {
+    const { ticketId } = req.params;
+
+    const ticket = await SupportTicket.findOne({
+      $or: [{ _id: ticketId }, { ticketId: ticketId }],
+    })
+      .populate('userId', 'name phone email userId location')
+      .populate('sellerId', 'name phone email sellerId area')
+      .populate('orderId', 'orderNumber totalAmount status')
+      .populate('assignedTo', 'name')
+      .populate('resolvedBy', 'name')
+      .populate('closedBy', 'name')
+      .lean();
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Mark as read by admin
+    await SupportTicket.findByIdAndUpdate(ticket._id, {
+      unreadByAdmin: false,
+      $set: {
+        'messages.$[elem].readAt': new Date(),
+      },
+    }, {
+      arrayFilters: [{ 'elem.isFromAdmin': false, 'elem.readAt': null }],
+    });
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          subject: ticket.subject,
+          description: ticket.description,
+          category: ticket.category,
+          priority: ticket.priority,
+          status: ticket.status,
+          userType: ticket.userType,
+          user: ticket.userType === 'user' ? ticket.userId : ticket.sellerId,
+          order: ticket.orderId,
+          orderNumber: ticket.orderNumber,
+          assignedTo: ticket.assignedTo?.name,
+          resolution: ticket.resolution,
+          createdAt: ticket.createdAt,
+          resolvedAt: ticket.resolvedAt,
+          resolvedBy: ticket.resolvedBy?.name,
+          closedAt: ticket.closedAt,
+          closedBy: ticket.closedBy?.name,
+          lastActivityAt: ticket.lastActivityAt,
+        },
+        messages: ticket.messages.map(m => ({
+          id: m._id,
+          message: m.message,
+          senderName: m.senderName,
+          senderType: m.senderType,
+          isFromAdmin: m.isFromAdmin,
+          createdAt: m.createdAt,
+          readAt: m.readAt,
+        })),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Reply to support ticket
+ * @route   POST /api/admin/support/tickets/:ticketId/reply
+ * @access  Private (Admin)
+ */
+exports.replyToSupportTicket = async (req, res, next) => {
+  try {
+    const admin = req.admin;
+    const { ticketId } = req.params;
+    const { message } = req.body;
+
+    if (!message || !message.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Message is required',
+      });
+    }
+
+    const ticket = await SupportTicket.findOne({
+      $or: [{ _id: ticketId }, { ticketId: ticketId }],
+    });
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    if (ticket.status === 'closed') {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot reply to a closed ticket',
+      });
+    }
+
+    // Add message
+    ticket.addMessage(admin._id, 'Admin', admin.name, message.trim(), true);
+
+    // Update status to in_progress if it was open
+    if (ticket.status === 'open') {
+      ticket.status = 'in_progress';
+    }
+
+    // Assign to admin if not already assigned
+    if (!ticket.assignedTo) {
+      ticket.assignedTo = admin._id;
+      ticket.assignedToName = admin.name;
+      ticket.assignedAt = new Date();
+    }
+
+    await ticket.save();
+
+    const newMessage = ticket.messages[ticket.messages.length - 1];
+
+    res.status(200).json({
+      success: true,
+      data: {
+        message: {
+          id: newMessage._id,
+          message: newMessage.message,
+          senderName: newMessage.senderName,
+          isFromAdmin: true,
+          createdAt: newMessage.createdAt,
+        },
+        ticketStatus: ticket.status,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Update support ticket status
+ * @route   PUT /api/admin/support/tickets/:ticketId/status
+ * @access  Private (Admin)
+ */
+exports.updateSupportTicketStatus = async (req, res, next) => {
+  try {
+    const admin = req.admin;
+    const { ticketId } = req.params;
+    const { status, resolution, priority } = req.body;
+
+    const ticket = await SupportTicket.findOne({
+      $or: [{ _id: ticketId }, { ticketId: ticketId }],
+    });
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    // Update priority if provided
+    if (priority && ['low', 'medium', 'high'].includes(priority)) {
+      ticket.priority = priority;
+    }
+
+    // Update status if provided
+    if (status && ['open', 'in_progress', 'resolved', 'closed'].includes(status)) {
+      ticket.status = status;
+
+      if (status === 'resolved') {
+        ticket.resolvedAt = new Date();
+        ticket.resolvedBy = admin._id;
+        if (resolution) {
+          ticket.resolution = resolution;
+        }
+      } else if (status === 'closed') {
+        ticket.closedAt = new Date();
+        ticket.closedBy = admin._id;
+        if (!ticket.resolvedAt) {
+          ticket.resolvedAt = new Date();
+          ticket.resolvedBy = admin._id;
+        }
+        if (resolution) {
+          ticket.resolution = resolution;
+        }
+      }
+    }
+
+    // Assign if not already assigned
+    if (!ticket.assignedTo) {
+      ticket.assignedTo = admin._id;
+      ticket.assignedToName = admin.name;
+      ticket.assignedAt = new Date();
+    }
+
+    ticket.lastActivityAt = new Date();
+    ticket.lastActivityBy = 'admin';
+
+    await ticket.save();
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          status: ticket.status,
+          priority: ticket.priority,
+          resolution: ticket.resolution,
+          resolvedAt: ticket.resolvedAt,
+          closedAt: ticket.closedAt,
+        },
+        message: 'Ticket updated successfully',
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Assign support ticket to admin
+ * @route   PUT /api/admin/support/tickets/:ticketId/assign
+ * @access  Private (Admin)
+ */
+exports.assignSupportTicket = async (req, res, next) => {
+  try {
+    const admin = req.admin;
+    const { ticketId } = req.params;
+
+    const ticket = await SupportTicket.findOne({
+      $or: [{ _id: ticketId }, { ticketId: ticketId }],
+    });
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        message: 'Support ticket not found',
+      });
+    }
+
+    ticket.assignedTo = admin._id;
+    ticket.assignedToName = admin.name;
+    ticket.assignedAt = new Date();
+
+    if (ticket.status === 'open') {
+      ticket.status = 'in_progress';
+    }
+
+    await ticket.save();
+
+    res.status(200).json({
+      success: true,
+      data: {
+        ticket: {
+          id: ticket._id,
+          ticketId: ticket.ticketId,
+          assignedTo: admin.name,
+          status: ticket.status,
+        },
+        message: 'Ticket assigned successfully',
       },
     });
   } catch (error) {

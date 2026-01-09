@@ -62,10 +62,28 @@ export function UsersPage({ subRoute = null, navigate }) {
 
   // Filter users based on subRoute
   useEffect(() => {
+    // Current date for 2-month threshold calculation
+    const twoMonthsAgo = new Date()
+    twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2)
+
+    const isPending = (u) => u.name === 'Pending Registration'
     if (subRoute === 'active') {
-      setUsersList(allUsersList.filter((u) => u.status === 'Active' || u.status === 'active'))
+      // Successful registration AND order made in last 2 months
+      setUsersList(allUsersList.filter((u) => {
+        if (isPending(u)) return false
+        if (!u.lastOrderDate) return false
+        return new Date(u.lastOrderDate) >= twoMonthsAgo
+      }))
     } else if (subRoute === 'inactive') {
-      setUsersList(allUsersList.filter((u) => u.status === 'Inactive' || u.status === 'inactive' || u.status === 'Blocked' || u.status === 'blocked'))
+      // Successful registration AND (no orders OR last order > 2 months ago)
+      setUsersList(allUsersList.filter((u) => {
+        if (isPending(u)) return false
+        if (!u.lastOrderDate) return true // No orders since registration
+        return new Date(u.lastOrderDate) < twoMonthsAgo
+      }))
+    } else if (subRoute === 'incomplete') {
+      // Accounts that haven't finished registration process
+      setUsersList(allUsersList.filter((u) => isPending(u)))
     } else {
       setUsersList(allUsersList)
     }
@@ -934,12 +952,14 @@ export function UsersPage({ subRoute = null, navigate }) {
   const getPageTitle = () => {
     if (subRoute === 'active') return 'Active Users'
     if (subRoute === 'inactive') return 'Inactive Users'
+    if (subRoute === 'incomplete') return 'Pending Registrations'
     return 'User Trust & Compliance'
   }
 
   const getPageDescription = () => {
-    if (subRoute === 'active') return 'View and manage all active user accounts.'
-    if (subRoute === 'inactive') return 'View and manage all inactive or blocked user accounts.'
+    if (subRoute === 'active') return 'View and manage accounts with orders placed in the last 2 months.'
+    if (subRoute === 'inactive') return 'Registered accounts with no orders since 2 months or never.'
+    if (subRoute === 'incomplete') return 'Users who requested OTP but haven\'t completed their profile setup.'
     return 'Monitor orders, payments, and support escalations. Disable risky accounts with a single action.'
   }
 

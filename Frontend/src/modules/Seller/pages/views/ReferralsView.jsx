@@ -12,6 +12,7 @@ const FILTER_TABS = [
   { id: 'all', label: <Trans>All</Trans> },
   { id: 'active', label: <Trans>Active</Trans> },
   { id: 'registered', label: <Trans>New</Trans> },
+  { id: 'stalled', label: <Trans>Stalled</Trans> }, // Gap 5A: Users inactive for 2+ months
 ]
 
 export function ReferralsView({ onNavigate }) {
@@ -122,6 +123,16 @@ export function ReferralsView({ onNavigate }) {
       filtered = filtered.filter((r) => r.status === 'active' || r.status === 'Active')
     } else if (activeFilter === 'registered') {
       filtered = filtered.filter((r) => r.status === 'registered' || r.status === 'Registered' || !r.status)
+    } else if (activeFilter === 'stalled') {
+      // Gap 5A: Filter users who haven't ordered in 2+ months
+      const twoMonthsAgo = new Date()
+      twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2)
+      filtered = filtered.filter((r) => {
+        // If no last purchase date, consider stalled
+        if (!r.lastPurchase && !r.lastOrderDate) return true
+        const lastPurchaseDate = new Date(r.lastPurchase || r.lastOrderDate)
+        return lastPurchaseDate < twoMonthsAgo
+      })
     }
 
     // Search filter
@@ -350,9 +361,23 @@ export function ReferralsView({ onNavigate }) {
                             </span>
                           </div>
                           {commissionInfo.purchaseAmount < 50000 && (
-                            <p className="mt-1 text-[0.7rem] text-[rgba(26,42,34,0.6)]">
-                              <Trans>{`${amountToNextSlabDisplay} more unlocks 3% rate`}</Trans>
-                            </p>
+                            <div className="mt-2">
+                              {/* Gap 5B: Visual Progress Bar for Commission Threshold */}
+                              <div className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div
+                                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-300"
+                                  style={{ width: `${Math.min((commissionInfo.purchaseAmount / 50000) * 100, 100)}%` }}
+                                />
+                              </div>
+                              <div className="mt-1 flex items-center justify-between text-[0.65rem]">
+                                <span className="text-[rgba(26,42,34,0.6)]">
+                                  {Math.round((commissionInfo.purchaseAmount / 50000) * 100)}% to 3%
+                                </span>
+                                <span className="text-blue-600 font-semibold">
+                                  <Trans>{`${amountToNextSlabDisplay} more`}</Trans>
+                                </span>
+                              </div>
+                            </div>
                           )}
                         </div>
                         <div className="seller-referral-stat">
