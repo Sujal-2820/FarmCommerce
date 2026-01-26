@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { VendorRegister } from '../pages/VendorRegister'
+import { registerFCMTokenWithBackend } from '../../../utils/pushNotificationService'
 
 export function VendorRegisterPage() {
   const navigate = useNavigate()
@@ -7,7 +8,10 @@ export function VendorRegisterPage() {
   return (
     <VendorRegister
       onSwitchToLogin={() => navigate('/vendor/login')}
-      onSuccess={() => navigate('/vendor/dashboard')}
+      onSuccess={() => {
+        registerFCMTokenWithBackend('vendor')
+        navigate('/vendor/dashboard')
+      }}
     />
   )
 }

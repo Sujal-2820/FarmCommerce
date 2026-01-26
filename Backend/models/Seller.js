@@ -101,6 +101,17 @@ const sellerSchema = new mongoose.Schema({
     code: String,
     expiresAt: Date,
   },
+  // FCM Push Notification Tokens
+  fcmTokenWeb: {
+    type: String,
+    default: null,
+    // Firebase Cloud Messaging token for web push notifications
+  },
+  fcmTokenApp: {
+    type: String,
+    default: null,
+    // Firebase Cloud Messaging token for mobile app push notifications
+  },
 }, {
   timestamps: true,
 });

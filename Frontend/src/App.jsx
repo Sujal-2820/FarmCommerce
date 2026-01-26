@@ -12,6 +12,8 @@ import {
 import { SellerDashboardPage, SellerLogin, SellerRegister, SellerProvider } from './modules/Seller'
 import { WebsiteProvider, WebsiteRoutes } from './modules/website'
 import { TranslationProvider } from './context/TranslationContext'
+import { setupForegroundHandler, registerFCMTokenWithBackend } from './utils/pushNotificationService'
+import { useEffect } from 'react'
 
 function Home() {
   const links = [
@@ -52,7 +54,7 @@ function Home() {
           ))}
         </nav>
       </div>
-      </div>
+    </div>
   )
 }
 
@@ -68,19 +70,41 @@ function AdminDashboardRoute() {
 
 function UserLoginRoute() {
   const navigate = useNavigate()
-  return <UserLogin onSuccess={() => navigate('/user/dashboard')} onSwitchToRegister={() => navigate('/user/register')} />
+  return (
+    <UserLogin
+      onSuccess={() => {
+        registerFCMTokenWithBackend('user')
+        navigate('/user/dashboard')
+      }}
+      onSwitchToRegister={() => navigate('/user/register')}
+    />
+  )
 }
 
 function UserRegisterRoute() {
   const navigate = useNavigate()
-  return <UserRegister onSuccess={() => navigate('/user/dashboard')} onSwitchToLogin={() => navigate('/user/login')} />
+  return (
+    <UserRegister
+      onSuccess={() => {
+        registerFCMTokenWithBackend('user')
+        navigate('/user/dashboard')
+      }}
+      onSwitchToLogin={() => navigate('/user/login')}
+    />
+  )
 }
 
 function SellerLoginRoute() {
   const navigate = useNavigate()
   return (
     <SellerProvider>
-      <SellerLogin onSubmit={() => navigate('/seller/dashboard')} onSwitchToRegister={() => navigate('/seller/register')} />
+      <SellerLogin
+        onSubmit={() => {
+          registerFCMTokenWithBackend('seller')
+          navigate('/seller/dashboard')
+        }}
+        onSwitchToRegister={() => navigate('/seller/register')}
+      />
     </SellerProvider>
   )
 }
@@ -89,45 +113,64 @@ function SellerRegisterRoute() {
   const navigate = useNavigate()
   return (
     <SellerProvider>
-      <SellerRegister onSubmit={() => navigate('/seller/dashboard')} onSwitchToLogin={() => navigate('/seller/login')} />
+      <SellerRegister
+        onSubmit={() => {
+          registerFCMTokenWithBackend('seller')
+          navigate('/seller/dashboard')
+        }}
+        onSwitchToLogin={() => navigate('/seller/login')}
+      />
     </SellerProvider>
   )
 }
 
 function App() {
+  useEffect(() => {
+    // Setup listener for foreground notifications
+    setupForegroundHandler((payload) => {
+      console.log('Foreground notification received:', payload);
+      // You can add a toast notification here if you have a toast system
+      const { title, body } = payload.notification;
+      // For now, let's use the browser native notification if permission is granted
+      if (Notification.permission === 'granted') {
+        new Notification(title, { body });
+      }
+    });
+  }, []);
+
   return (
     <TranslationProvider>
       <BrowserRouter>
         <Routes>
-        {/* Home route redirects to user dashboard */}
-        <Route path="/" element={<Navigate to="/user/dashboard/home" replace />} />
-        {/* Console/Admin Routes - Specific paths first */}
-        <Route path="/console" element={<Home />} />
-        <Route path="/admin/login" element={<AdminLoginRoute />} />
-        <Route path="/admin/dashboard" element={<AdminDashboardRoute />} />
-        <Route path="/user/login" element={<UserLoginRoute />} />
-        <Route path="/user/register" element={<UserRegisterRoute />} />
-        <Route path="/user/dashboard" element={<Navigate to="/user/dashboard/home" replace />} />
-        <Route path="/user/dashboard/:tab" element={<UserDashboardPage />} />
-        <Route path="/vendor" element={<VendorRouteContainer />}>
-          <Route path="language" element={<VendorLanguagePage />} />
-          <Route path="role" element={<VendorRolePage />} />
-          <Route path="login" element={<VendorLoginPage />} />
-          <Route path="register" element={<VendorRegisterPage />} />
-          <Route path="dashboard" element={<Navigate to="/vendor/dashboard/overview" replace />} />
-          <Route path="dashboard/:tab" element={<VendorDashboardPage />} />
-        </Route>
-        <Route path="/seller/login" element={<SellerLoginRoute />} />
-        <Route path="/seller/register" element={<SellerRegisterRoute />} />
-        <Route path="/seller/dashboard" element={<Navigate to="/seller/dashboard/overview" replace />} />
-        <Route path="/seller/dashboard/:tab" element={<SellerDashboardPage />} />
+          {/* Home route redirects to user dashboard */}
+          <Route path="/" element={<Navigate to="/user/dashboard/home" replace />} />
+          {/* Console/Admin Routes - Specific paths first */}
+          <Route path="/console" element={<Home />} />
+          <Route path="/admin/login" element={<AdminLoginRoute />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardRoute />} />
+          <Route path="/user/login" element={<UserLoginRoute />} />
+          <Route path="/user/register" element={<UserRegisterRoute />} />
+          <Route path="/user/dashboard" element={<Navigate to="/user/dashboard/home" replace />} />
+          <Route path="/user/dashboard/:tab" element={<UserDashboardPage />} />
+          <Route path="/vendor" element={<VendorRouteContainer />}>
+            <Route path="language" element={<VendorLanguagePage />} />
+            <Route path="role" element={<VendorRolePage />} />
+            <Route path="login" element={<VendorLoginPage />} />
+            <Route path="register" element={<VendorRegisterPage />} />
+            <Route path="dashboard" element={<Navigate to="/vendor/dashboard/overview" replace />} />
+            <Route path="dashboard/:tab" element={<VendorDashboardPage />} />
+          </Route>
+          <Route path="/seller/login" element={<SellerLoginRoute />} />
+          <Route path="/seller/register" element={<SellerRegisterRoute />} />
+          <Route path="/seller/dashboard" element={<Navigate to="/seller/dashboard/overview" replace />} />
+          <Route path="/seller/dashboard/:tab" element={<SellerDashboardPage />} />
 
-        {/* Website Routes - Public E-commerce Site (catch-all for remaining paths) */}
-        <Route path="/*" element={
-          <WebsiteProvider>
-            <WebsiteRoutes />
-          </WebsiteProvider>
-        } />
+          {/* Website Routes - Public E-commerce Site (catch-all for remaining paths) */}
+          <Route path="/*" element={
+            <WebsiteProvider>
+              <WebsiteRoutes />
+            </WebsiteProvider>
+          } />
         </Routes>
       </BrowserRouter>
     </TranslationProvider>

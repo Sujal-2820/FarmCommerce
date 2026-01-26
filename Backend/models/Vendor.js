@@ -189,6 +189,17 @@ const vendorSchema = new mongoose.Schema({
       default: Date.now,
     },
   },
+  // FCM Push Notification Tokens
+  fcmTokenWeb: {
+    type: String,
+    default: null,
+    // Firebase Cloud Messaging token for web push notifications
+  },
+  fcmTokenApp: {
+    type: String,
+    default: null,
+    // Firebase Cloud Messaging token for mobile app push notifications
+  },
 }, {
   timestamps: true,
 });
@@ -211,7 +222,7 @@ vendorSchema.methods.generateOTP = function () {
     // Fallback to Math.random if crypto is not available
     code = Math.floor(100000 + Math.random() * 900000).toString();
   }
-  
+
   // Always generate a new OTP (overwrite existing)
   this.otp = {
     code,

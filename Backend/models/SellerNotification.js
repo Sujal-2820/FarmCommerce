@@ -132,6 +132,33 @@ sellerNotificationSchema.statics.createNotification = async function (data) {
         expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
     });
 
+    // Send push notification (non-blocking)
+    try {
+        const { sendNotificationToSeller } = require('../services/pushNotificationService');
+
+        // Prepare push notification payload
+        const pushPayload = {
+            title,
+            body: message,
+            data: {
+                type,
+                notificationId: notification._id.toString(),
+                priority,
+                ...(relatedEntityId && { relatedEntityId: relatedEntityId.toString() }),
+                ...(relatedEntityType && { relatedEntityType }),
+                ...(metadata && Object.keys(metadata).length > 0 && { metadata: JSON.stringify(Object.fromEntries(metadata)) }),
+            },
+        };
+
+        // Send push notification asynchronously (don't await to avoid blocking)
+        sendNotificationToSeller(sellerId, pushPayload).catch(err => {
+            console.error('Push notification failed (non-critical):', err.message);
+        });
+    } catch (error) {
+        // Log but don't throw - push notifications are non-critical
+        console.error('Error triggering push notification:', error.message);
+    }
+
     return notification;
 };
 

@@ -10,6 +10,7 @@ const userRoutes = require('./routes/user');
 const vendorRoutes = require('./routes/vendor');
 const sellerRoutes = require('./routes/seller');
 const adminRoutes = require('./routes/admin');
+const fcmRoutes = require('./routes/fcm');
 // const utilsRoutes = require('./routes/utils');
 
 // Import config
@@ -78,6 +79,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/vendors', vendorRoutes);
 app.use('/api/sellers', sellerRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/fcm', fcmRoutes);
 // app.use('/api/utils', utilsRoutes); // Deprecated: Frontend uses Google Cloud Translation API directly
 
 // 404 handler (must come before error handler)
@@ -99,6 +101,10 @@ const HOST = process.env.HOST || '0.0.0.0';
 // Connect to MongoDB
 connectDB()
   .then(() => {
+    // Initialize Firebase Admin SDK for push notifications
+    const { initializeFirebaseAdmin } = require('./services/firebaseAdmin');
+    initializeFirebaseAdmin();
+
     // Start HTTP server
     const server = app.listen(PORT, HOST, () => {
       console.log(`🚀 IRA SATHI Backend Server running on http://${HOST}:${PORT}`);
