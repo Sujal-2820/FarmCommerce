@@ -12,7 +12,8 @@ import {
     Send,
     ChevronLeft,
     X,
-    Plus
+    Plus,
+    ShieldCheck
 } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import * as adminApi from '../services/adminApi'

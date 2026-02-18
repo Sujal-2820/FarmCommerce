@@ -176,9 +176,9 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
 
     const historyColumns = useMemo(() => [
         {
-            key: 'title',
-            header: 'Notification',
-            render: (row) => (
+            Header: 'Notification',
+            accessor: 'title',
+            Cell: (row) => (
                 <div className="max-w-xs">
                     <p className="font-semibold text-gray-900 truncate">{row.title}</p>
                     <p className="text-xs text-gray-500 truncate">{row.message}</p>
@@ -186,9 +186,9 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
             ),
         },
         {
-            key: 'targetAudience',
-            header: 'Audience',
-            render: (row) => {
+            Header: 'Audience',
+            accessor: 'targetAudience',
+            Cell: (row) => {
                 const Icon = getAudienceIcon(row.targetAudience)
                 return (
                     <div className="flex items-center gap-2">
@@ -199,9 +199,9 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
             },
         },
         {
-            key: 'sentAt',
-            header: 'Sent At',
-            render: (row) => (
+            Header: 'Sent At',
+            accessor: 'sentAt',
+            Cell: (row) => (
                 <span className="text-sm text-gray-600">
                     {new Date(row.sentAt).toLocaleDateString('en-IN', {
                         day: 'numeric',
@@ -214,19 +214,19 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
             ),
         },
         {
-            key: 'stats',
-            header: 'Delivery Stats',
-            render: (row) => (
+            Header: 'Delivery Stats',
+            accessor: 'deliveredCount',
+            Cell: (row) => (
                 <div className="text-sm">
-                    <p className="text-gray-900">{row.deliveredCount.toLocaleString()} delivered</p>
-                    <p className="text-xs text-gray-500">{row.openedCount.toLocaleString()} opened ({row.deliveredCount > 0 ? Math.round((row.openedCount / row.deliveredCount) * 100) : 0}%)</p>
+                    <p className="text-gray-900">{(row.deliveredCount || 0).toLocaleString()} delivered</p>
+                    <p className="text-xs text-gray-500">{(row.openedCount || 0).toLocaleString()} opened ({row.deliveredCount > 0 ? Math.round(((row.openedCount || 0) / row.deliveredCount) * 100) : 0}%)</p>
                 </div>
             ),
         },
         {
-            key: 'status',
-            header: 'Status',
-            render: (row) => getStatusBadge(row.status),
+            Header: 'Status',
+            accessor: 'status',
+            Cell: (row) => getStatusBadge(row.status),
         },
     ], [])
 
@@ -483,8 +483,8 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
                     ) : (
                         <DataTable
                             columns={historyColumns}
-                            data={pushHistory}
-                            emptyMessage="No push notifications found"
+                            rows={pushHistory}
+                            emptyState="No push notifications found"
                         />
                     )}
                 </div>
