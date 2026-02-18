@@ -5,6 +5,8 @@ import { DataTable } from '../components/DataTable'
 import { useAdminApi } from '../hooks/useAdminApi'
 import { useToast } from '../components/ToastNotification'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
+
 /**
  * Push Notifications Management Page
  * 
@@ -49,29 +51,32 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
     const [formErrors, setFormErrors] = useState({})
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    // Mock history data (will be replaced with API data in future)
-    const [pushHistory, setPushHistory] = useState([
-        {
-            id: '1',
-            title: 'Welcome to IRA Sathi!',
-            message: 'Thank you for joining our farming community.',
-            targetAudience: 'users',
-            sentAt: new Date(Date.now() - 86400000).toISOString(),
-            deliveredCount: 1234,
-            openedCount: 567,
-            status: 'delivered',
-        },
-        {
-            id: '2',
-            title: 'New Stock Available',
-            message: 'Fresh inventory has been added. Check your stock manager.',
-            targetAudience: 'vendors',
-            sentAt: new Date(Date.now() - 172800000).toISOString(),
-            deliveredCount: 89,
-            openedCount: 45,
-            status: 'delivered',
-        },
-    ])
+    // Push notification history (fetched from real API)
+    const [pushHistory, setPushHistory] = useState([])
+    const [historyLoading, setHistoryLoading] = useState(false)
+
+    // Fetch real history from backend
+    const fetchHistory = useCallback(async () => {
+        setHistoryLoading(true)
+        try {
+            const adminToken = localStorage.getItem('admin_token')
+            const res = await fetch(`${API_BASE_URL}/fcm/history`, {
+                headers: { Authorization: `Bearer ${adminToken}` },
+            })
+            const data = await res.json()
+            if (data.success) {
+                setPushHistory(data.data || [])
+            }
+        } catch (err) {
+            console.error('Failed to fetch push notification history:', err)
+        } finally {
+            setHistoryLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchHistory()
+    }, [])
 
     const handleFormChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }))
@@ -103,38 +108,44 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
         if (!validateForm()) return
 
         setIsSubmitting(true)
-
-        // Simulate API call (will be replaced with actual implementation)
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500))
-
-            // Add to history (mock)
-            const newNotification = {
-                id: Date.now().toString(),
-                ...formData,
-                sentAt: new Date().toISOString(),
-                deliveredCount: 0,
-                openedCount: 0,
-                status: 'pending',
-            }
-            setPushHistory(prev => [newNotification, ...prev])
-
-            success('Push notification queued for delivery!')
-            setShowCreateForm(false)
-            setFormData({
-                title: '',
-                message: '',
-                targetAudience: 'all',
-                targetMode: 'all',
-                targetRecipients: [],
-                priority: 'normal',
-                scheduledAt: null,
-                imageUrl: '',
-                actionUrl: '',
+            const adminToken = localStorage.getItem('admin_token')
+            const res = await fetch(`${API_BASE_URL}/fcm/broadcast`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${adminToken}`,
+                },
+                body: JSON.stringify({
+                    title: formData.title,
+                    message: formData.message,
+                    targetAudience: formData.targetAudience,
+                    priority: formData.priority,
+                    imageUrl: formData.imageUrl || undefined,
+                }),
             })
-            setActiveTab('history')
+            const data = await res.json()
+
+            if (res.ok && data.success) {
+                success(`Push notification sent! Delivered: ${data.stats?.deliveredCount ?? 0}`)
+                setFormData({
+                    title: '',
+                    message: '',
+                    targetAudience: 'all',
+                    targetMode: 'all',
+                    targetRecipients: [],
+                    priority: 'normal',
+                    scheduledAt: null,
+                    imageUrl: '',
+                    actionUrl: '',
+                })
+                await fetchHistory() // Refresh history from real API
+                setActiveTab('history')
+            } else {
+                error(data.message || 'Failed to send push notification.')
+            }
         } catch (err) {
-            error('Failed to send push notification. Please try again.')
+            error('Network error. Please try again.')
         } finally {
             setIsSubmitting(false)
         }
@@ -240,18 +251,16 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
                 </button>
             </div>
 
-            {/* Coming Soon Notice */}
-            <div className="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-4">
+            {/* Live System Notice */}
+            <div className="rounded-2xl border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-4">
                 <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
-                        <Smartphone className="h-5 w-5 text-amber-600" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
+                        <Smartphone className="h-5 w-5 text-green-600" />
                     </div>
                     <div>
-                        <h3 className="font-bold text-amber-800">Push Notifications - Setup Complete</h3>
-                        <p className="text-sm text-amber-700 mt-1">
-                            The push notification system UI is ready. Integration with Firebase Cloud Messaging (FCM) or
-                            OneSignal will be added in a future update. For now, you can preview the interface and
-                            prepare notification templates.
+                        <h3 className="font-bold text-green-800">Push Notifications — Live</h3>
+                        <p className="text-sm text-green-700 mt-1">
+                            Firebase Cloud Messaging is active. Notifications sent here will be delivered to all registered devices in real time.
                         </p>
                     </div>
                 </div>
@@ -283,7 +292,7 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
                     )}
                 >
                     <Bell className="h-4 w-4 inline mr-2" />
-                    History ({pushHistory.length})
+                    History ({historyLoading ? '…' : pushHistory.length})
                 </button>
             </div>
 
