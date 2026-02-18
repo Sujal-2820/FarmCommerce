@@ -23,6 +23,7 @@ import '../seller.css'
 import { Trans } from '../../../components/Trans'
 import { TransText } from '../../../components/TransText'
 import { playNotificationSoundIfEnabled } from '../../../utils/notificationSound'
+import { removeFCMTokenFromBackend } from '../../../utils/pushNotificationService'
 
 const NAV_ITEMS = [
   {
@@ -122,6 +123,8 @@ export function SellerDashboard({ onLogout }) {
   }, [dispatch, profile, notifications.length])
 
   const handleLogout = () => {
+    // Fire-and-forget FCM token cleanup — must happen before token is removed by context
+    removeFCMTokenFromBackend('seller').catch(() => { })
     dispatch({ type: 'AUTH_LOGOUT' })
     onLogout?.()
   }

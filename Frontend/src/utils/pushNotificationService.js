@@ -34,13 +34,26 @@ export async function requestNotificationPermission() {
 
 /**
  * Get FCM Token
+ * Explicitly registers the service worker first for robustness.
  * @returns {Promise<string|null>}
  */
 export async function getFCMToken() {
     try {
-        const token = await getToken(messaging, {
-            vapidKey: VAPID_KEY
-        });
+        let swRegistration;
+        if ('serviceWorker' in navigator) {
+            try {
+                swRegistration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+            } catch (swErr) {
+                console.warn('Service worker registration failed, proceeding without it:', swErr);
+            }
+        }
+
+        const tokenOptions = { vapidKey: VAPID_KEY };
+        if (swRegistration) {
+            tokenOptions.serviceWorkerRegistration = swRegistration;
+        }
+
+        const token = await getToken(messaging, tokenOptions);
 
         if (token) {
             return token;
@@ -149,5 +162,46 @@ export async function initializePushNotifications() {
         await registerFCMTokenWithBackend('vendor');
     } else if (sellerToken) {
         await registerFCMTokenWithBackend('seller');
+    }
+}
+
+/**
+ * Remove FCM Token from backend on logout
+ * Fire-and-forget — errors are silently swallowed so logout is never blocked.
+ * @param {string} userType - 'user', 'vendor', or 'seller'
+ */
+export async function removeFCMTokenFromBackend(userType) {
+    try {
+        let authToken;
+        switch (userType) {
+            case 'user':
+                authToken = localStorage.getItem('user_token');
+                break;
+            case 'vendor':
+                authToken = localStorage.getItem('vendor_token');
+                break;
+            case 'seller':
+                authToken = localStorage.getItem('seller_token');
+                break;
+            default:
+                return;
+        }
+
+        if (!authToken) return;
+
+        // Also clear the cached registration flag
+        localStorage.removeItem(`fcm_token_registered_${userType}`);
+
+        await fetch(`${API_BASE_URL}/fcm/remove`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`,
+            },
+            body: JSON.stringify({ platform: 'web' }),
+        });
+    } catch (err) {
+        // Silently swallow — logout must never be blocked by FCM cleanup
+        console.warn('FCM token removal on logout failed (non-critical):', err.message);
     }
 }

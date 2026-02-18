@@ -35,6 +35,7 @@ import { useTranslation } from '../../../../context/TranslationContext'
 import { Trans } from '../../../../components/Trans'
 import { TransText } from '../../../../components/TransText'
 import { playNotificationSoundIfEnabled } from '../../../../utils/notificationSound'
+import { removeFCMTokenFromBackend } from '../../../../utils/pushNotificationService'
 
 const NAV_ITEMS = [
   {
@@ -330,6 +331,8 @@ export function VendorDashboard({ onLogout }) {
   const searchInputRef = useRef(null)
 
   const handleLogout = () => {
+    // Fire-and-forget FCM token cleanup — must happen before token is removed
+    removeFCMTokenFromBackend('vendor').catch(() => { })
     localStorage.removeItem('vendor_token')
     dispatch({ type: 'AUTH_LOGOUT' })
     onLogout?.()

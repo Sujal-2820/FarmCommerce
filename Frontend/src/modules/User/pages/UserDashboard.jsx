@@ -29,6 +29,7 @@ import { VendorAvailabilityWarning } from '../components/VendorAvailabilityWarni
 import { AuthPromptModal } from '../components/AuthPromptModal'
 import { AuthPromptLaptop } from '../components/AuthPromptLaptop'
 import { AuthPromptMobile } from '../components/AuthPromptMobile'
+import { removeFCMTokenFromBackend } from '../../../utils/pushNotificationService'
 import '../user.css'
 
 const NAV_ITEMS = [
@@ -1007,6 +1008,8 @@ function UserDashboardContent({ onLogout }) {
       icon: <MenuIcon className="h-4 w-4" />,
       description: <Trans>Log out from your account</Trans>,
       onSelect: () => {
+        // Fire-and-forget FCM token cleanup — must happen before token is removed
+        removeFCMTokenFromBackend('user').catch(() => { })
         dispatch({ type: 'AUTH_LOGOUT' })
         onLogout?.()
         close()
