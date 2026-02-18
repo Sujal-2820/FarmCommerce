@@ -154,7 +154,7 @@ vendorNotificationSchema.statics.createNotification = async function (data) {
         priority,
         ...(relatedEntityId && { relatedEntityId: relatedEntityId.toString() }),
         ...(relatedEntityType && { relatedEntityType }),
-        ...(metadata && Object.keys(metadata).length > 0 && { metadata: JSON.stringify(Object.fromEntries(metadata)) }),
+        ...(metadata && Object.keys(metadata).length > 0 && { metadata: JSON.stringify(metadata) }),
       },
     };
 
