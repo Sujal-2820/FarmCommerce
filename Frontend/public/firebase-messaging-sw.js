@@ -1,6 +1,6 @@
 // Import Firebase scripts from CDN for the service worker
-importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js');
 
 // Initialize Firebase in the service worker
 // Note: These values are hardcoded here because the service worker doesn't have access to Vite env variables.
