@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { RefreshCw, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react'
 import { Modal } from './Modal'
 import { cn } from '../../../lib/cn'
@@ -350,10 +350,10 @@ export function OrderStatusUpdateModal({ isOpen, onClose, order, onUpdate, loadi
 
         {/* Info Message */}
         {isPaid && !isRevertAction && (
-          <div className="rounded-xl border border-green-200 bg-green-50 p-4">
+          <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-4">
             <div className="flex items-start gap-3">
-              <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600" />
-              <div className="text-sm text-green-900">
+              <CheckCircle className="h-5 w-5 flex-shrink-0 text-[#017827]" />
+              <div className="text-sm text-[#014a19]">
                 <p className="font-bold">Order is Fully Paid</p>
                 <p className="mt-1">This order has been fully paid. Status updates are not required.</p>
               </div>
@@ -379,7 +379,7 @@ export function OrderStatusUpdateModal({ isOpen, onClose, order, onUpdate, loadi
                 onUpdate(order.id, { finalizeGracePeriod: true })
               }}
               disabled={loading}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
             >
               {loading ? (
                 <>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @layer base {
   :root {
@@ -10,7 +10,7 @@
     font-family: "Inter", system-ui, "Segoe UI", sans-serif;
     color: hsl(24 32% 18%);
     letter-spacing: 0.01em;
-    background: radial-gradient(circle at top, hsl(134 45% 88%) 0%, hsl(45 52% 97%) 55%);
+    background: radial-gradient(circle at top, rgba(1, 120, 39, 0.1) 0%, rgba(255, 255, 255, 1) 55%);
     text-rendering: optimizeLegibility;
   }
 
@@ -38,11 +38,18 @@
     align-items: center;
     gap: 0.5rem;
     border-radius: 9999px;
-    background-color: hsl(142 45% 25%);
+    background-color: #017827;
     padding: 0.25rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: hsl(142 52% 52%);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .bg-brand {
+    background-color: #017827 !important;
+    background-image: none !important;
   }
 }
 

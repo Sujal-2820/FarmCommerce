@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Razorpay Payment Utility
  * 
  * Handles Razorpay Checkout integration
@@ -91,7 +91,7 @@ export async function openRazorpayCheckout(options) {
           contact: options.prefill?.contact || '',
         },
         theme: {
-          color: '#1b8f5b', // Match app theme
+          color: '#017827', // Match app theme
         },
         handler: function (response) {
           // Payment successful

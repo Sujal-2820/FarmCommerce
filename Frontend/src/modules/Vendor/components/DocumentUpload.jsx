@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import { Upload, X, FileText, Loader2, CheckCircle } from 'lucide-react'
 import { CLOUDINARY_CONFIG } from '../../Admin/config/cloudinary'
 import { cn } from '../../../lib/cn'
@@ -206,7 +206,7 @@ export function DocumentUpload({
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <CheckCircle className="h-4 w-4 text-[#017827] flex-shrink-0" />
                 <p className="text-sm font-semibold text-surface-foreground truncate">
                   Image uploaded
                 </p>

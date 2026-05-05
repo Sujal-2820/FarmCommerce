@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react'
+﻿import { MapPin } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
 /**
@@ -62,7 +62,7 @@ export function VendorMap({ vendor, className }) {
                 .join(', ')}
             </p>
           ) : (
-            <p className="text-xs font-semibold text-green-600">No overlap detected</p>
+            <p className="text-xs font-semibold text-[#017827]">No overlap detected</p>
           )}
         </div>
       </div>

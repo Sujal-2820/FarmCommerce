@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { createContext, useContext } from 'react'
 import { cn } from '../../../lib/cn'
 import { CheckCircleIcon, XIcon, BellIcon } from './icons'
@@ -70,7 +70,7 @@ export function ToastContainer({ toasts, onDismiss }) {
         >
           <div className={cn(
             'flex items-center justify-center w-8 h-8 rounded-xl flex-shrink-0 text-[1.1rem] font-bold',
-            toast.type === 'success' && 'bg-gradient-to-br from-[rgba(43,118,79,0.18)] to-[rgba(43,118,79,0.08)] text-[#1b8f5b]',
+            toast.type === 'success' && 'bg-gradient-to-br from-[rgba(1, 120, 39,0.18)] to-[rgba(1, 120, 39,0.08)] text-[#017827]',
             toast.type === 'error' && 'bg-gradient-to-br from-[rgba(220,38,38,0.18)] to-[rgba(220,38,38,0.08)] text-[#dc2626]',
             toast.type === 'warning' && 'bg-gradient-to-br from-[rgba(224,160,73,0.18)] to-[rgba(224,160,73,0.08)] text-[#9b6532]',
             toast.type === 'info' && 'bg-gradient-to-br from-[rgba(33,150,173,0.18)] to-[rgba(33,150,173,0.08)] text-[rgba(16,102,112,0.9)]'

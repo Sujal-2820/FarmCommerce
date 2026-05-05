@@ -1,4 +1,4 @@
-import { Building2, CheckCircle, XCircle, FileText, MapPin, Phone, Mail, AlertTriangle, ExternalLink, Eye } from 'lucide-react'
+﻿import { Building2, CheckCircle, XCircle, FileText, MapPin, Phone, Mail, AlertTriangle, ExternalLink, Eye } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { cn } from '../../../lib/cn'
@@ -33,7 +33,7 @@ export function VendorApprovalModal({ isOpen, onClose, vendor, onApprove, onReje
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
           <div className="flex items-start justify-between">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                 <Building2 className="h-6 w-6" />
               </div>
               <div>
@@ -163,7 +163,7 @@ export function VendorApprovalModal({ isOpen, onClose, vendor, onApprove, onReje
                   <p className="text-xs font-semibold text-gray-700">Aadhaar Card</p>
                 </div>
                 {vendor.aadhaarCard?.url ? (
-                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <CheckCircle className="h-4 w-4 text-[#017827]" />
                 ) : (
                   <XCircle className="h-4 w-4 text-red-600" />
                 )}
@@ -211,7 +211,7 @@ export function VendorApprovalModal({ isOpen, onClose, vendor, onApprove, onReje
                   <p className="text-xs font-semibold text-gray-700">PAN Card</p>
                 </div>
                 {vendor.panCard?.url ? (
-                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <CheckCircle className="h-4 w-4 text-[#017827]" />
                 ) : (
                   <XCircle className="h-4 w-4 text-red-600" />
                 )}
@@ -281,7 +281,7 @@ export function VendorApprovalModal({ isOpen, onClose, vendor, onApprove, onReje
                 'flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-white transition-all',
                 loading || hasCoverageConflict
                   ? 'bg-gray-400 shadow-none cursor-not-allowed'
-                  : 'bg-gradient-to-r from-green-500 to-green-600 shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]',
+                  : 'bg-gradient-to-r from-[#017827] to-[#0a9937] shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]',
               )}
             >
               <CheckCircle className="h-4 w-4" />

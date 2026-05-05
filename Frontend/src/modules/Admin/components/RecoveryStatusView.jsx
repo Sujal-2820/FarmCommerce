@@ -1,4 +1,4 @@
-import { RefreshCw, TrendingUp, AlertCircle, CheckCircle, Clock } from 'lucide-react'
+﻿import { RefreshCw, TrendingUp, AlertCircle, CheckCircle, Clock } from 'lucide-react'
 import { StatusBadge } from './StatusBadge'
 import { cn } from '../../../lib/cn'
 
@@ -28,7 +28,7 @@ export function RecoveryStatusView({ recoveryData, onViewDetails }) {
     switch (status?.toLowerCase()) {
       case 'recovered':
       case 'completed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />
+        return <CheckCircle className="h-4 w-4 text-[#017827]" />
       case 'in_progress':
       case 'pending':
         return <Clock className="h-4 w-4 text-orange-600" />
@@ -100,7 +100,7 @@ export function RecoveryStatusView({ recoveryData, onViewDetails }) {
                   <div
                     className={cn(
                       'h-full transition-all',
-                      item.progress >= 80 ? 'bg-green-500' : item.progress >= 50 ? 'bg-orange-500' : 'bg-red-500',
+                      item.progress >= 80 ? 'bg-[#017827]' : item.progress >= 50 ? 'bg-orange-500' : 'bg-red-500',
                     )}
                     style={{ width: `${Math.min(item.progress, 100)}%` }}
                   />

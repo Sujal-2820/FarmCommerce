@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { History, IndianRupee, Filter, Search, Calendar, TrendingUp, TrendingDown, Wallet, Factory, ShieldCheck, Users, X, Loader2 } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -321,7 +321,7 @@ export function PaymentHistoryPage() {
             <div className="flex items-center gap-2">
               <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg', {
                 'bg-blue-100 text-blue-600': color === 'blue',
-                'bg-green-100 text-green-600': color === 'green',
+                'bg-[rgba(1,120,39,0.1)] text-[#017827]': color === 'green',
                 'bg-teal-100 text-teal-600': color === 'teal',
                 'bg-yellow-100 text-yellow-600': color === 'yellow',
                 'bg-orange-100 text-orange-600': color === 'orange',
@@ -361,7 +361,7 @@ export function PaymentHistoryPage() {
         ...column,
         Cell: (row) => (
           <span className={cn('text-sm font-bold', {
-            'text-green-600': row.activityType.includes('earning') || row.activityType.includes('commission'),
+            'text-[#017827]': row.activityType.includes('earning') || row.activityType.includes('commission'),
             'text-teal-600': row.activityType.includes('credit_repayment'),
             'text-red-600': row.activityType.includes('withdrawal'),
             'text-blue-600': row.activityType.includes('payment'),
@@ -439,9 +439,9 @@ export function PaymentHistoryPage() {
           </div>
           <p className="text-xl font-bold text-gray-900">{formatCurrency(stats.totalUserPayments || 0)}</p>
         </div>
-        <div className="rounded-3xl border border-green-200 bg-white p-4 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
+        <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-white p-4 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
           <div className="flex items-center gap-2 mb-2">
-            <Factory className="h-4 w-4 text-green-600" />
+            <Factory className="h-4 w-4 text-[#017827]" />
             <p className="text-xs text-gray-600">Vendor Earnings</p>
           </div>
           <p className="text-xl font-bold text-gray-900">{formatCurrency(stats.totalVendorEarnings || 0)}</p>
@@ -658,14 +658,14 @@ export function PaymentHistoryPage() {
                 </div>
               )}
               {filters.vendorId && (
-                <div className="mt-1 flex items-center gap-2 rounded bg-green-50 px-2 py-1 text-xs">
-                  <span className="text-green-700">
+                <div className="mt-1 flex items-center gap-2 rounded bg-[rgba(1,120,39,0.04)] px-2 py-1 text-xs">
+                  <span className="text-[#017827]">
                     {vendorOptions.find(v => v.id === filters.vendorId)?.name || 'Selected Vendor'}
                   </span>
                   <button
                     type="button"
                     onClick={() => handleFilterChange('vendorId', '')}
-                    className="text-green-600 hover:text-green-800"
+                    className="text-[#017827] hover:text-[#015c1f]"
                   >
                     <X className="h-3 w-3" />
                   </button>

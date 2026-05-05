@@ -1,7 +1,7 @@
-import { cn } from '../../../lib/cn'
+﻿import { cn } from '../../../lib/cn'
 
 const tones = {
-  success: 'bg-gradient-to-br from-green-500 to-green-600 text-white border-green-300 shadow-[0_2px_6px_rgba(0,0,0,0.08)]',
+  success: 'bg-gradient-to-br from-[#017827] to-[#0a9937] text-white border-[rgba(1,120,39,0.4)] shadow-[0_2px_6px_rgba(0,0,0,0.08)]',
   warning: 'bg-gradient-to-br from-yellow-500 to-yellow-600 text-white border-yellow-300 shadow-[0_2px_6px_rgba(0,0,0,0.08)]',
   neutral: 'bg-white text-gray-700 border-gray-200 shadow-[0_1px_4px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.4)]',
 }

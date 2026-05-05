@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
+﻿import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { StarIcon, HeartIcon, TruckIcon, MapPinIcon, ChevronRightIcon, ChevronDownIcon, PlusIcon, MinusIcon, PackageIcon, CheckCircleIcon, TrashIcon } from '../../components/icons'
 import { cn } from '../../../../lib/cn'
 import * as userApi from '../../services/userApi'
@@ -689,7 +689,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
           <p className="text-base font-semibold text-[rgba(26,42,34,0.75)] mb-4">Product not found</p>
           <button
             type="button"
-            className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white text-sm font-semibold"
+            className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-gradient-to-r from-[#017827] to-[#0a9937] text-white text-sm font-semibold"
             onClick={onBack}
           >
             Go Back
@@ -870,7 +870,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
     <div ref={containerRef} className="user-product-detail-view space-y-6">
       <button
         type="button"
-        className="flex items-center gap-2 text-sm font-semibold text-[#1b8f5b] mb-2 user-product-detail-view__back-button"
+        className="flex items-center gap-2 text-sm font-semibold text-[#017827] mb-2 user-product-detail-view__back-button"
         onClick={onBack}
       >
         <ChevronRightIcon className="h-5 w-5 rotate-180 transition-transform duration-300" />
@@ -893,7 +893,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                   className={cn(
                     'flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all',
                     selectedImage === index
-                      ? 'border-[#1b8f5b] scale-105'
+                      ? 'border-[#017827] scale-105'
                       : 'border-transparent opacity-60 hover:opacity-100'
                   )}
                   onClick={() => setSelectedImage(index)}
@@ -933,7 +933,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 "flex items-center justify-center w-10 h-10 rounded-xl border-2 transition-all shadow-sm",
                 isWishlisted
                   ? "border-red-300 bg-red-50 text-red-600"
-                  : "border-[rgba(34,94,65,0.15)] bg-white text-gray-600 hover:border-red-200 hover:bg-red-50"
+                  : "border-[rgba(1, 78, 23,0.15)] bg-white text-gray-600 hover:border-red-200 hover:bg-red-50"
               )}
               onClick={() => {
                 if (onToggleFavourite) {
@@ -947,9 +947,9 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
           </div>
 
           {/* Price - Prominent Display */}
-          <div className="bg-gradient-to-br from-[#1b8f5b]/10 to-[#2a9d61]/5 rounded-xl p-3 border border-[#1b8f5b]/20">
+          <div className="bg-gradient-to-br from-[#017827]/10 to-[#0a9937]/5 rounded-xl p-3 border border-[#017827]/20">
             <div className="flex items-baseline gap-2.5">
-              <span className="text-2xl font-bold text-[#1b8f5b]">₹{currentPrice.toLocaleString('en-IN')}</span>
+              <span className="text-2xl font-bold text-[#017827]">₹{currentPrice.toLocaleString('en-IN')}</span>
               {product.originalPrice && product.originalPrice > currentPrice && (
                 <>
                   <span className="text-base text-[rgba(26,42,34,0.5)] line-through">₹{product.originalPrice.toLocaleString('en-IN')}</span>
@@ -1010,8 +1010,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                           className={cn(
                             'px-3 py-2 rounded-lg text-xs font-semibold transition-all border-2',
                             isSelected
-                              ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-md scale-105'
-                              : 'bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]'
+                              ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-md scale-105'
+                              : 'bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]'
                           )}
                         >
                           {isSelected && <CheckCircleIcon className="inline h-3 w-3 mr-1" />}
@@ -1041,8 +1041,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                                 className={cn(
                                   'px-3 py-2 rounded-lg text-xs font-semibold transition-all border-2',
                                   isSelected
-                                    ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-md scale-105'
-                                    : 'bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]'
+                                    ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-md scale-105'
+                                    : 'bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]'
                                 )}
                               >
                                 {isSelected && <CheckCircleIcon className="inline h-3 w-3 mr-1" />}
@@ -1098,14 +1098,14 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                           className={cn(
                             "w-full p-3 rounded-lg border-2 transition-all",
                             isSelected
-                              ? "bg-gradient-to-r from-[#1b8f5b]/10 to-[#2a9d61]/10 border-[#1b8f5b] shadow-md"
+                              ? "bg-gradient-to-r from-[#017827]/10 to-[#0a9937]/10 border-[#017827] shadow-md"
                               : "bg-white border-gray-200"
                           )}
                         >
                           <div className="flex items-start justify-between gap-2 mb-3">
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                {isSelected && <CheckCircleIcon className="h-4 w-4 text-[#1b8f5b]" />}
+                                {isSelected && <CheckCircleIcon className="h-4 w-4 text-[#017827]" />}
                                 <span className="text-xs font-bold text-[#172022]">
                                   {stockAttrs[attributeStructure.attributeNameKey] || `Variant ${idx + 1}`}
                                 </span>
@@ -1131,7 +1131,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                                 </div>
                                 <div>
                                   <span className="text-[rgba(26,42,34,0.6)]"><Trans>Price:</Trans></span>
-                                  <span className="ml-1 font-bold text-[#1b8f5b]">
+                                  <span className="ml-1 font-bold text-[#017827]">
                                     ₹{(variantStock.userPrice || 0).toLocaleString('en-IN')}
                                   </span>
                                 </div>
@@ -1143,8 +1143,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                               className={cn(
                                 "w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-all",
                                 isSelected
-                                  ? "bg-[#1b8f5b] border-[#1b8f5b]"
-                                  : "bg-white border-gray-300 hover:border-[#1b8f5b]"
+                                  ? "bg-[#017827] border-[#017827]"
+                                  : "bg-white border-gray-300 hover:border-[#017827]"
                               )}
                             >
                               {isSelected && <CheckCircleIcon className="h-3 w-3 text-white" />}
@@ -1153,13 +1153,13 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
                           {/* Variant-specific Quantity Control - Only show if selected */}
                           {isSelected && (
-                            <div className="mt-3 pt-3 border-t border-[rgba(34,94,65,0.2)]">
+                            <div className="mt-3 pt-3 border-t border-[rgba(1, 78, 23,0.2)]">
                               <label className="block text-xs font-semibold text-[#172022] mb-2"><Trans>Quantity</Trans></label>
                               <div className="flex items-center justify-between gap-3">
-                                <div className="flex items-center gap-2 border border-[rgba(34,94,65,0.2)] rounded-lg bg-white p-1.5">
+                                <div className="flex items-center gap-2 border border-[rgba(1, 78, 23,0.2)] rounded-lg bg-white p-1.5">
                                   <button
                                     type="button"
-                                    className="flex items-center justify-center w-7 h-7 rounded-md border border-[rgba(34,94,65,0.2)] bg-white hover:bg-[rgba(240,245,242,0.8)] transition-all"
+                                    className="flex items-center justify-center w-7 h-7 rounded-md border border-[rgba(1, 78, 23,0.2)] bg-white hover:bg-[rgba(240,245,242,0.8)] transition-all"
                                     onClick={(e) => {
                                       e.stopPropagation()
                                       handleVariantQuantityChange(variantStock, -1)
@@ -1171,7 +1171,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                                   <span className="px-2 text-sm font-semibold text-[#172022] min-w-[2rem] text-center">{variantQty}</span>
                                   <button
                                     type="button"
-                                    className="flex items-center justify-center w-7 h-7 rounded-md border border-[rgba(34,94,65,0.2)] bg-white hover:bg-[rgba(240,245,242,0.8)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="flex items-center justify-center w-7 h-7 rounded-md border border-[rgba(1, 78, 23,0.2)] bg-white hover:bg-[rgba(240,245,242,0.8)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                     onClick={(e) => {
                                       e.stopPropagation()
                                       handleVariantQuantityChange(variantStock, 1)
@@ -1183,7 +1183,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                                 </div>
                                 <div className="text-right">
                                   <p className="text-[0.65rem] text-[rgba(26,42,34,0.6)]">Available: {maxQty}</p>
-                                  <p className="text-xs font-bold text-[#1b8f5b]">
+                                  <p className="text-xs font-bold text-[#017827]">
                                     Total: ₹{((variantStock.userPrice || 0) * variantQty).toLocaleString('en-IN')}
                                   </p>
                                 </div>
@@ -1200,8 +1200,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
           {/* Vendor Info - Keep separate */}
           {product.vendor && (
-            <div className="flex items-start gap-2.5 p-2.5 rounded-lg border-l-4 border-[#1b8f5b] bg-gradient-to-r from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)]">
-              <MapPinIcon className="h-4 w-4 text-[#1b8f5b] shrink-0 mt-0.5" />
+            <div className="flex items-start gap-2.5 p-2.5 rounded-lg border-l-4 border-[#017827] bg-gradient-to-r from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)]">
+              <MapPinIcon className="h-4 w-4 text-[#017827] shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
                 <p className="text-[0.65rem] font-semibold text-[rgba(26,42,34,0.5)] uppercase tracking-wide mb-0.5"><Trans>Vendor</Trans></p>
                 <p className="text-xs font-bold text-[#172022] mb-0.5"><TransText>{product.vendor.name}</TransText></p>
@@ -1211,7 +1211,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
           )}
 
           {/* Action Buttons - Add to Cart and Buy Now */}
-          <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t-2 border-[rgba(34,94,65,0.15)] -mx-5 mt-6 shadow-lg backdrop-blur-sm bg-white/95 user-product-info__add-to-cart-container">
+          <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t-2 border-[rgba(1, 78, 23,0.15)] -mx-5 mt-6 shadow-lg backdrop-blur-sm bg-white/95 user-product-info__add-to-cart-container">
             <div className="flex gap-3">
               {/* Add to Cart Button */}
               <button
@@ -1219,7 +1219,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 className={cn(
                   'flex-1 py-4 px-4 rounded-2xl text-base font-bold transition-all shadow-lg',
                   inStock
-                    ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
+                    ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]'
                     : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                 )}
                 onClick={handleAddToCart}
@@ -1282,8 +1282,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 className={cn(
                   "px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border-2 min-w-[120px] flex items-center justify-center gap-2",
                   activeTab === 'description'
-                    ? "bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-lg scale-105"
-                    : "bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]"
+                    ? "bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-lg scale-105"
+                    : "bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]"
                 )}
               >
                 <PackageIcon className="h-3.5 w-3.5" />
@@ -1295,13 +1295,13 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 className={cn(
                   "px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border-2 min-w-[120px] flex items-center justify-center gap-2",
                   activeTab === 'stock'
-                    ? "bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-lg scale-105"
-                    : "bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]"
+                    ? "bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-lg scale-105"
+                    : "bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]"
                 )}
               >
                 <div className={cn(
                   "w-2.5 h-2.5 rounded-full",
-                  inStock ? "bg-[#1b8f5b]" : "bg-red-500"
+                  inStock ? "bg-[#017827]" : "bg-red-500"
                 )} />
                 <Trans>Stock</Trans>
               </button>
@@ -1311,8 +1311,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 className={cn(
                   "px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border-2 min-w-[120px] flex items-center justify-center gap-2",
                   activeTab === 'delivery'
-                    ? "bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-lg scale-105"
-                    : "bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]"
+                    ? "bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-lg scale-105"
+                    : "bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]"
                 )}
               >
                 <TruckIcon className="h-3.5 w-3.5" />
@@ -1324,8 +1324,8 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 className={cn(
                   "px-5 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border-2 min-w-[120px] flex items-center justify-center gap-2",
                   activeTab === 'reviews'
-                    ? "bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white border-[#1b8f5b] shadow-lg scale-105"
-                    : "bg-white text-[#172022] border-gray-200 hover:border-[#1b8f5b]/50 hover:bg-[rgba(27,143,91,0.05)]"
+                    ? "bg-gradient-to-r from-[#017827] to-[#0a9937] text-white border-[#017827] shadow-lg scale-105"
+                    : "bg-white text-[#172022] border-gray-200 hover:border-[#017827]/50 hover:bg-[rgba(1, 120, 39,0.05)]"
                 )}
               >
                 <StarIcon className="h-3.5 w-3.5" />
@@ -1339,17 +1339,17 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
         <div className="min-h-[200px]">
           {/* Description Tab */}
           {activeTab === 'description' && (
-            <div className="relative p-6 rounded-2xl bg-gradient-to-br from-[#f0f9f4] via-[#e8f5ed] to-[#d4ede0] border-2 border-[#1b8f5b]/30 shadow-xl overflow-hidden">
+            <div className="relative p-6 rounded-2xl bg-gradient-to-br from-[#f0f9f4] via-[#e8f5ed] to-[#d4ede0] border-2 border-[#017827]/30 shadow-xl overflow-hidden">
               {/* Decorative background elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#1b8f5b]/10 to-transparent rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#2a9d61]/10 to-transparent rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#017827]/10 to-transparent rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[#0a9937]/10 to-transparent rounded-full blur-3xl"></div>
 
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-1.5 h-8 bg-gradient-to-b from-[#1b8f5b] to-[#2a9d61] rounded-full shadow-md"></div>
+                  <div className="w-1.5 h-8 bg-gradient-to-b from-[#017827] to-[#0a9937] rounded-full shadow-md"></div>
                   <div>
                     <h3 className="text-lg font-bold text-[#172022] mb-1"><Trans>About this Product</Trans></h3>
-                    <div className="h-0.5 w-16 bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] rounded-full"></div>
+                    <div className="h-0.5 w-16 bg-gradient-to-r from-[#017827] to-[#0a9937] rounded-full"></div>
                   </div>
                 </div>
 
@@ -1381,17 +1381,17 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                               className={cn(
                                 "mb-4 p-4 rounded-xl border-l-4 transition-all hover:shadow-md",
                                 isHeading
-                                  ? "bg-white border-[#1b8f5b] shadow-sm"
+                                  ? "bg-white border-[#017827] shadow-sm"
                                   : isUsage
                                     ? "bg-gradient-to-r from-blue-50/90 to-indigo-50/90 border-blue-500 shadow-sm"
                                     : isFeature
-                                      ? "bg-white border-[#1b8f5b] shadow-sm"
-                                      : "bg-white border-[#1b8f5b]/40 shadow-sm"
+                                      ? "bg-white border-[#017827] shadow-sm"
+                                      : "bg-white border-[#017827]/40 shadow-sm"
                               )}
                             >
                               {isHeading ? (
-                                <h4 className="text-base font-bold text-[#1b8f5b] mb-2 flex items-center gap-2">
-                                  <div className="w-2 h-2 rounded-full bg-[#1b8f5b]"></div>
+                                <h4 className="text-base font-bold text-[#017827] mb-2 flex items-center gap-2">
+                                  <div className="w-2 h-2 rounded-full bg-[#017827]"></div>
                                   <TransText>{paragraph}</TransText>
                                 </h4>
                               ) : isUsage ? (
@@ -1417,7 +1417,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                       })()}
                     </div>
                   ) : (
-                    <div className="p-6 bg-white/60 rounded-xl border-2 border-dashed border-[#1b8f5b]/30 text-center">
+                    <div className="p-6 bg-white/60 rounded-xl border-2 border-dashed border-[#017827]/30 text-center">
                       <p className="text-sm text-[rgba(26,42,34,0.6)]">No description available for this product.</p>
                     </div>
                   )}
@@ -1431,23 +1431,23 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
             <div className={cn(
               "p-5 rounded-2xl border-2 shadow-lg",
               inStock
-                ? "bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)] border-[#1b8f5b]"
+                ? "bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)] border-[#017827]"
                 : "bg-gradient-to-br from-[rgba(254,242,242,0.6)] to-[rgba(254,242,242,0.3)] border-red-500"
             )}>
               <div className="flex items-center gap-2.5 mb-3">
                 <div className={cn(
                   "w-4 h-4 rounded-full shadow-md",
-                  inStock ? "bg-[#1b8f5b]" : "bg-red-500"
+                  inStock ? "bg-[#017827]" : "bg-red-500"
                 )} />
                 <h3 className="text-base font-bold text-[#172022]">Stock Availability</h3>
               </div>
               <div className="pl-3 space-y-3">
-                <div className="flex items-center justify-between p-3 bg-white rounded-xl border-2 border-[rgba(34,94,65,0.1)]">
+                <div className="flex items-center justify-between p-3 bg-white rounded-xl border-2 border-[rgba(1, 78, 23,0.1)]">
                   <div>
                     <p className="text-[0.65rem] font-semibold text-[rgba(26,42,34,0.6)] uppercase tracking-wide mb-0.5">Status</p>
                     <p className={cn(
                       "text-base font-bold",
-                      inStock ? "text-[#1b8f5b]" : "text-red-600"
+                      inStock ? "text-[#017827]" : "text-red-600"
                     )}>
                       {stockStatus}
                     </p>
@@ -1460,10 +1460,10 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                   </div>
                 </div>
                 {inStock && (
-                  <div className="p-3 bg-white rounded-xl border-2 border-[rgba(34,94,65,0.1)]">
+                  <div className="p-3 bg-white rounded-xl border-2 border-[rgba(1, 78, 23,0.1)]">
                     {currentStock > 10 ? (
                       <div className="flex items-center gap-2">
-                        <CheckCircleIcon className="h-4 w-4 text-[#1b8f5b]" />
+                        <CheckCircleIcon className="h-4 w-4 text-[#017827]" />
                         <p className="text-xs font-semibold text-[#172022]">
                           Product is in stock and ready for delivery
                         </p>
@@ -1529,7 +1529,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
           {/* Reviews Tab */}
           {activeTab === 'reviews' && (
-            <div className="space-y-6 p-6 rounded-2xl bg-gradient-to-br from-[rgba(240,245,242,0.4)] via-[rgba(248,250,249,0.3)] to-white border-2 border-[#1b8f5b]/20 shadow-sm">
+            <div className="space-y-6 p-6 rounded-2xl bg-gradient-to-br from-[rgba(240,245,242,0.4)] via-[rgba(248,250,249,0.3)] to-white border-2 border-[#017827]/20 shadow-sm">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-bold text-[#172022] mb-1"><Trans>Reviews & Ratings</Trans></h3>
@@ -1557,7 +1557,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
               {/* Rating Distribution */}
               {reviewStats.totalReviews > 0 && (
-                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)] border border-[#1b8f5b]/20">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(240,245,242,0.3)] border border-[#017827]/20">
                   <div className="space-y-2">
                     {[5, 4, 3, 2, 1].map((rating) => {
                       const count = reviewStats.distribution[rating] || 0
@@ -1570,7 +1570,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                           </div>
                           <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                             <div
-                              className="h-full bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] transition-all duration-300"
+                              className="h-full bg-gradient-to-r from-[#017827] to-[#0a9937] transition-all duration-300"
                               style={{ width: `${percentage}%` }}
                             />
                           </div>
@@ -1586,12 +1586,12 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
               {/* Review Form (if authenticated) */}
               {isAuthenticated && (
-                <div className="p-4 rounded-xl border-2 border-[#1b8f5b]/30 bg-gradient-to-br from-[rgba(240,245,242,0.4)] to-white">
+                <div className="p-4 rounded-xl border-2 border-[#017827]/30 bg-gradient-to-br from-[rgba(240,245,242,0.4)] to-white">
                   {!showReviewForm && !myReview ? (
                     <button
                       type="button"
                       onClick={() => setShowReviewForm(true)}
-                      className="w-full py-3 px-4 rounded-lg bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white text-sm font-semibold hover:shadow-md transition-all"
+                      className="w-full py-3 px-4 rounded-lg bg-gradient-to-r from-[#017827] to-[#0a9937] text-white text-sm font-semibold hover:shadow-md transition-all"
                     >
                       <Trans>Write a Review</Trans>
                     </button>
@@ -1601,7 +1601,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                       <button
                         type="button"
                         onClick={() => setShowReviewForm(true)}
-                        className="w-full flex items-center justify-between py-3 px-4 rounded-lg bg-white border-2 border-[rgba(34,94,65,0.2)] hover:bg-[rgba(240,245,242,0.5)] transition-all"
+                        className="w-full flex items-center justify-between py-3 px-4 rounded-lg bg-white border-2 border-[rgba(1, 78, 23,0.2)] hover:bg-[rgba(240,245,242,0.5)] transition-all"
                       >
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-1">
@@ -1655,7 +1655,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                                 setReviewFormData({ rating: myReview.rating, comment: myReview.comment || '' })
                               }
                             }}
-                            className="text-[#172022] hover:text-[#1b8f5b] transition-colors"
+                            className="text-[#172022] hover:text-[#017827] transition-colors"
                           >
                             <ChevronDownIcon className="h-5 w-5 rotate-180" />
                           </button>
@@ -1699,7 +1699,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                           value={reviewFormData.comment}
                           onChange={(e) => setReviewFormData(prev => ({ ...prev, comment: e.target.value }))}
                           placeholder="Share your experience with this product..."
-                          className="w-full px-4 py-3 rounded-lg border-2 border-[rgba(34,94,65,0.2)] focus:border-[#1b8f5b] focus:outline-none resize-none"
+                          className="w-full px-4 py-3 rounded-lg border-2 border-[rgba(1, 78, 23,0.2)] focus:border-[#017827] focus:outline-none resize-none"
                           rows={4}
                           maxLength={1000}
                         />
@@ -1718,7 +1718,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                             'flex-1 py-3 px-4 rounded-lg text-sm font-semibold transition-all',
                             submittingReview || reviewFormData.rating === 0
                               ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                              : 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white hover:shadow-md'
+                              : 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white hover:shadow-md'
                           )}
                         >
                           {submittingReview ? <Trans>Submitting...</Trans> : myReview ? <Trans>Update Review</Trans> : <Trans>Submit Review</Trans>}
@@ -1735,7 +1735,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                               setReviewFormData({ rating: 0, comment: '' })
                             }
                           }}
-                          className="py-3 px-4 rounded-lg border-2 border-[rgba(34,94,65,0.2)] text-sm font-semibold text-[#172022] hover:bg-[rgba(240,245,242,0.5)] transition-all"
+                          className="py-3 px-4 rounded-lg border-2 border-[rgba(1, 78, 23,0.2)] text-sm font-semibold text-[#172022] hover:bg-[rgba(240,245,242,0.5)] transition-all"
                         >
                           {myReview ? <Trans>Collapse</Trans> : <Trans>Cancel</Trans>}
                         </button>
@@ -1759,7 +1759,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                   {reviews.map((review) => (
                     <div
                       key={review._id || review.id}
-                      className="p-4 rounded-xl border-2 border-[rgba(34,94,65,0.15)] bg-white hover:shadow-md transition-all"
+                      className="p-4 rounded-xl border-2 border-[rgba(1, 78, 23,0.15)] bg-white hover:shadow-md transition-all"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
@@ -1795,12 +1795,12 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
 
                       {/* Admin Response */}
                       {review.adminResponse?.response && (
-                        <div className="mt-3 pt-3 border-t border-[rgba(34,94,65,0.15)]">
+                        <div className="mt-3 pt-3 border-t border-[rgba(1, 78, 23,0.15)]">
                           <div className="flex items-start gap-2">
-                            <div className="w-1 h-full bg-gradient-to-b from-[#1b8f5b] to-[#2a9d61] rounded-full mt-1" />
+                            <div className="w-1 h-full bg-gradient-to-b from-[#017827] to-[#0a9937] rounded-full mt-1" />
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <span className="text-xs font-bold text-[#1b8f5b]"><Trans>Admin Response</Trans></span>
+                                <span className="text-xs font-bold text-[#017827]"><Trans>Admin Response</Trans></span>
                                 {review.adminResponse.respondedBy?.name && (
                                   <span className="text-xs text-[rgba(26,42,34,0.6)]">
                                     <Trans>by</Trans> {review.adminResponse.respondedBy.name}
@@ -1839,7 +1839,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                       'px-6 py-3 rounded-lg text-sm font-semibold transition-all',
                       reviewsLoading
                         ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white hover:shadow-md'
+                        : 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white hover:shadow-md'
                     )}
                   >
                     {reviewsLoading ? <Trans>Loading...</Trans> : <Trans>Load More Reviews</Trans>}
@@ -1948,7 +1948,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
       {/* Delete Review Confirmation Modal */}
       {showDeleteConfirmModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 border-2 border-[#1b8f5b]/20">
+          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 border-2 border-[#017827]/20">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
                 <TrashIcon className="h-6 w-6 text-red-600" />
@@ -1982,7 +1982,7 @@ export function ProductDetailView({ productId, onAddToCart, onBuyNow, onToggleFa
                 onClick={() => setShowDeleteConfirmModal(false)}
                 disabled={deletingReview}
                 className={cn(
-                  'py-3 px-4 rounded-lg border-2 border-[rgba(34,94,65,0.2)] text-sm font-semibold text-[#172022] transition-all',
+                  'py-3 px-4 rounded-lg border-2 border-[rgba(1, 78, 23,0.2)] text-sm font-semibold text-[#172022] transition-all',
                   deletingReview
                     ? 'opacity-50 cursor-not-allowed'
                     : 'hover:bg-[rgba(240,245,242,0.5)]'

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { OtpVerification } from '../../../components/auth/OtpVerification'
 import { useUserDispatch } from '../context/UserContext'
@@ -152,9 +152,9 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
 
   if (step === 'otp') {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 px-6 py-12">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)] px-6 py-12">
         <div className="w-full max-w-md space-y-6">
-          <div className="rounded-3xl border border-green-200/60 bg-white/90 p-8 shadow-xl backdrop-blur-sm">
+          <div className="rounded-3xl border border-[rgba(1,120,39,0.15)] bg-white/90 p-8 shadow-xl backdrop-blur-sm">
             <OtpVerification
               phone={form.contact}
               onVerify={handleVerifyOtp}
@@ -171,20 +171,20 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)] px-6 py-12">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[rgba(1,120,39,0.1)] mb-4">
+            <svg className="w-8 h-8 text-[#017827]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
           </div>
-          <p className="text-xs uppercase tracking-wide text-green-600 font-semibold">Create Account</p>
+          <p className="text-xs uppercase tracking-wide text-[#017827] font-semibold">Create Account</p>
           <h1 className="text-3xl font-bold text-gray-900">Join IRA Sathi</h1>
           <p className="text-sm text-gray-600">Start your journey to better farming</p>
         </div>
 
-        <div className="rounded-3xl border border-green-200/60 bg-white/90 p-8 shadow-xl backdrop-blur-sm">
+        <div className="rounded-3xl border border-[rgba(1,120,39,0.15)] bg-white/90 p-8 shadow-xl backdrop-blur-sm">
           <form onSubmit={handleRequestOtp} className="space-y-5">
             {error && (
               <div className="rounded-2xl bg-red-50 border border-red-200 p-4">
@@ -204,7 +204,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
                 value={form.fullName}
                 onChange={handleChange}
                 placeholder="Enter your full name"
-                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
               />
             </div>
 
@@ -221,7 +221,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
                 onChange={handleChange}
                 placeholder="+91 90000 00000"
                 maxLength={15}
-                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
               />
             </div>
 
@@ -233,7 +233,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
                 <button
                   type="button"
                   onClick={() => setShowSellerId(!showSellerId)}
-                  className="text-xs text-green-600 hover:underline font-medium"
+                  className="text-xs text-[#017827] hover:underline font-medium"
                 >
                   {showSellerId ? 'Hide' : 'Have one?'}
                 </button>
@@ -246,7 +246,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
                   value={form.sellerId}
                   onChange={handleChange}
                   placeholder="Enter IRA Partner ID (e.g., SLR-1001)"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
                 />
               )}
               {showSellerId && (
@@ -275,7 +275,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-full bg-gradient-to-r from-[#017827] to-[#015c1f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Sending OTP...' : 'Continue'}
             </button>
@@ -285,7 +285,7 @@ export function UserRegister({ onSuccess, onSwitchToLogin }) {
               <button
                 type="button"
                 onClick={onSwitchToLogin}
-                className="text-green-600 font-semibold hover:underline"
+                className="text-[#017827] font-semibold hover:underline"
               >
                 Sign in
               </button>

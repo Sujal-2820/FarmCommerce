@@ -1,4 +1,4 @@
-import { Package, IndianRupee, Calendar, CreditCard, AlertCircle, FileText, Download, RefreshCw } from 'lucide-react'
+﻿import { Package, IndianRupee, Calendar, CreditCard, AlertCircle, FileText, Download, RefreshCw } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { Timeline } from './Timeline'
@@ -330,7 +330,7 @@ export function OrderDetailModal({ isOpen, onClose, order, onReassign, onGenerat
                     type="button"
                     onClick={() => onUpdateStatus(orderId, { status: 'delivered' })}
                     disabled={loading}
-                    className="rounded-lg border border-green-300 bg-white px-4 py-2 text-sm font-semibold text-green-700 transition-all hover:bg-green-50 disabled:opacity-50"
+                    className="rounded-lg border border-[rgba(1,120,39,0.4)] bg-white px-4 py-2 text-sm font-semibold text-[#017827] transition-all hover:bg-[rgba(1,120,39,0.05)] disabled:opacity-50"
                   >
                     Mark as Delivered
                   </button>

@@ -1,48 +1,48 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import { ShieldCheckIcon, UserIcon, StoreIcon, ShoppingBagIcon } from 'lucide-react'
 import iraSathiLogo from '../../assets/IRA Sathi.png'
 
 // Theme configurations for different user types
 const themes = {
   user: {
-    bgGradient: 'from-green-50 via-white to-green-50',
-    borderColor: 'border-green-200/60',
-    primaryColor: '#1b8f5b',
-    primaryBg: 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61]',
-    focusBorder: 'focus:border-[#1b8f5b]',
-    focusRing: 'focus:ring-[#1b8f5b]/40',
+    bgGradient: 'from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)]',
+    borderColor: 'border-[rgba(1,120,39,0.15)]',
+    primaryColor: '#017827',
+    primaryBg: 'bg-gradient-to-r from-[#017827] to-[#0a9937]',
+    focusBorder: 'focus:border-[#017827]',
+    focusRing: 'focus:ring-[#017827]/40',
     textColor: 'text-[#172022]',
     mutedColor: 'text-gray-600',
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-600',
+    iconBg: 'bg-[rgba(1,120,39,0.1)]',
+    iconColor: 'text-[#017827]',
     title: 'User Verification',
     subtitle: 'IRA Sathi User Account'
   },
   vendor: {
-    bgGradient: 'from-green-50 via-white to-green-50',
-    borderColor: 'border-green-200/60',
-    primaryColor: '#1b8f5b',
-    primaryBg: 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61]',
-    focusBorder: 'focus:border-[#1b8f5b]',
-    focusRing: 'focus:ring-[#1b8f5b]/40',
+    bgGradient: 'from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)]',
+    borderColor: 'border-[rgba(1,120,39,0.15)]',
+    primaryColor: '#017827',
+    primaryBg: 'bg-gradient-to-r from-[#017827] to-[#0a9937]',
+    focusBorder: 'focus:border-[#017827]',
+    focusRing: 'focus:ring-[#017827]/40',
     textColor: 'text-[#172022]',
     mutedColor: 'text-gray-600',
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-600',
+    iconBg: 'bg-[rgba(1,120,39,0.1)]',
+    iconColor: 'text-[#017827]',
     title: 'Vendor Verification',
     subtitle: 'IRA Sathi Vendor Portal'
   },
   seller: {
-    bgGradient: 'from-green-50 via-white to-green-50',
-    borderColor: 'border-green-200/60',
-    primaryColor: '#1b8f5b',
-    primaryBg: 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61]',
-    focusBorder: 'focus:border-[#1b8f5b]',
-    focusRing: 'focus:ring-[#1b8f5b]/40',
+    bgGradient: 'from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)]',
+    borderColor: 'border-[rgba(1,120,39,0.15)]',
+    primaryColor: '#017827',
+    primaryBg: 'bg-gradient-to-r from-[#017827] to-[#0a9937]',
+    focusBorder: 'focus:border-[#017827]',
+    focusRing: 'focus:ring-[#017827]/40',
     textColor: 'text-[#172022]',
     mutedColor: 'text-gray-600',
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-600',
+    iconBg: 'bg-[rgba(1,120,39,0.1)]',
+    iconColor: 'text-[#017827]',
     title: 'Seller Verification',
     subtitle: 'IRA Sathi Seller Portal'
   },

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+﻿import { useState, useMemo, useEffect } from 'react'
 import { useUserState, useUserDispatch } from '../../context/UserContext'
 import { useUserApi } from '../../hooks/useUserApi'
 import { ADVANCE_PAYMENT_PERCENTAGE, REMAINING_PAYMENT_PERCENTAGE } from '../../services/userData'
@@ -438,7 +438,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
         className="user-checkout-summary__header"
       >
         <div className="flex items-center gap-2">
-          <PackageIcon className="h-4 w-4 text-[#1b8f5b]" />
+          <PackageIcon className="h-4 w-4 text-[#017827]" />
           <span className="text-sm font-semibold text-[#172022]">
             {compact ? `₹${totals.total.toLocaleString('en-IN')}` : 'Order Summary'}
           </span>
@@ -460,7 +460,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
             {groupedCartItems.map((group, index) => (
               <div key={group.productId || `checkout-group-${index}`} className="space-y-2">
                 {/* Product Header */}
-                <div className="flex items-center gap-2 pb-2 border-b border-[rgba(34,94,65,0.1)]">
+                <div className="flex items-center gap-2 pb-2 border-b border-[rgba(1, 78, 23,0.1)]">
                   <img src={group.image} alt={group.name} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-semibold text-[#172022] line-clamp-1">{group.name}</p>
@@ -488,7 +488,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                         Qty: {variant.quantity} × ₹{(variant.unitPrice || variant.price || 0).toLocaleString('en-IN')}
                       </p>
                     </div>
-                    <p className="text-xs font-bold text-[#1b8f5b] flex-shrink-0">
+                    <p className="text-xs font-bold text-[#017827] flex-shrink-0">
                       ₹{((variant.unitPrice || variant.price || 0) * variant.quantity).toLocaleString('en-IN')}
                     </p>
                   </div>
@@ -496,7 +496,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               </div>
             ))}
           </div>
-          <div className="space-y-1.5 pt-2 border-t border-[rgba(34,94,65,0.1)]">
+          <div className="space-y-1.5 pt-2 border-t border-[rgba(1, 78, 23,0.1)]">
             <div className="flex items-center justify-between text-xs">
               <span className="text-[rgba(26,42,34,0.65)]">Subtotal</span>
               <span className="font-semibold text-[#172022]">₹{totals.subtotal.toLocaleString('en-IN')}</span>
@@ -508,7 +508,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   {totals.delivery === 0 ? 'Free' : `₹${totals.delivery}`}
                 </span>
                 {totals.delivery === 0 && totals.deliveryBeforeBenefit > 0 && isFullPayment && (
-                  <p className="text-[10px] text-[#1b8f5b] font-semibold leading-tight">
+                  <p className="text-[10px] text-[#017827] font-semibold leading-tight">
                     Waived with 100% payment
                   </p>
                 )}
@@ -517,12 +517,12 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
             {totals.discount > 0 && (
               <div className="flex items-center justify-between text-xs">
                 <span className="text-[rgba(26,42,34,0.65)]">Discount</span>
-                <span className="font-semibold text-green-600">-₹{totals.discount.toLocaleString('en-IN')}</span>
+                <span className="font-semibold text-[#017827]">-₹{totals.discount.toLocaleString('en-IN')}</span>
               </div>
             )}
-            <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(34,94,65,0.1)]">
+            <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(1, 78, 23,0.1)]">
               <span className="text-sm font-bold text-[#172022]">Total</span>
-              <span className="text-base font-bold text-[#1b8f5b]">₹{totals.total.toLocaleString('en-IN')}</span>
+              <span className="text-base font-bold text-[#017827]">₹{totals.total.toLocaleString('en-IN')}</span>
             </div>
           </div>
         </div>
@@ -535,7 +535,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
       {/* Back Button */}
       <button
         type="button"
-        className="flex items-center gap-2 text-sm font-semibold text-[#1b8f5b] mb-3"
+        className="flex items-center gap-2 text-sm font-semibold text-[#017827] mb-3"
         onClick={handleBack}
       >
         <ChevronRightIcon className="h-5 w-5 rotate-180" />
@@ -588,7 +588,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
 
       {/* Sticky Summary (Compact) */}
       {currentStep > 1 && (
-        <div className="sticky top-0 z-10 bg-white border-b border-[rgba(34,94,65,0.1)] -mx-5 px-5 pb-3 mb-4">
+        <div className="sticky top-0 z-10 bg-white border-b border-[rgba(1, 78, 23,0.1)] -mx-5 px-5 pb-3 mb-4">
           <OrderSummary compact />
         </div>
       )}
@@ -602,7 +602,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           <OrderSummary />
 
           {/* Promo Code */}
-          <div className="p-4 rounded-xl border border-[rgba(34,94,65,0.12)] bg-[rgba(240,245,242,0.3)]">
+          <div className="p-4 rounded-xl border border-[rgba(1, 78, 23,0.12)] bg-[rgba(240,245,242,0.3)]">
             <label className="block text-sm font-semibold text-[#172022] mb-2">Promo Code</label>
             <div className="flex gap-2">
               <input
@@ -610,11 +610,11 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
                 placeholder="Enter promo code"
-                className="flex-1 px-3 py-2 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                className="flex-1 px-3 py-2 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
               />
               <button
                 type="button"
-                className="px-4 py-2 rounded-lg bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                className="px-4 py-2 rounded-lg bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
               >
                 Apply
               </button>
@@ -622,7 +622,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           </div>
 
           {/* Payment Preference */}
-          <div className="p-4 rounded-xl border border-[rgba(34,94,65,0.12)] bg-white">
+          <div className="p-4 rounded-xl border border-[rgba(1, 78, 23,0.12)] bg-white">
             <h3 className="text-sm font-semibold text-[#172022] mb-3">Payment Preference</h3>
             <div className="grid gap-3">
               {paymentOptions.map((option) => (
@@ -633,8 +633,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   className={cn(
                     'text-left p-4 rounded-xl border-2 transition-all',
                     paymentPreference === option.id
-                      ? 'border-[#1b8f5b] bg-[rgba(240,245,242,0.6)] shadow-sm'
-                      : 'border-[rgba(34,94,65,0.15)] bg-white hover:border-[rgba(34,94,65,0.25)]',
+                      ? 'border-[#017827] bg-[rgba(240,245,242,0.6)] shadow-sm'
+                      : 'border-[rgba(1, 78, 23,0.15)] bg-white hover:border-[rgba(1, 78, 23,0.25)]',
                   )}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
@@ -644,8 +644,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                         className={cn(
                           'text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full',
                           option.id === 'full'
-                            ? 'bg-[#1b8f5b] text-white'
-                            : 'bg-[rgba(34,94,65,0.08)] text-[#1b8f5b]',
+                            ? 'bg-[#017827] text-white'
+                            : 'bg-[rgba(1, 78, 23,0.08)] text-[#017827]',
                         )}
                       >
                         {option.badge}
@@ -654,13 +654,13 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   </div>
                   <p className="text-xs text-[rgba(26,42,34,0.7)]">{option.description}</p>
                   {option.helper && (
-                    <p className="text-xs font-semibold text-[#1b8f5b] mt-2">{option.helper}</p>
+                    <p className="text-xs font-semibold text-[#017827] mt-2">{option.helper}</p>
                   )}
                 </button>
               ))}
             </div>
             {isFullPayment && (
-              <p className="text-xs text-[#1b8f5b] font-semibold mt-3 flex items-center gap-2">
+              <p className="text-xs text-[#017827] font-semibold mt-3 flex items-center gap-2">
                 <CheckIcon className="h-3.5 w-3.5" />
                 Delivery fee automatically waived for this order.
               </p>
@@ -668,21 +668,21 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           </div>
 
           {/* Payment Breakdown */}
-          <div className="p-4 rounded-xl border border-[rgba(34,94,65,0.12)] bg-white user-checkout-payment-breakdown">
+          <div className="p-4 rounded-xl border border-[rgba(1, 78, 23,0.12)] bg-white user-checkout-payment-breakdown">
             <h3 className="text-sm font-semibold text-[#172022] mb-3">Payment Breakdown</h3>
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
+              <div className="p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
                 <p className="text-xs font-semibold text-[rgba(26,42,34,0.65)] uppercase tracking-wide mb-1">
                   {paymentDueNowLabel}
                 </p>
-                <p className="text-lg font-bold text-[#1b8f5b]">₹{amountDueNow.toLocaleString('en-IN')}</p>
+                <p className="text-lg font-bold text-[#017827]">₹{amountDueNow.toLocaleString('en-IN')}</p>
                 <p className="text-xs text-[rgba(26,42,34,0.6)] mt-1">Pay now</p>
               </div>
-              <div className="p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
+              <div className="p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
                 <p className="text-xs font-semibold text-[rgba(26,42,34,0.65)] uppercase tracking-wide mb-1">
                   {paymentDueLaterLabel}
                 </p>
-                <p className="text-lg font-bold text-[#1b8f5b]">₹{amountDueLater.toLocaleString('en-IN')}</p>
+                <p className="text-lg font-bold text-[#017827]">₹{amountDueLater.toLocaleString('en-IN')}</p>
                 <p className="text-xs text-[rgba(26,42,34,0.6)] mt-1">
                   {isFullPayment ? 'No pending payment after delivery' : 'Pay after delivery'}
                 </p>
@@ -699,15 +699,15 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
 
           {/* Delivery Address Display */}
           {deliveryAddress ? (
-            <div className="p-5 rounded-2xl border-2 border-[#1b8f5b] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(27,143,91,0.25)]">
+            <div className="p-5 rounded-2xl border-2 border-[#017827] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(1, 120, 39,0.25)]">
               <div className="flex items-start gap-3 mb-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1b8f5b] flex items-center justify-center">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#017827] flex items-center justify-center">
                   <MapPinIcon className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-base font-bold text-[#172022]">{deliveryAddress.name}</span>
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#1b8f5b] text-white uppercase tracking-wide">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#017827] text-white uppercase tracking-wide">
                       Delivery Address
                     </span>
                   </div>
@@ -730,7 +730,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               <button
                 type="button"
                 onClick={() => setShowChangeAddressPanel(true)}
-                className="w-full mt-4 py-2.5 px-4 rounded-xl bg-white border border-[rgba(34,94,65,0.2)] text-sm font-semibold text-[#1b8f5b] hover:bg-[rgba(240,245,242,0.6)] transition-all hover:shadow-sm"
+                className="w-full mt-4 py-2.5 px-4 rounded-xl bg-white border border-[rgba(1, 78, 23,0.2)] text-sm font-semibold text-[#017827] hover:bg-[rgba(240,245,242,0.6)] transition-all hover:shadow-sm"
               >
                 Want to change Delivery Address?
               </button>
@@ -742,7 +742,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               <button
                 type="button"
                 onClick={() => setShowChangeAddressPanel(true)}
-                className="px-6 py-3 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors shadow-md hover:shadow-lg"
+                className="px-6 py-3 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors shadow-md hover:shadow-lg"
               >
                 Add Delivery Address
               </button>
@@ -752,8 +752,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           {/* Shipping Methods */}
           <div className="mt-6">
             <h3 className="text-base font-bold text-[#172022] mb-4 flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(27,143,91,0.1)] flex items-center justify-center">
-              <TruckIcon className="h-5 w-5 text-[#1b8f5b]" />
+              <div className="w-8 h-8 rounded-lg bg-[rgba(1, 120, 39,0.1)] flex items-center justify-center">
+              <TruckIcon className="h-5 w-5 text-[#017827]" />
               </div>
               Shipping Method
             </h3>
@@ -767,8 +767,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                       'flex items-center gap-4 p-5 rounded-2xl border-2 cursor-pointer transition-all shadow-sm',
                       !isAvailable && 'opacity-50 cursor-not-allowed',
                       shippingMethod === option.id && isAvailable
-                        ? 'border-[#1b8f5b] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(27,143,91,0.25)]'
-                        : 'border-[rgba(34,94,65,0.15)] bg-white hover:border-[rgba(34,94,65,0.3)] hover:shadow-md'
+                        ? 'border-[#017827] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(1, 120, 39,0.25)]'
+                        : 'border-[rgba(1, 78, 23,0.15)] bg-white hover:border-[rgba(1, 78, 23,0.3)] hover:shadow-md'
                     )}
                   >
                     <input
@@ -778,17 +778,17 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                       checked={shippingMethod === option.id}
                       onChange={(e) => setShippingMethod(e.target.value)}
                       disabled={!isAvailable}
-                      className="w-5 h-5 accent-[#1b8f5b]"
+                      className="w-5 h-5 accent-[#017827]"
                     />
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-base font-bold text-[#172022]">{option.label}</span>
                         <div className="text-right">
-                          <span className="text-base font-bold text-[#1b8f5b]">
+                          <span className="text-base font-bold text-[#017827]">
                             {option.cost === 0 || isFullPayment ? 'Free' : `₹${option.cost}`}
                           </span>
                           {isFullPayment && option.cost > 0 && (
-                            <p className="text-[10px] text-[#1b8f5b] font-bold leading-tight mt-0.5">
+                            <p className="text-[10px] text-[#017827] font-bold leading-tight mt-0.5">
                               Savings: ₹{option.cost}
                             </p>
                           )}
@@ -806,9 +806,9 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           </div>
 
           {(assignedVendor || cartItems[0]?.vendor) && (
-            <div className="p-4 rounded-2xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(255,255,255,0.9)] border border-[rgba(34,94,65,0.2)] shadow-sm user-checkout-vendor-container">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(255,255,255,0.9)] border border-[rgba(1, 78, 23,0.2)] shadow-sm user-checkout-vendor-container">
               <p className="text-xs font-bold text-[rgba(26,42,34,0.7)] uppercase tracking-wide mb-2 flex items-center gap-2">
-                <PackageIcon className="h-4 w-4 text-[#1b8f5b]" />
+                <PackageIcon className="h-4 w-4 text-[#017827]" />
                 Assigned Vendor
               </p>
               <p className="text-sm font-bold text-[#172022] mb-1">
@@ -831,63 +831,63 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
           <h2 className="text-xl font-bold text-[#172022] mb-2">Payment Method</h2>
 
           <div className="space-y-3">
-            <div className="flex items-center gap-4 p-5 rounded-2xl border-2 border-[#1b8f5b] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(27,143,91,0.25)]">
-              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#1b8f5b] flex items-center justify-center">
+            <div className="flex items-center gap-4 p-5 rounded-2xl border-2 border-[#017827] bg-gradient-to-br from-[rgba(240,253,249,0.95)] to-[rgba(255,255,255,0.98)] shadow-[0_4px_12px_-4px_rgba(1, 120, 39,0.25)]">
+              <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#017827] flex items-center justify-center">
                 <CreditCardIcon className="h-6 w-6 text-white" />
               </div>
               <div className="flex-1">
                 <span className="text-base font-bold text-[#172022]">Razorpay</span>
                 <p className="text-xs text-[rgba(26,42,34,0.65)] mt-1 font-medium">Secure payment gateway</p>
               </div>
-              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#1b8f5b] flex items-center justify-center">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#017827] flex items-center justify-center">
                 <CheckIcon className="h-5 w-5 text-white" />
               </div>
             </div>
           </div>
 
           {/* Final Summary */}
-          <div className="p-5 rounded-2xl border-2 border-[rgba(34,94,65,0.15)] bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(255,255,255,0.95)] shadow-[0_4px_12px_-4px_rgba(16,44,30,0.15)] user-checkout-final-summary">
+          <div className="p-5 rounded-2xl border-2 border-[rgba(1, 78, 23,0.15)] bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-[rgba(255,255,255,0.95)] shadow-[0_4px_12px_-4px_rgba(1, 37, 11,0.15)] user-checkout-final-summary">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[rgba(27,143,91,0.1)] flex items-center justify-center">
-                <PackageIcon className="h-5 w-5 text-[#1b8f5b]" />
+              <div className="w-8 h-8 rounded-lg bg-[rgba(1, 120, 39,0.1)] flex items-center justify-center">
+                <PackageIcon className="h-5 w-5 text-[#017827]" />
               </div>
               <h3 className="text-base font-bold text-[#172022]">Final Summary</h3>
             </div>
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-[rgba(34,94,65,0.1)]">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-[rgba(1, 78, 23,0.1)]">
                 <span className="text-sm font-medium text-[rgba(26,42,34,0.7)]">Subtotal</span>
                 <span className="text-sm font-bold text-[#172022]">₹{totals.subtotal.toLocaleString('en-IN')}</span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-[rgba(34,94,65,0.1)]">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-[rgba(1, 78, 23,0.1)]">
                 <span className="text-sm font-medium text-[rgba(26,42,34,0.7)]">Delivery</span>
                 <div className="text-right">
                   <span className="text-sm font-bold text-[#172022]">
                     {totals.delivery === 0 ? 'Free' : `₹${totals.delivery}`}
                   </span>
                   {totals.delivery === 0 && totals.deliveryBeforeBenefit > 0 && isFullPayment && (
-                    <p className="text-[10px] text-[#1b8f5b] font-bold leading-tight mt-0.5">
+                    <p className="text-[10px] text-[#017827] font-bold leading-tight mt-0.5">
                       Waived with 100% payment
                     </p>
                   )}
                 </div>
               </div>
-              <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[rgba(27,143,91,0.1)] to-[rgba(27,143,91,0.05)] border-2 border-[#1b8f5b]">
+              <div className="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-[rgba(1, 120, 39,0.1)] to-[rgba(1, 120, 39,0.05)] border-2 border-[#017827]">
                 <span className="text-base font-bold text-[#172022]">Total</span>
-                <span className="text-xl font-bold text-[#1b8f5b]">₹{totals.total.toLocaleString('en-IN')}</span>
+                <span className="text-xl font-bold text-[#017827]">₹{totals.total.toLocaleString('en-IN')}</span>
               </div>
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,253,249,0.8)] to-white border-2 border-[rgba(27,143,91,0.2)] shadow-sm">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,253,249,0.8)] to-white border-2 border-[rgba(1, 120, 39,0.2)] shadow-sm">
                   <p className="text-[10px] font-bold text-[rgba(26,42,34,0.65)] uppercase tracking-wide mb-2">
                     {paymentDueNowLabel}
                   </p>
-                  <p className="text-lg font-bold text-[#1b8f5b]">₹{amountDueNow.toLocaleString('en-IN')}</p>
+                  <p className="text-lg font-bold text-[#017827]">₹{amountDueNow.toLocaleString('en-IN')}</p>
                   <p className="text-[10px] text-[rgba(26,42,34,0.6)] font-medium mt-1">Pay now</p>
                 </div>
-                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-white border-2 border-[rgba(34,94,65,0.15)] shadow-sm">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(240,245,242,0.6)] to-white border-2 border-[rgba(1, 78, 23,0.15)] shadow-sm">
                   <p className="text-[10px] font-bold text-[rgba(26,42,34,0.65)] uppercase tracking-wide mb-2">
                     {paymentDueLaterLabel}
                   </p>
-                  <p className="text-lg font-bold text-[#1b8f5b]">₹{amountDueLater.toLocaleString('en-IN')}</p>
+                  <p className="text-lg font-bold text-[#017827]">₹{amountDueLater.toLocaleString('en-IN')}</p>
                   <p className="text-[10px] text-[rgba(26,42,34,0.6)] font-medium mt-1">
                     {isFullPayment ? 'No pending payment' : 'Pay after delivery'}
                   </p>
@@ -899,7 +899,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
       )}
 
       {/* Navigation Buttons */}
-      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-[rgba(34,94,65,0.1)] -mx-5 mt-6 space-y-2 user-checkout-navigation">
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-[rgba(1, 78, 23,0.1)] -mx-5 mt-6 space-y-2 user-checkout-navigation">
         {currentStep < 3 ? (
           <button
             type="button"
@@ -907,7 +907,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               'w-full py-3.5 px-6 rounded-xl text-base font-bold transition-all',
               currentStep === 2 && !deliveryAddress
                 ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                : 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-md hover:shadow-lg'
+                : 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-md hover:shadow-lg'
             )}
             onClick={handleNext}
             disabled={currentStep === 2 && !deliveryAddress}
@@ -954,7 +954,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                     'w-full py-3.5 px-6 rounded-xl text-base font-bold transition-all',
                     isDisabled
                       ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-md hover:shadow-lg'
+                      : 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-md hover:shadow-lg'
                   )}
                   onClick={handlePlaceOrder}
                   disabled={isDisabled}
@@ -997,7 +997,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
             </button>
 
             <div className="user-payment-confirm-modal__icon">
-              <CreditCardIcon className="h-12 w-12 text-[#1b8f5b]" />
+              <CreditCardIcon className="h-12 w-12 text-[#017827]" />
             </div>
 
             <h3 className="user-payment-confirm-modal__title">Confirm Payment</h3>
@@ -1032,11 +1032,11 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
 
             <div className="user-payment-confirm-modal__info">
               <div className="user-payment-confirm-modal__info-item">
-                <CheckIcon className="h-5 w-5 text-[#1b8f5b]" />
+                <CheckIcon className="h-5 w-5 text-[#017827]" />
                 <span>Secure payment via Razorpay</span>
               </div>
               <div className="user-payment-confirm-modal__info-item">
-                <CheckIcon className="h-5 w-5 text-[#1b8f5b]" />
+                <CheckIcon className="h-5 w-5 text-[#017827]" />
                 <span>
                   {modalAmountDueLater > 0
                     ? 'Remaining amount payable on delivery'
@@ -1045,7 +1045,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               </div>
               {modalAmountDueLater === 0 && modalDeliveryWaived && (
                 <div className="user-payment-confirm-modal__info-item">
-                  <CheckIcon className="h-5 w-5 text-[#1b8f5b]" />
+                  <CheckIcon className="h-5 w-5 text-[#017827]" />
                   <span>Get priority processing for prepaid orders</span>
                 </div>
               )}
@@ -1114,8 +1114,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
               </p>
 
               <div className="space-y-3">
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1b8f5b] text-white flex items-center justify-center text-sm font-bold">
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#017827] text-white flex items-center justify-center text-sm font-bold">
                     1
                   </div>
                   <div className="flex-1">
@@ -1124,8 +1124,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1b8f5b] text-white flex items-center justify-center text-sm font-bold">
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#017827] text-white flex items-center justify-center text-sm font-bold">
                     2
                   </div>
                   <div className="flex-1">
@@ -1134,8 +1134,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1b8f5b] text-white flex items-center justify-center text-sm font-bold">
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#017827] text-white flex items-center justify-center text-sm font-bold">
                     3
                   </div>
                   <div className="flex-1">
@@ -1144,8 +1144,8 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(34,94,65,0.15)]">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#1b8f5b] text-white flex items-center justify-center text-sm font-bold">
+                <div className="flex items-start gap-3 p-3 rounded-lg bg-[rgba(240,245,242,0.5)] border border-[rgba(1, 78, 23,0.15)]">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#017827] text-white flex items-center justify-center text-sm font-bold">
                     4
                   </div>
                   <div className="flex-1">
@@ -1165,7 +1165,7 @@ export function CheckoutView({ onBack, onOrderPlaced }) {
                     // You might want to add a prop for navigation
                   }
                 }}
-                className="w-full mt-6 py-3 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                className="w-full mt-6 py-3 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
               >
                 Got it
               </button>

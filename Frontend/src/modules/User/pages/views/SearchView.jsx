@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef, useEffect } from 'react'
+﻿import { useMemo, useState, useRef, useEffect } from 'react'
 import { ProductCard } from '../../components/ProductCard'
 import { FilterIcon, ChevronDownIcon } from '../../components/icons'
 import { cn } from '../../../../lib/cn'
@@ -106,7 +106,7 @@ export function SearchView({ query = '', onProductClick, onAddToCart, onToggleFa
         </div>
         <button
           type="button"
-          className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-[rgba(34,94,65,0.18)] bg-white text-[rgba(26,42,34,0.75)] text-sm font-semibold transition-all hover:-translate-y-0.5 hover:border-[rgba(34,94,65,0.28)] hover:bg-[rgba(255,255,255,0.92)]"
+          className="flex items-center gap-2 px-4 py-2 rounded-2xl border border-[rgba(1, 78, 23,0.18)] bg-white text-[rgba(26,42,34,0.75)] text-sm font-semibold transition-all hover:-translate-y-0.5 hover:border-[rgba(1, 78, 23,0.28)] hover:bg-[rgba(255,255,255,0.92)]"
           onClick={() => setShowFilters(!showFilters)}
         >
           <FilterIcon className="h-5 w-5" />
@@ -116,7 +116,7 @@ export function SearchView({ query = '', onProductClick, onAddToCart, onToggleFa
 
       {/* Filters Panel */}
       {showFilters && (
-        <div className="p-4 rounded-2xl border border-[rgba(34,94,65,0.16)] bg-gradient-to-br from-white to-[rgba(241,244,236,0.9)] shadow-[0_18px_38px_-28px_rgba(13,38,24,0.35)] space-y-4 mb-4">
+        <div className="p-4 rounded-2xl border border-[rgba(1, 78, 23,0.16)] bg-gradient-to-br from-white to-[rgba(241,244,236,0.9)] shadow-[0_18px_38px_-28px_rgba(1, 32, 9,0.35)] space-y-4 mb-4">
           <div>
             <label className="block text-sm font-semibold text-[rgba(26,42,34,0.75)] mb-2 uppercase tracking-[0.05em]">Category</label>
             <div className="flex flex-wrap gap-2">
@@ -125,8 +125,8 @@ export function SearchView({ query = '', onProductClick, onAddToCart, onToggleFa
                 className={cn(
                   'px-3 py-1.5 rounded-full text-xs font-semibold transition-all',
                   selectedCategory === 'all'
-                    ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-md'
-                    : 'bg-[rgba(240,245,242,0.8)] text-[rgba(23,32,34,0.65)] border border-[rgba(34,94,65,0.15)] hover:bg-[rgba(248,252,249,0.95)]'
+                    ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-md'
+                    : 'bg-[rgba(240,245,242,0.8)] text-[rgba(23,32,34,0.65)] border border-[rgba(1, 78, 23,0.15)] hover:bg-[rgba(248,252,249,0.95)]'
                 )}
                 onClick={() => setSelectedCategory('all')}
               >
@@ -139,8 +139,8 @@ export function SearchView({ query = '', onProductClick, onAddToCart, onToggleFa
                   className={cn(
                     'px-3 py-1.5 rounded-full text-xs font-semibold transition-all',
                     selectedCategory === (cat._id || cat.id)
-                      ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-md'
-                      : 'bg-[rgba(240,245,242,0.8)] text-[rgba(23,32,34,0.65)] border border-[rgba(34,94,65,0.15)] hover:bg-[rgba(248,252,249,0.95)]'
+                      ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-md'
+                      : 'bg-[rgba(240,245,242,0.8)] text-[rgba(23,32,34,0.65)] border border-[rgba(1, 78, 23,0.15)] hover:bg-[rgba(248,252,249,0.95)]'
                   )}
                   onClick={() => setSelectedCategory(cat._id || cat.id)}
                 >

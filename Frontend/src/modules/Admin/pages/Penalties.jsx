@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { ArrowLeft, AlertTriangle, IndianRupee, Calendar, Building2, Eye, CheckCircle, XCircle } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -261,7 +261,7 @@ export function PenaltiesPage({ navigate }) {
                       <div className="text-right">
                         <p className={cn(
                           'text-sm font-bold',
-                          entry.amount > 0 ? 'text-red-600' : 'text-green-600'
+                          entry.amount > 0 ? 'text-red-600' : 'text-[#017827]'
                         )}>
                           {entry.amount > 0 ? '+' : ''}{formatCurrency(Math.abs(entry.amount || 0))}
                         </p>

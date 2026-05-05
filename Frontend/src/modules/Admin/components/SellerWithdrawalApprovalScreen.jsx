@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { ArrowLeft, CheckCircle, AlertCircle, IndianRupee, ShieldCheck, CreditCard, Shield, Calendar } from 'lucide-react'
 import { useAdminApi } from '../hooks/useAdminApi'
 import { useToast } from '../components/ToastNotification'
@@ -171,7 +171,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
         <button
           type="button"
           onClick={onBack}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300 bg-white text-gray-700 transition-all hover:border-green-500 hover:bg-green-50 hover:text-green-700"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300 bg-white text-gray-700 transition-all hover:border-[#017827] hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827]"
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -197,9 +197,9 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                     className={cn(
                       'flex h-12 w-12 items-center justify-center rounded-full border-2 transition-all',
                       isCompleted
-                        ? 'border-green-500 bg-green-500 text-white'
+                        ? 'border-[#017827] bg-[#017827] text-white'
                         : isActive
-                        ? 'border-green-500 bg-green-50 text-green-600'
+                        ? 'border-[#017827] bg-[rgba(1,120,39,0.04)] text-[#017827]'
                         : 'border-gray-300 bg-white text-gray-400',
                     )}
                   >
@@ -218,7 +218,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                   <div
                     className={cn(
                       'mx-4 h-0.5 flex-1',
-                      isCompleted ? 'bg-green-500' : 'bg-gray-300',
+                      isCompleted ? 'bg-[#017827]' : 'bg-gray-300',
                     )}
                   />
                 )}
@@ -244,7 +244,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
               </div>
               <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                 <p className="text-xs text-gray-600 mb-1">Withdrawal Amount</p>
-                <p className="text-lg font-bold text-green-600">{formatCurrency(request.amount || 0)}</p>
+                <p className="text-lg font-bold text-[#017827]">{formatCurrency(request.amount || 0)}</p>
               </div>
               <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
                 <p className="text-xs text-gray-600 mb-1">Request Date</p>
@@ -301,7 +301,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
               <button
                 type="button"
                 onClick={handleConfirm}
-                className="flex-1 rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-green-700"
+                className="flex-1 rounded-xl bg-[#017827] px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-[#015c1f]"
               >
                 Proceed to Payment
               </button>
@@ -337,7 +337,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                     type="button"
                     onClick={handleProceedToPayment}
                     disabled={loading}
-                    className="flex-1 rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 rounded-xl bg-[#017827] px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-[#015c1f] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Creating Payment Intent...' : 'Create Payment Intent'}
                   </button>
@@ -345,14 +345,14 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="rounded-xl border border-green-200 bg-green-50 p-6">
+                <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-6">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500 text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#017827] text-white">
                       <CheckCircle className="h-6 w-6" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-semibold text-green-900">Payment Intent Created</p>
-                      <p className="text-xs text-green-700">
+                      <p className="text-sm font-semibold text-[#014a19]">Payment Intent Created</p>
+                      <p className="text-xs text-[#017827]">
                         Order ID: {paymentIntent.razorpayOrderId || 'N/A'}
                       </p>
                       {paymentIntent.isTestMode && (
@@ -390,7 +390,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                     type="button"
                     onClick={handlePayment}
                     disabled={loading}
-                    className="flex-1 rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 rounded-xl bg-[#017827] px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-[#015c1f] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Processing Payment...' : 'Process Payment'}
                   </button>
@@ -405,12 +405,12 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
       {currentStep === 3 && (
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
           <div className="space-y-6">
-            <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white mx-auto mb-4">
+            <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-6 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#017827] text-white mx-auto mb-4">
                 <CheckCircle className="h-8 w-8" />
               </div>
-              <h3 className="text-lg font-bold text-green-900 mb-2">Withdrawal Approved!</h3>
-              <p className="text-sm text-green-700">
+              <h3 className="text-lg font-bold text-[#014a19] mb-2">Withdrawal Approved!</h3>
+              <p className="text-sm text-[#017827]">
                 Payment has been processed and withdrawal request has been approved successfully.
               </p>
             </div>
@@ -425,7 +425,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                 </div>
                 <div>
                   <p className="text-xs text-gray-600 mb-1">Amount Transferred</p>
-                  <p className="text-sm font-bold text-green-600">
+                  <p className="text-sm font-bold text-[#017827]">
                     {formatCurrency(request.amount || 0)}
                   </p>
                 </div>
@@ -438,7 +438,7 @@ export function SellerWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                 onClick={() => {
                   onSuccess?.()
                 }}
-                className="flex-1 rounded-xl bg-green-600 px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-green-700"
+                className="flex-1 rounded-xl bg-[#017827] px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-[#015c1f]"
               >
                 Done
               </button>

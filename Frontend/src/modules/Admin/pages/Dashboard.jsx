@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import { AlertTriangle, BarChart3, PieChart, Users } from 'lucide-react'
 import { MetricCard } from '../components/MetricCard'
 import { StatusBadge } from '../components/StatusBadge'
@@ -58,10 +58,10 @@ export function DashboardPage() {
             <StatusBadge tone="warning">Review Period Active</StatusBadge>
           </header>
           <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-4 transition-all duration-300 hover:shadow-[0_2px_6px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]">
-              <p className="text-xs uppercase tracking-wide text-green-700 font-bold">Advance (30%)</p>
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-4 transition-all duration-300 hover:shadow-[0_2px_6px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]">
+              <p className="text-xs uppercase tracking-wide text-[#017827] font-bold">Advance (30%)</p>
               <p className="mt-2 text-xl font-bold text-gray-900">{payables.advance || '₹0'}</p>
-              <p className="text-xs text-green-600">Received this month</p>
+              <p className="text-xs text-[#017827]">Received this month</p>
             </div>
             <div className="rounded-2xl border border-yellow-200 bg-gradient-to-br from-yellow-50 to-yellow-100/50 p-4 transition-all duration-300 hover:shadow-[0_2px_6px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]">
               <p className="text-xs uppercase tracking-wide text-yellow-700 font-bold">Pending (70%)</p>
@@ -115,7 +115,7 @@ export function DashboardPage() {
                     'group cursor-pointer rounded-2xl border p-4 transition-all duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.5)]',
                     color === 'blue' && 'border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100/30 hover:from-blue-100 hover:to-blue-200/40',
                     color === 'yellow' && 'border-yellow-200 bg-gradient-to-br from-yellow-50 to-yellow-100/30 hover:from-yellow-100 hover:to-yellow-200/40',
-                    color === 'green' && 'border-green-200 bg-gradient-to-br from-green-50 to-green-100/30 hover:from-green-100 hover:to-green-200/40',
+                    color === 'green' && 'border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/30 hover:from-[rgba(1,120,39,0.1)] hover:to-[rgba(1,120,39,0.2)]/40',
                     color === 'red' && 'border-red-200 bg-gradient-to-br from-red-50 to-red-100/30 hover:from-red-100 hover:to-red-200/40',
                   )}
                   onClick={() => {
@@ -136,7 +136,7 @@ export function DashboardPage() {
                       "text-[10px] uppercase font-bold px-2 py-0.5 rounded-md",
                       color === 'blue' ? "bg-blue-100 text-blue-700" :
                         color === 'yellow' ? "bg-yellow-100 text-yellow-700" :
-                          color === 'green' ? "bg-green-100 text-green-700" :
+                          color === 'green' ? "bg-[rgba(1,120,39,0.1)] text-[#017827]" :
                             "bg-red-100 text-red-700"
                     )}>
                       {task.category}

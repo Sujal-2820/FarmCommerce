@@ -1,4 +1,4 @@
-import { MessageSquare, User, Calendar, CheckCircle, XCircle, Send } from 'lucide-react'
+﻿import { MessageSquare, User, Calendar, CheckCircle, XCircle, Send } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { Timeline } from './Timeline'
@@ -132,7 +132,7 @@ export function SupportTicketModal({ isOpen, onClose, tickets, user, onResolve, 
                     type="button"
                     onClick={() => handleResolve(selectedTicket.id || selectedTicket.ticketId)}
                     disabled={loading}
-                    className="flex items-center gap-2 rounded-lg border border-green-300 bg-white px-4 py-2 text-sm font-bold text-green-600 transition-all hover:bg-green-50 disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-lg border border-[rgba(1,120,39,0.4)] bg-white px-4 py-2 text-sm font-bold text-[#017827] transition-all hover:bg-[rgba(1,120,39,0.05)] disabled:opacity-50"
                   >
                     <CheckCircle className="h-4 w-4" />
                     Resolve

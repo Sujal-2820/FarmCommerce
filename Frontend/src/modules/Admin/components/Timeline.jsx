@@ -1,9 +1,9 @@
-import { cn } from '../../../lib/cn'
+﻿import { cn } from '../../../lib/cn'
 
 const timelineColors = [
   { border: 'border-blue-300', bg: 'bg-gradient-to-br from-blue-500 to-blue-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
   { border: 'border-purple-300', bg: 'bg-gradient-to-br from-purple-500 to-purple-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
-  { border: 'border-green-300', bg: 'bg-gradient-to-br from-green-500 to-green-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
+  { border: 'border-[rgba(1,120,39,0.4)]', bg: 'bg-gradient-to-br from-[#017827] to-[#0a9937]', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
   { border: 'border-yellow-300', bg: 'bg-gradient-to-br from-yellow-500 to-yellow-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
   { border: 'border-red-300', bg: 'bg-gradient-to-br from-red-500 to-red-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
   { border: 'border-pink-300', bg: 'bg-gradient-to-br from-pink-500 to-pink-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
@@ -15,7 +15,7 @@ export function Timeline({ events = [], className }) {
       <ol className="relative space-y-6 before:absolute before:left-[1.1rem] before:top-0 before:h-full before:w-1 before:bg-gradient-to-b before:from-gray-200 before:to-gray-300 before:rounded-full">
         {events.map(({ id, title, timestamp, description, status }, index) => {
           const statusColors = {
-            completed: { border: 'border-green-300', bg: 'bg-gradient-to-br from-green-500 to-green-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
+            completed: { border: 'border-[rgba(1,120,39,0.4)]', bg: 'bg-gradient-to-br from-[#017827] to-[#0a9937]', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
             pending: { border: 'border-yellow-300', bg: 'bg-gradient-to-br from-yellow-500 to-yellow-600', text: 'text-white', shadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]' },
             default: timelineColors[index % timelineColors.length],
           }

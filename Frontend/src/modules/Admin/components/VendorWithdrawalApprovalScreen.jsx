@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { ArrowLeft, CheckCircle, AlertCircle, IndianRupee, Factory, CreditCard, Shield, Calendar } from 'lucide-react'
 import { useAdminApi } from '../hooks/useAdminApi'
 import { useToast } from '../components/ToastNotification'
@@ -171,7 +171,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
         <button
           type="button"
           onClick={onBack}
-          className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300 bg-white text-gray-700 transition-all hover:border-green-500 hover:bg-green-50 hover:text-green-700"
+          className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-300 bg-white text-gray-700 transition-all hover:border-[#017827] hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827]"
         >
           <ArrowLeft className="h-5 w-5" />
         </button>
@@ -197,9 +197,9 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                     className={cn(
                       'flex h-12 w-12 items-center justify-center rounded-full border-2 transition-all',
                       isCompleted
-                        ? 'border-green-500 bg-green-500 text-white'
+                        ? 'border-[#017827] bg-[#017827] text-white'
                         : isActive
-                        ? 'border-green-500 bg-green-50 text-green-600'
+                        ? 'border-[#017827] bg-[rgba(1,120,39,0.04)] text-[#017827]'
                         : 'border-gray-300 bg-white text-gray-400'
                     )}
                   >
@@ -212,7 +212,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                   <span
                     className={cn(
                       'mt-2 text-xs font-medium',
-                      isActive ? 'text-green-600' : isCompleted ? 'text-green-500' : 'text-gray-400'
+                      isActive ? 'text-[#017827]' : isCompleted ? 'text-[#0a9937]' : 'text-gray-400'
                     )}
                   >
                     {step.label}
@@ -222,7 +222,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                   <div
                     className={cn(
                       'mx-4 h-0.5 flex-1',
-                      isCompleted ? 'bg-green-500' : 'bg-gray-300'
+                      isCompleted ? 'bg-[#017827]' : 'bg-gray-300'
                     )}
                   />
                 )}
@@ -237,7 +237,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
         <div className="space-y-6">
           <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
             <div className="mb-6 flex items-start gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                 <Factory className="h-6 w-6" />
               </div>
               <div className="flex-1">
@@ -255,7 +255,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
             </div>
 
             <div className="space-y-4">
-              <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+              <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
                 <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                   <IndianRupee className="h-4 w-4" />
                   <span>Withdrawal Amount</span>
@@ -303,7 +303,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
               <button
                 type="button"
                 onClick={handleConfirm}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4)]"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4)]"
               >
                 <CheckCircle className="h-4 w-4" />
                 Confirm & Proceed
@@ -366,9 +366,9 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+                <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-green-500 to-green-600 text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#017827] to-[#0a9937] text-white">
                       <CheckCircle className="h-5 w-5" />
                     </div>
                     <div>
@@ -402,7 +402,7 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                     type="button"
                     onClick={handlePayment}
                     disabled={loading}
-                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4)] disabled:opacity-50"
+                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4)] disabled:opacity-50"
                   >
                     {loading ? 'Processing...' : 'Pay Now'}
                   </button>
@@ -416,10 +416,10 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
       {/* Step 3: Approval Complete */}
       {currentStep === 3 && paymentCompleted && (
         <div className="space-y-6">
-          <div className="rounded-3xl border border-green-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
+          <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
             <div className="text-center py-8">
-              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-                <CheckCircle className="h-10 w-10 text-green-600" />
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[rgba(1,120,39,0.1)]">
+                <CheckCircle className="h-10 w-10 text-[#017827]" />
               </div>
               <h3 className="mt-4 text-2xl font-bold text-gray-900">Withdrawal Approved!</h3>
               <p className="mt-2 text-sm text-gray-600">
@@ -437,14 +437,14 @@ export function VendorWithdrawalApprovalScreen({ request, onBack, onSuccess }) {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Status:</span>
-                    <span className="font-semibold text-green-600">Approved & Paid</span>
+                    <span className="font-semibold text-[#017827]">Approved & Paid</span>
                   </div>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={onSuccess}
-                className="mt-6 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4)]"
+                className="mt-6 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4)]"
               >
                 Done
               </button>

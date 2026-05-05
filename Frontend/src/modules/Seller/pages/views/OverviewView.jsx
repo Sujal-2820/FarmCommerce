@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import { useSellerState } from '../../context/SellerContext'
 import { useSellerApi } from '../../hooks/useSellerApi'
 import { cn } from '../../../../lib/cn'
@@ -353,7 +353,7 @@ export function OverviewView({ onNavigate, openPanel }) {
         <div className="seller-commission-policy">
           <div className="seller-commission-policy__card">
             <div className="seller-commission-policy__header">
-              <WalletIcon className="h-5 w-5 text-[#1b8f5b]" />
+              <WalletIcon className="h-5 w-5 text-[#017827]" />
               <h4 className="seller-commission-policy__title"><Trans>Your Commission Rates</Trans></h4>
             </div>
             <div className="seller-commission-policy__content">

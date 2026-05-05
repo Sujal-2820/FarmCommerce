@@ -1,4 +1,4 @@
-import { Layout, Container } from '../components/Layout'
+﻿import { Layout, Container } from '../components/Layout'
 import { useState, useMemo, useEffect } from 'react'
 import { useWebsiteState, useWebsiteDispatch } from '../context/WebsiteContext'
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom'
@@ -659,7 +659,7 @@ export function AccountOrdersPage() {
     const key = getStatusKey(status)
     if (key === 'awaiting') return 'bg-yellow-100 text-yellow-700'
     if (key === 'dispatched') return 'bg-indigo-100 text-indigo-700'
-    if (key === 'delivered') return 'bg-green-100 text-[#1b8f5b]'
+    if (key === 'delivered') return 'bg-[rgba(1,120,39,0.1)] text-[#017827]'
     return 'bg-gray-100 text-gray-700'
   }
 
@@ -903,7 +903,7 @@ export function AccountOrdersPage() {
                     {item.paymentPreference === 'partial' && item.upfrontAmount !== undefined && (
                       <div className="account-orders__card-summary-row">
                         <span>Advance (30%):</span>
-                        <span className="text-green-600">₹{item.upfrontAmount?.toLocaleString('en-IN') || '0'}</span>
+                        <span className="text-[#017827]">₹{item.upfrontAmount?.toLocaleString('en-IN') || '0'}</span>
                       </div>
                     )}
                     {item.paymentPreference === 'partial' && item.remainingAmount !== undefined && (

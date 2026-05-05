@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { CheckCircle, Clock, AlertCircle, ExternalLink, Filter, Search, Calendar, User, ShoppingBag, Truck, Info, MoreVertical } from 'lucide-react'
 import { useAdminState } from '../context/AdminContext'
 import { useAdminApi } from '../hooks/useAdminApi'
@@ -160,7 +160,7 @@ export default function TasksPage({ navigate }) {
                                 handleCompleteTask(row._id)
                                 setOpenActionsDropdown(null)
                             },
-                            className: 'text-green-600 hover:bg-green-50'
+                            className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
                         })
                     }
 
@@ -283,7 +283,7 @@ export default function TasksPage({ navigate }) {
                     <h3 className="text-lg font-bold">Vendor Onboarding</h3>
                     <p className="text-sm opacity-90 mt-1">90% of tasks usually revolve around vendor verified application reviews.</p>
                 </div>
-                <div className="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-3xl text-white shadow-xl">
+                <div className="bg-gradient-to-br from-[#017827] to-[#0a9937] p-6 rounded-3xl text-white shadow-xl">
                     <ShoppingBag className="h-8 w-8 mb-4 opacity-80" />
                     <h3 className="text-lg font-bold">Order Fulfillment</h3>
                     <p className="text-sm opacity-90 mt-1">Escalated orders require immediate attention to maintain delivery SLAs.</p>

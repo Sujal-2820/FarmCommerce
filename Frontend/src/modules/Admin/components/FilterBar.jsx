@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react'
+﻿import { ChevronDown } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
 const filterColors = [
@@ -11,8 +11,8 @@ const filterColors = [
     hover: 'hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600' 
   },
   { 
-    active: 'border-green-300 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]', 
-    hover: 'hover:border-green-400 hover:bg-green-50 hover:text-green-600' 
+    active: 'border-[rgba(1,120,39,0.4)] bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]', 
+    hover: 'hover:border-[#017827] hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827]' 
   },
   { 
     active: 'border-yellow-300 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]', 

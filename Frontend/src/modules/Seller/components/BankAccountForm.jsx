@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { X, AlertTriangle } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { useSellerApi } from '../hooks/useSellerApi'
@@ -317,7 +317,7 @@ export function BankAccountForm({ isOpen, onClose, onSuccess }) {
                   id="isPrimary"
                   checked={formData.isPrimary}
                   onChange={handleChange}
-                  className="mt-1 h-4 w-4 rounded border-gray-300 text-[#1b8f5b] focus:ring-[#1b8f5b]"
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-[#017827] focus:ring-[#017827]"
                   style={{ flexShrink: 0 }}
                 />
                 <label htmlFor="isPrimary" className="flex-1 text-sm text-gray-700" style={{ width: '100%', minWidth: 0 }}>

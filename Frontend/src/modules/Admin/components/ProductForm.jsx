@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { Calendar, Package, IndianRupee, Eye, EyeOff, Tag, X, Layers } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { ImageUpload } from './ImageUpload'
@@ -897,8 +897,8 @@ export function ProductForm({ product, onSubmit, onCancel, loading = false }) {
             className={cn(
               'flex flex-1 items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-bold transition-all',
               formData.visibility === 'active'
-                ? 'border-green-500 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]'
-                : 'border-gray-300 bg-white text-gray-700 hover:border-green-300 hover:bg-green-50',
+                ? 'border-[#017827] bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]'
+                : 'border-gray-300 bg-white text-gray-700 hover:border-[rgba(1,120,39,0.4)] hover:bg-[rgba(1,120,39,0.05)]',
             )}
           >
             <Eye className="h-4 w-4" />

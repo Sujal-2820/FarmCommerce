@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { OtpVerification } from '../../../components/auth/OtpVerification'
 import { useUserDispatch } from '../context/UserContext'
 import { GoogleMapsLocationPicker } from '../../../components/GoogleMapsLocationPicker'
@@ -234,7 +234,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
                   value={form.fullName}
                   onChange={handleChange}
                   placeholder="Enter your full name"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
                 />
               </div>
 
@@ -256,7 +256,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
                 <button
                   type="button"
                   onClick={() => setShowSellerId(!showSellerId)}
-                  className="text-xs text-green-600 hover:underline"
+                  className="text-xs text-[#017827] hover:underline"
                 >
                   {showSellerId ? <Trans>Hide Seller ID</Trans> : <Trans>Have a Seller ID?</Trans>}
                 </button>
@@ -268,7 +268,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
                     value={form.sellerId}
                     onChange={handleChange}
                     placeholder="Enter Seller ID (optional)"
-                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
                   />
                 )}
               </div>
@@ -286,7 +286,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
               <button
                 type="submit"
                 disabled={loading || !form.fullName || !form.contact || !form.location}
-                className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full rounded-full bg-gradient-to-r from-[#017827] to-[#015c1f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? <Trans>Sending OTP...</Trans> : <Trans>Continue</Trans>}
               </button>
@@ -299,7 +299,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
                     setMode('login')
                     setStep('phone')
                   }}
-                  className="text-green-600 font-semibold hover:underline"
+                  className="text-[#017827] font-semibold hover:underline"
                 >
                   <Trans>Sign in</Trans>
                 </button>
@@ -363,7 +363,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-full bg-gradient-to-r from-[#017827] to-[#015c1f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? <Trans>Sending OTP...</Trans> : <Trans>Continue</Trans>}
             </button>
@@ -376,7 +376,7 @@ export function AuthPromptModal({ isOpen, onClose, actionType, onSuccess }) {
                   setMode('register')
                   setStep('register')
                 }}
-                className="text-green-600 font-semibold hover:underline"
+                className="text-[#017827] font-semibold hover:underline"
               >
                 <Trans>Sign up</Trans>
               </button>

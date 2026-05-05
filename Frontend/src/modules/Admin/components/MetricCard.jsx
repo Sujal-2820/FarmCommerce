@@ -1,4 +1,4 @@
-import { cn } from '../../../lib/cn'
+﻿import { cn } from '../../../lib/cn'
 
 export function MetricCard({ title, value, subtitle, trend, icon: Icon, tone = 'default', className, colorIndex = 0 }) {
   const colorPalette = [
@@ -21,10 +21,10 @@ export function MetricCard({ title, value, subtitle, trend, icon: Icon, tone = '
       iconShadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]',
     },
     { 
-      bg: 'bg-gradient-to-br from-green-50 to-green-100/50', 
-      text: 'text-green-700', 
-      border: 'border-green-200', 
-      iconBg: 'bg-gradient-to-br from-green-500 to-green-600', 
+      bg: 'bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50', 
+      text: 'text-[#017827]', 
+      border: 'border-[rgba(1,120,39,0.25)]', 
+      iconBg: 'bg-gradient-to-br from-[#017827] to-[#0a9937]', 
       iconText: 'text-white',
       shadow: 'shadow-[0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]',
       iconShadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]',
@@ -79,10 +79,10 @@ export function MetricCard({ title, value, subtitle, trend, icon: Icon, tone = '
   const colorMap = {
     default: colorPalette[colorIndex % colorPalette.length],
     success: { 
-      bg: 'bg-gradient-to-br from-green-50 to-green-100/50', 
-      text: 'text-green-700', 
-      border: 'border-green-200', 
-      iconBg: 'bg-gradient-to-br from-green-500 to-green-600', 
+      bg: 'bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50', 
+      text: 'text-[#017827]', 
+      border: 'border-[rgba(1,120,39,0.25)]', 
+      iconBg: 'bg-gradient-to-br from-[#017827] to-[#0a9937]', 
       iconText: 'text-white',
       shadow: 'shadow-[0_2px_8px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.4)]',
       iconShadow: 'shadow-[0_2px_6px_rgba(0,0,0,0.1)]',
@@ -140,7 +140,7 @@ export function MetricCard({ title, value, subtitle, trend, icon: Icon, tone = '
           <span
             className={cn(
               'inline-flex items-center rounded-full px-3 py-1.5 font-bold transition-all duration-200 shadow-[0_2px_6px_rgba(0,0,0,0.08)]',
-              trend.direction === 'up' && 'bg-gradient-to-br from-green-500 to-green-600 text-white',
+              trend.direction === 'up' && 'bg-gradient-to-br from-[#017827] to-[#0a9937] text-white',
               trend.direction === 'down' && 'bg-gradient-to-br from-red-500 to-red-600 text-white',
             )}
           >

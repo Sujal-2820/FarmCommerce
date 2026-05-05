@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { AlertCircle, Package, X, CheckCircle } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { useVendorApi } from '../hooks/useVendorApi'
@@ -151,7 +151,7 @@ export function OrderEscalationModal({ isOpen, onClose, order, onSuccess }) {
                           <span
                             className={cn(
                               'font-semibold',
-                              vendorStock > 0 ? 'text-green-600' : 'text-red-600'
+                              vendorStock > 0 ? 'text-[#017827]' : 'text-red-600'
                             )}
                           >
                             Your stock: {vendorStock} {unit}

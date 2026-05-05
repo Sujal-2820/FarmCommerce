@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Layout, Container } from '../components/Layout'
 import { cn } from '../../../lib/cn'
@@ -63,7 +63,7 @@ export function OrderConfirmationPage() {
                 cy="50"
                 r="45"
                 fill="none"
-                stroke="rgba(27, 143, 91, 0.1)"
+                stroke="rgba(1, 120, 39, 0.1)"
                 strokeWidth="4"
               />
               {/* Animated Progress Circle */}
@@ -72,7 +72,7 @@ export function OrderConfirmationPage() {
                 cy="50"
                 r="45"
                 fill="none"
-                stroke="#1b8f5b"
+                stroke="#017827"
                 strokeWidth="4"
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+﻿import { useState, useMemo, useEffect } from 'react'
 import { useSellerState } from '../../context/SellerContext'
 import { useSellerApi } from '../../hooks/useSellerApi'
 import { sellerSnapshot } from '../../services/sellerData'
@@ -201,7 +201,7 @@ export function ReferralsView({ onNavigate }) {
 
       {/* Commission Policy Notice */}
       <section className="seller-section">
-        <div className="rounded-2xl border border-[rgba(34,94,65,0.15)] bg-white/80 p-4">
+        <div className="rounded-2xl border border-[rgba(1, 78, 23,0.15)] bg-white/80 p-4">
           <p className="text-sm font-semibold text-[#172022]">
             <Trans>{`Monthly commission tally resets on day ${commissionPolicy?.resetDay || 1} of every month.`}</Trans>
           </p>

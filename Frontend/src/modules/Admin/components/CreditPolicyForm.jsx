@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { CreditCard, Calendar, AlertCircle, IndianRupee } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
@@ -97,7 +97,7 @@ export function CreditPolicyForm({ vendor, onSubmit, onCancel, loading = false }
             'w-full rounded-xl border px-4 py-3 text-sm transition-all focus:outline-none focus:ring-2',
             errors.repaymentDays
               ? 'border-red-300 bg-red-50 focus:ring-red-500/50'
-              : 'border-gray-300 bg-white focus:border-green-500 focus:ring-green-500/50',
+              : 'border-gray-300 bg-white focus:border-[#017827] focus:ring-[#017827]/50',
           )}
         />
         {errors.repaymentDays && <p className="mt-1 text-xs text-red-600">{errors.repaymentDays}</p>}
@@ -125,7 +125,7 @@ export function CreditPolicyForm({ vendor, onSubmit, onCancel, loading = false }
               'w-full rounded-xl border px-4 py-3 pr-12 text-sm transition-all focus:outline-none focus:ring-2',
               errors.penaltyRate
                 ? 'border-red-300 bg-red-50 focus:ring-red-500/50'
-                : 'border-gray-300 bg-white focus:border-green-500 focus:ring-green-500/50',
+                : 'border-gray-300 bg-white focus:border-[#017827] focus:ring-[#017827]/50',
             )}
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500">%</div>
@@ -162,7 +162,7 @@ export function CreditPolicyForm({ vendor, onSubmit, onCancel, loading = false }
         <button
           type="submit"
           disabled={loading}
-          className="rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+          className="rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
         >
           {loading ? 'Updating...' : 'Update Credit Policy'}
         </button>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useSellerState, useSellerDispatch } from '../../context/SellerContext'
 import { useSellerApi } from '../../hooks/useSellerApi'
 import { sellerSnapshot } from '../../services/sellerData'
@@ -401,7 +401,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     type="text"
                     value={sellerProfile.name}
                     disabled
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-gray-50 text-sm text-gray-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-gray-50 text-sm text-gray-600"
                   />
                 </div>
                 <div>
@@ -413,7 +413,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     value={nameChangeForm.requestedName}
                     onChange={(e) => setNameChangeForm({ ...nameChangeForm, requestedName: e.target.value })}
                     placeholder={translate('Write your suggested name')}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   />
                 </div>
                 <div>
@@ -427,7 +427,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     placeholder={translate('Enter the name again to confirm')}
                     className={`w-full px-3 py-2.5 rounded-lg border text-sm focus:outline-none ${nameChangeForm.confirmName && nameChangeForm.requestedName.trim() !== nameChangeForm.confirmName.trim()
                       ? 'border-red-300 bg-red-50 focus:border-red-500'
-                      : 'border-[rgba(34,94,65,0.15)] bg-white focus:border-[#1b8f5b]'
+                      : 'border-[rgba(1, 78, 23,0.15)] bg-white focus:border-[#017827]'
                       }`}
                   />
                   {nameChangeForm.confirmName && nameChangeForm.requestedName.trim() !== nameChangeForm.confirmName.trim() && (
@@ -439,7 +439,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                 <button
                   type="button"
                   onClick={handleRequestNameChange}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
                 >
                   <Trans>Submit Request</Trans>
                 </button>
@@ -484,7 +484,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     type="text"
                     value={sellerProfile.phone || translate('Not set')}
                     disabled
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-gray-50 text-sm text-gray-600"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-gray-50 text-sm text-gray-600"
                   />
                 </div>
                 <div>
@@ -496,7 +496,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     value={phoneChangeForm.requestedPhone}
                     onChange={(e) => setPhoneChangeForm({ ...phoneChangeForm, requestedPhone: e.target.value })}
                     placeholder={translate('Write your suggested phone number to change')}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   />
                 </div>
                 <div>
@@ -510,7 +510,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     placeholder={translate('Enter the phone number again to confirm')}
                     className={`w-full px-3 py-2.5 rounded-lg border text-sm focus:outline-none ${phoneChangeForm.confirmPhone && phoneChangeForm.requestedPhone.trim() !== phoneChangeForm.confirmPhone.trim()
                       ? 'border-red-300 bg-red-50 focus:border-red-500'
-                      : 'border-[rgba(34,94,65,0.15)] bg-white focus:border-[#1b8f5b]'
+                      : 'border-[rgba(1, 78, 23,0.15)] bg-white focus:border-[#017827]'
                       }`}
                   />
                   {phoneChangeForm.confirmPhone && phoneChangeForm.requestedPhone.trim() !== phoneChangeForm.confirmPhone.trim() && (
@@ -522,7 +522,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                 <button
                   type="button"
                   onClick={handleRequestPhoneChange}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
                 >
                   <Trans>Submit Request</Trans>
                 </button>
@@ -555,19 +555,19 @@ export function ProfileView({ onLogout, onNavigate }) {
             </div>
             <div className="seller-profile-view__panel-body">
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                   <h4 className="font-semibold text-[#172022] mb-2"><Trans>Help Center</Trans></h4>
                   <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                     <Trans>Browse FAQs and guides to find answers to common questions.</Trans>
                   </p>
                   <button
                     type="button"
-                    className="text-sm text-[#1b8f5b] font-semibold hover:underline"
+                    className="text-sm text-[#017827] font-semibold hover:underline"
                   >
                     <Trans>Visit Help Center →</Trans>
                   </button>
                 </div>
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                   <h4 className="font-semibold text-[#172022] mb-2"><Trans>Contact Support</Trans></h4>
                   <p className="text-sm text-[rgba(26,42,34,0.7)] mb-2">
                     <strong><Trans>Phone:</Trans></strong> +91 1800-XXX-XXXX
@@ -580,7 +580,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                   </p>
                   <button
                     type="button"
-                    className="text-sm text-[#1b8f5b] font-semibold hover:underline"
+                    className="text-sm text-[#017827] font-semibold hover:underline"
                   >
                     <Trans>Start Chat →</Trans>
                   </button>
@@ -625,7 +625,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                   <select
                     value={reportForm.category}
                     onChange={(e) => setReportForm({ ...reportForm, category: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   >
                     <option value="general">{translate('General Issue')}</option>
                     <option value="commission">{translate('Commission Issue')}</option>
@@ -643,7 +643,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     value={reportForm.subject}
                     onChange={(e) => setReportForm({ ...reportForm, subject: e.target.value })}
                     placeholder={translate('Brief description of the issue')}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   />
                 </div>
                 <div>
@@ -655,7 +655,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     onChange={(e) => setReportForm({ ...reportForm, description: e.target.value })}
                     placeholder={translate('Please provide detailed information about the issue')}
                     rows={5}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b] resize-none"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827] resize-none"
                   />
                 </div>
               </div>
@@ -663,7 +663,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                 <button
                   type="button"
                   onClick={handleSubmitReport}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
                 >
                   <Trans>Submit Report</Trans>
                 </button>
@@ -694,25 +694,25 @@ export function ProfileView({ onLogout, onNavigate }) {
             <div className="seller-profile-view__panel-body p-0">
               {ticketsLoading ? (
                 <div className="flex flex-col items-center justify-center py-20 bg-white">
-                  <div className="w-10 h-10 border-4 border-[rgba(27,143,91,0.1)] border-t-[#1b8f5b] rounded-full animate-spin mb-4"></div>
+                  <div className="w-10 h-10 border-4 border-[rgba(1, 120, 39,0.1)] border-t-[#017827] rounded-full animate-spin mb-4"></div>
                   <p className="text-sm font-medium text-[rgba(26,42,34,0.6)]"><Trans>Loading tickets...</Trans></p>
                 </div>
               ) : tickets.length > 0 ? (
-                <div className="divide-y divide-[rgba(34,94,65,0.08)] bg-white">
+                <div className="divide-y divide-[rgba(1, 78, 23,0.08)] bg-white">
                   {tickets.map((ticket) => (
                     <button
                       key={ticket.id}
                       onClick={() => fetchTicketDetails(ticket.id)}
-                      className="w-full text-left p-4 hover:bg-[rgba(27,143,91,0.02)] transition-colors flex items-center justify-between group"
+                      className="w-full text-left p-4 hover:bg-[rgba(1, 120, 39,0.02)] transition-colors flex items-center justify-between group"
                     >
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-bold text-[#1b8f5b] uppercase tracking-wider">{ticket.ticketId}</span>
+                          <span className="text-xs font-bold text-[#017827] uppercase tracking-wider">{ticket.ticketId}</span>
                           {ticket.hasUnread && (
                             <span className="w-2 h-2 rounded-full bg-red-500"></span>
                           )}
                         </div>
-                        <h4 className="text-sm font-bold text-[#172022] truncate group-hover:text-[#1b8f5b] transition-colors">
+                        <h4 className="text-sm font-bold text-[#172022] truncate group-hover:text-[#017827] transition-colors">
                           {ticket.subject}
                         </h4>
                         <div className="flex items-center gap-3 mt-1.5">
@@ -720,7 +720,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                             "text-[10px] font-bold px-1.5 py-0.5 rounded uppercase",
                             ticket.status === 'open' ? "bg-blue-100 text-blue-700" :
                               ticket.status === 'in_progress' ? "bg-amber-100 text-amber-700" :
-                                ticket.status === 'resolved' ? "bg-green-100 text-green-700" :
+                                ticket.status === 'resolved' ? "bg-[rgba(1,120,39,0.1)] text-[#017827]" :
                                   "bg-gray-100 text-gray-700"
                           )}>
                             <Trans>{ticket.status.replace('_', ' ')}</Trans>
@@ -730,14 +730,14 @@ export function ProfileView({ onLogout, onNavigate }) {
                           </span>
                         </div>
                       </div>
-                      <ChevronRightIcon className="h-5 w-5 text-[rgba(26,42,34,0.3)] group-hover:text-[#1b8f5b] group-hover:translate-x-0.5 transition-all" />
+                      <ChevronRightIcon className="h-5 w-5 text-[rgba(26,42,34,0.3)] group-hover:text-[#017827] group-hover:translate-x-0.5 transition-all" />
                     </button>
                   ))}
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-white">
-                  <div className="w-16 h-16 rounded-full bg-[rgba(27,143,91,0.05)] flex items-center justify-center mb-4">
-                    <HelpCircleIcon className="w-8 h-8 text-[#1b8f5b] opacity-40" />
+                  <div className="w-16 h-16 rounded-full bg-[rgba(1, 120, 39,0.05)] flex items-center justify-center mb-4">
+                    <HelpCircleIcon className="w-8 h-8 text-[#017827] opacity-40" />
                   </div>
                   <h4 className="text-base font-bold text-[#172022] mb-1"><Trans>No tickets yet</Trans></h4>
                   <p className="text-sm font-medium text-[rgba(26,42,34,0.6)] max-w-xs mx-auto mb-6">
@@ -748,7 +748,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                       setShowTicketsPanel(false)
                       setShowReportPanel(true)
                     }}
-                    className="py-2 px-6 rounded-xl bg-[#1b8f5b] text-white text-sm font-bold hover:bg-[#2a9d61] transition-colors"
+                    className="py-2 px-6 rounded-xl bg-[#017827] text-white text-sm font-bold hover:bg-[#0a9937] transition-colors"
                   >
                     <Trans>Report an Issue</Trans>
                   </button>
@@ -778,7 +778,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                 </button>
                 <div>
                   <h3 className="seller-profile-view__panel-title font-bold leading-tight"><Trans>Ticket Details</Trans></h3>
-                  <p className="text-[10px] font-bold text-[#1b8f5b] tracking-wider uppercase">{selectedTicket.ticket.ticketId}</p>
+                  <p className="text-[10px] font-bold text-[#017827] tracking-wider uppercase">{selectedTicket.ticket.ticketId}</p>
                 </div>
               </div>
               <button
@@ -792,19 +792,19 @@ export function ProfileView({ onLogout, onNavigate }) {
 
             <div className="seller-profile-view__panel-body flex-1 overflow-hidden flex flex-col p-0">
               {/* Ticket Info Strip */}
-              <div className="p-4 bg-[rgba(240,245,242,0.6)] border-b border-[rgba(34,94,65,0.08)] flex-shrink-0">
+              <div className="p-4 bg-[rgba(240,245,242,0.6)] border-b border-[rgba(1, 78, 23,0.08)] flex-shrink-0">
                 <h4 className="text-sm font-bold text-[#172022] mb-2">{selectedTicket.ticket.subject}</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className={cn(
                     "text-[10px] font-bold px-1.5 py-0.5 rounded uppercase",
                     selectedTicket.ticket.status === 'open' ? "bg-blue-100 text-blue-700" :
                       selectedTicket.ticket.status === 'in_progress' ? "bg-amber-100 text-amber-700" :
-                        selectedTicket.ticket.status === 'resolved' ? "bg-green-100 text-green-700" :
+                        selectedTicket.ticket.status === 'resolved' ? "bg-[rgba(1,120,39,0.1)] text-[#017827]" :
                           "bg-gray-100 text-gray-700"
                   )}>
                     <Trans>{selectedTicket.ticket.status.replace('_', ' ')}</Trans>
                   </span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded uppercase bg-[rgba(34,94,65,0.08)] text-[rgba(26,42,34,0.7)]">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded uppercase bg-[rgba(1, 78, 23,0.08)] text-[rgba(26,42,34,0.7)]">
                     <Trans>{selectedTicket.ticket.category}</Trans>
                   </span>
                 </div>
@@ -812,7 +812,7 @@ export function ProfileView({ onLogout, onNavigate }) {
 
               {/* Messages Area */}
               <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.06)] mb-6">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.06)] mb-6">
                   <p className="text-sm text-[rgba(26,42,34,0.8)] leading-relaxed">{selectedTicket.ticket.description}</p>
                   <p className="text-[10px] text-[rgba(26,42,34,0.4)] mt-2 font-bold">
                     {new Date(selectedTicket.ticket.createdAt).toLocaleString()}
@@ -831,7 +831,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                       "px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm",
                       msg.isFromAdmin
                         ? "bg-[#f8f9fa] border border-[rgba(0,0,0,0.05)] text-[#172022] rounded-tl-none font-medium"
-                        : "bg-[#1b8f5b] text-white rounded-tr-none font-medium"
+                        : "bg-[#017827] text-white rounded-tr-none font-medium"
                     )}>
                       {msg.message}
                     </div>
@@ -844,18 +844,18 @@ export function ProfileView({ onLogout, onNavigate }) {
                         {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                       {!msg.isFromAdmin && msg.readAt && (
-                        <CheckIcon className="w-2.5 h-2.5 text-[#1b8f5b]" />
+                        <CheckIcon className="w-2.5 h-2.5 text-[#017827]" />
                       )}
                     </div>
                   </div>
                 ))}
 
                 {selectedTicket.ticket.status === 'resolved' && (
-                  <div className="py-4 px-6 bg-green-50 border border-green-100 rounded-xl text-center">
-                    <p className="text-sm font-bold text-green-800 mb-1"><Trans>This ticket has been marked as resolved</Trans></p>
-                    <p className="text-xs text-green-700 opacity-80 font-medium"><Trans>If you still need help, you can send a message below to reopen it.</Trans></p>
+                  <div className="py-4 px-6 bg-[rgba(1,120,39,0.04)] border border-[rgba(1,120,39,0.12)] rounded-xl text-center">
+                    <p className="text-sm font-bold text-[#015c1f] mb-1"><Trans>This ticket has been marked as resolved</Trans></p>
+                    <p className="text-xs text-[#017827] opacity-80 font-medium"><Trans>If you still need help, you can send a message below to reopen it.</Trans></p>
                     {selectedTicket.ticket.resolution && (
-                      <div className="mt-3 p-3 bg-white bg-opacity-50 rounded-lg text-sm italic text-green-900 border border-green-100 font-medium">
+                      <div className="mt-3 p-3 bg-white bg-opacity-50 rounded-lg text-sm italic text-[#014a19] border border-[rgba(1,120,39,0.12)] font-medium">
                         " {selectedTicket.ticket.resolution} "
                       </div>
                     )}
@@ -871,8 +871,8 @@ export function ProfileView({ onLogout, onNavigate }) {
 
               {/* Input Area */}
               {selectedTicket.ticket.status !== 'closed' && (
-                <div className="p-4 bg-white border-t border-[rgba(34,94,65,0.08)] flex-shrink-0">
-                  <div className="flex items-end gap-2 bg-[#f8f9fa] border border-[rgba(34,94,65,0.1)] rounded-2xl p-2 focus-within:border-[#1b8f5b] transition-colors shadow-inner">
+                <div className="p-4 bg-white border-t border-[rgba(1, 78, 23,0.08)] flex-shrink-0">
+                  <div className="flex items-end gap-2 bg-[#f8f9fa] border border-[rgba(1, 78, 23,0.1)] rounded-2xl p-2 focus-within:border-[#017827] transition-colors shadow-inner">
                     <textarea
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
@@ -889,7 +889,7 @@ export function ProfileView({ onLogout, onNavigate }) {
                     <button
                       onClick={handleSendMessage}
                       disabled={isSendingMessage || !newMessage.trim()}
-                      className="w-10 h-10 rounded-xl bg-[#1b8f5b] shadow-lg shadow-[#1b8f5b]/20 text-white flex items-center justify-center hover:bg-[#2a9d61] transition-all active:scale-95 disabled:opacity-50 disabled:bg-gray-300 disabled:shadow-none"
+                      className="w-10 h-10 rounded-xl bg-[#017827] shadow-lg shadow-[#017827]/20 text-white flex items-center justify-center hover:bg-[#0a9937] transition-all active:scale-95 disabled:opacity-50 disabled:bg-gray-300 disabled:shadow-none"
                     >
                       {isSendingMessage ? (
                         <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>

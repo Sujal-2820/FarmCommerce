@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Star, MessageSquare, Eye, EyeOff, CheckCircle, XCircle, Send, Edit2, Trash2, Filter, Search, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -307,8 +307,8 @@ export function ReviewsPage({ subRoute = null, navigate }) {
           <div className="flex items-center gap-1">
             {row.hasResponse === 'Yes' ? (
               <>
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <span className="text-sm text-green-600">Yes</span>
+                <CheckCircle className="h-4 w-4 text-[#017827]" />
+                <span className="text-sm text-[#017827]">Yes</span>
               </>
             ) : (
               <>
@@ -403,7 +403,7 @@ export function ReviewsPage({ subRoute = null, navigate }) {
                           handleModerateReview(review, 'approve')
                           setActiveDropdown(null)
                         }}
-                        className="w-full text-left px-4 py-2.5 text-sm font-medium text-green-700 hover:bg-green-50 flex items-center gap-2 transition-colors"
+                        className="w-full text-left px-4 py-2.5 text-sm font-medium text-[#017827] hover:bg-[rgba(1,120,39,0.05)] flex items-center gap-2 transition-colors"
                       >
                         <CheckCircle className="h-4 w-4" />
                         Approve Review

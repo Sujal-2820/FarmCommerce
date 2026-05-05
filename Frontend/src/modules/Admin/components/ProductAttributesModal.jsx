@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { X, Package, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
@@ -153,9 +153,9 @@ export function ProductAttributesModal({ isOpen, onClose, product }) {
 
                   {/* Stock & Pricing Info */}
                   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="rounded-xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-4">
+                    <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-4">
                       <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">Actual Stock</p>
-                      <p className="text-2xl font-bold text-green-700">
+                      <p className="text-2xl font-bold text-[#017827]">
                         {currentStock.actualStock?.toLocaleString('en-IN') || 0}
                       </p>
                       <p className="text-xs text-gray-600 mt-1">{currentStock.stockUnit || 'kg'}</p>

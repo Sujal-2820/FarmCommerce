@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Building2, CreditCard, MapPin, ShieldAlert, Edit2, Eye, Package, Ban, Unlock, CheckCircle, XCircle, ArrowLeft, Calendar, FileText, ExternalLink, Search, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -587,7 +587,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                 setCurrentView('approveVendor')
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-700 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
             actionItems.push({
               label: 'Reject Vendor',
@@ -637,7 +637,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                 setCurrentView('unbanVendor')
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-700 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
           }
 
@@ -781,7 +781,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
             <div className="rounded-2xl border border-gray-200 bg-white p-5">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                     <Building2 className="h-6 w-6" />
                   </div>
                   <div>
@@ -816,7 +816,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                   <div
                     className={cn(
                       'h-full rounded-full transition-all',
-                      parseFloat(creditUtilization) > 80 ? 'bg-gradient-to-r from-red-500 to-red-600' : parseFloat(creditUtilization) > 60 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-green-500 to-green-600',
+                      parseFloat(creditUtilization) > 80 ? 'bg-gradient-to-r from-red-500 to-red-600' : parseFloat(creditUtilization) > 60 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-[#017827] to-[#0a9937]',
                     )}
                     style={{ width: `${Math.min(creditUtilization, 100)}%` }}
                   />
@@ -864,11 +864,11 @@ export function VendorsPage({ subRoute = null, navigate }) {
                 )}
               </div>
 
-              <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+              <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-green-900">Credit Policy</h4>
-                    <div className="mt-2 grid gap-2 text-xs text-green-800 sm:grid-cols-3">
+                    <h4 className="text-sm font-bold text-[#014a19]">Credit Policy</h4>
+                    <div className="mt-2 grid gap-2 text-xs text-[#015c1f] sm:grid-cols-3">
                       <div>
                         <span className="font-semibold">Limit: </span>
                         <span>{formatCurrency(creditLimit)}</span>
@@ -889,7 +889,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                       setSelectedVendorForPolicy(vendor)
                       setCurrentView('creditPolicy')
                     }}
-                    className="rounded-lg border border-green-300 bg-white px-4 py-2 text-xs font-bold text-green-700 transition-all hover:bg-green-100"
+                    className="rounded-lg border border-[rgba(1,120,39,0.4)] bg-white px-4 py-2 text-xs font-bold text-[#017827] transition-all hover:bg-[rgba(1,120,39,0.1)]"
                   >
                     Update Policy
                   </button>
@@ -925,7 +925,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                       <p className="text-xs font-semibold text-gray-700">Aadhaar Card</p>
                     </div>
                     {vendor.aadhaarCard?.url ? (
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-[#017827]" />
                     ) : (
                       <XCircle className="h-4 w-4 text-red-600" />
                     )}
@@ -973,7 +973,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                       <p className="text-xs font-semibold text-gray-700">PAN Card</p>
                     </div>
                     {vendor.panCard?.url ? (
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-[#017827]" />
                     ) : (
                       <XCircle className="h-4 w-4 text-red-600" />
                     )}
@@ -1210,7 +1210,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                 rows={3}
                 maxLength={150}
                 required
-                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm transition-all focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm transition-all focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/50"
               />
               <p className="mt-1 text-xs text-gray-500">
                 {(purchaseApprovalNotes || '').length}/150 characters
@@ -1274,7 +1274,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                     handleApprovePurchase(request.id, trimmedNotes)
                   }}
                   disabled={processingPurchase || !(purchaseApprovalNotes || '').trim()}
-                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <CheckCircle className="h-4 w-4" />
                   {processingPurchase ? 'Processing...' : 'Approve Request'}
@@ -1310,9 +1310,9 @@ export function VendorsPage({ subRoute = null, navigate }) {
         </div>
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-green-200 bg-green-50 p-6">
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-6">
               <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                   <CheckCircle className="h-8 w-8" />
                 </div>
                 <div>
@@ -1339,7 +1339,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                   type="button"
                   onClick={() => handleApproveVendor(selectedVendorForAction.id)}
                   disabled={loading}
-                  className="flex-1 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
                 >
                   {loading ? 'Approving...' : 'Approve Vendor'}
                 </button>
@@ -1540,9 +1540,9 @@ export function VendorsPage({ subRoute = null, navigate }) {
         </div>
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]">
           <div className="space-y-6">
-            <div className="rounded-2xl border border-green-200 bg-green-50 p-6">
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-6">
               <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                   <Unlock className="h-8 w-8" />
                 </div>
                 <div>
@@ -1561,7 +1561,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                 onChange={(e) => setRevocationReason(e.target.value)}
                 placeholder="Enter reason for revoking ban (optional)"
                 rows={4}
-                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm transition-all focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm transition-all focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/50"
               />
               <div className="mt-6 flex gap-3">
                 <button
@@ -1575,7 +1575,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
                   type="button"
                   onClick={() => handleUnbanVendor(selectedVendorForAction.id, { revocationReason: revocationReason || 'Ban revoked by admin' })}
                   disabled={loading}
-                  className="flex-1 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
                 >
                   {loading ? 'Unbanning...' : 'Unban Vendor'}
                 </button>
@@ -1706,7 +1706,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search vendors by name, phone, email, or ID..."
-            className="w-full rounded-xl border border-gray-300 bg-white pl-12 pr-4 py-3 text-sm font-semibold transition-all focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+            className="w-full rounded-xl border border-gray-300 bg-white pl-12 pr-4 py-3 text-sm font-semibold transition-all focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/50"
           />
           {searchQuery && (
             <button
@@ -1756,10 +1756,10 @@ export function VendorsPage({ subRoute = null, navigate }) {
               <p className="mt-1 text-2xl font-bold text-yellow-800">{coverageReport.flaggedVendors?.length || 0}</p>
               <p className="text-[0.7rem] text-yellow-700">Vendors requiring reassignment</p>
             </div>
-            <div className="rounded-2xl border border-green-200 bg-green-50 p-4">
-              <p className="text-xs text-green-600">Compliant Zones</p>
-              <p className="mt-1 text-2xl font-bold text-green-800">{coverageReport.compliantCount}</p>
-              <p className="text-[0.7rem] text-green-700">Operating within exclusive radius</p>
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-4">
+              <p className="text-xs text-[#017827]">Compliant Zones</p>
+              <p className="mt-1 text-2xl font-bold text-[#015c1f]">{coverageReport.compliantCount}</p>
+              <p className="text-[0.7rem] text-[#017827]">Operating within exclusive radius</p>
             </div>
           </div>
 
@@ -1798,7 +1798,7 @@ export function VendorsPage({ subRoute = null, navigate }) {
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-green-200 bg-white p-4 text-xs text-green-700">
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-white p-4 text-xs text-[#017827]">
               All vendor coverage areas comply with the 20 km exclusivity policy.
             </div>
           )}
@@ -1806,8 +1806,8 @@ export function VendorsPage({ subRoute = null, navigate }) {
       )}
 
       <section className="grid gap-6 lg:grid-cols-2">
-        <div className="space-y-4 rounded-3xl border border-green-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]">
-          <h3 className="text-lg font-bold text-green-700">Credit Policy Playbook</h3>
+        <div className="space-y-4 rounded-3xl border border-[rgba(1,120,39,0.25)] bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.8)]">
+          <h3 className="text-lg font-bold text-[#017827]">Credit Policy Playbook</h3>
           <p className="text-sm text-gray-600">
             Configure region-wise credit strategies, repayment cycles, and penalty protocols.
           </p>
@@ -1835,10 +1835,10 @@ export function VendorsPage({ subRoute = null, navigate }) {
               <div key={item.title} className="rounded-2xl border border-gray-200 bg-white p-4 transition hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)]">
                 <div className="flex items-center justify-between text-sm font-bold text-gray-900">
                   <span>{item.title}</span>
-                  <CreditCard className="h-4 w-4 text-green-600" />
+                  <CreditCard className="h-4 w-4 text-[#017827]" />
                 </div>
                 <p className="mt-2 text-xs text-gray-600">{item.description}</p>
-                <p className="mt-3 text-xs font-bold text-green-700">{item.meta}</p>
+                <p className="mt-3 text-xs font-bold text-[#017827]">{item.meta}</p>
               </div>
             ))}
           </div>

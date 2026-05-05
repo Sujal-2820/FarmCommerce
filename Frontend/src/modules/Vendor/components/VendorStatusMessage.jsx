@@ -1,13 +1,13 @@
-import { Clock, XCircle, CheckCircle } from 'lucide-react'
+﻿import { Clock, XCircle, CheckCircle } from 'lucide-react'
 
 export function VendorStatusMessage({ status, onBack }) {
   const isPending = status === 'pending'
   const isRejected = status === 'rejected'
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)] px-6 py-12">
       <div className="w-full max-w-md space-y-6">
-        <div className="rounded-3xl border border-green-200/60 bg-white/90 p-8 shadow-xl backdrop-blur-sm text-center">
+        <div className="rounded-3xl border border-[rgba(1,120,39,0.15)] bg-white/90 p-8 shadow-xl backdrop-blur-sm text-center">
           {isPending && (
             <>
               <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-yellow-100 mb-6">
@@ -35,7 +35,7 @@ export function VendorStatusMessage({ status, onBack }) {
           {onBack && (
             <button
               onClick={onBack}
-              className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all"
+              className="w-full rounded-full bg-gradient-to-r from-[#017827] to-[#015c1f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all"
             >
               Go Back
             </button>

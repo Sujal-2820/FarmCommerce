@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { ImageIcon, Plus, Edit2, Trash2, ToggleRight, ToggleLeft, Save, ArrowLeft, AlertCircle, GripVertical } from 'lucide-react'
 import { StatusBadge } from '../components/StatusBadge'
 import { useToast } from '../components/ToastNotification'
@@ -528,7 +528,7 @@ export function OffersPage({ subRoute = null, navigate }) {
                               title={carousel.isActive ? 'Deactivate' : 'Activate'}
                             >
                               {carousel.isActive ? (
-                                <ToggleRight className="h-5 w-5 text-green-600" />
+                                <ToggleRight className="h-5 w-5 text-[#017827]" />
                               ) : (
                                 <ToggleLeft className="h-5 w-5 text-gray-400" />
                               )}
@@ -603,7 +603,7 @@ export function OffersPage({ subRoute = null, navigate }) {
                         <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded">
                           {offer.specialTag}
                         </span>
-                        <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-medium rounded">
+                        <span className="px-2 py-1 bg-[rgba(1,120,39,0.1)] text-[#017827] text-xs font-medium rounded">
                           {offer.specialValue}
                         </span>
                       </div>
@@ -622,7 +622,7 @@ export function OffersPage({ subRoute = null, navigate }) {
                         title={offer.isActive ? 'Deactivate' : 'Activate'}
                       >
                         {offer.isActive ? (
-                          <ToggleRight className="h-5 w-5 text-green-600" />
+                          <ToggleRight className="h-5 w-5 text-[#017827]" />
                         ) : (
                           <ToggleLeft className="h-5 w-5 text-gray-400" />
                         )}
@@ -1041,9 +1041,9 @@ function SpecialOfferFormScreen({ editingSpecialOffer, allProducts, productsLoad
                 <div className="home-deal-card" style={{ 
                   padding: '1.25rem',
                   borderRadius: '20px',
-                  border: '1px solid rgba(34, 94, 65, 0.16)',
+                  border: '1px solid rgba(1, 78, 23, 0.16)',
                   background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 244, 236, 0.9))',
-                  boxShadow: '0 18px 38px -28px rgba(13, 38, 24, 0.35)',
+                  boxShadow: '0 18px 38px -28px rgba(1, 32, 9, 0.35)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}>
@@ -1054,13 +1054,13 @@ function SpecialOfferFormScreen({ editingSpecialOffer, allProducts, productsLoad
                       right: '0.75rem',
                       padding: '0.25rem 0.75rem',
                       borderRadius: '12px',
-                      background: 'linear-gradient(135deg, rgba(43, 118, 79, 0.2), rgba(43, 118, 79, 0.1))',
-                      color: '#1b8f5b',
+                      background: 'linear-gradient(135deg, rgba(1, 120, 39, 0.2), rgba(1, 120, 39, 0.1))',
+                      color: '#017827',
                       fontSize: '0.65rem',
                       fontWeight: '700',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
-                      border: '1px solid rgba(43, 118, 79, 0.2)',
+                      border: '1px solid rgba(1, 120, 39, 0.2)',
                     }}>
                       {form.specialTag}
                     </div>
@@ -1093,7 +1093,7 @@ function SpecialOfferFormScreen({ editingSpecialOffer, allProducts, productsLoad
                         <span className="home-deal-card__price-current" style={{
                           fontSize: '1.25rem',
                           fontWeight: '700',
-                          color: '#1b8f5b',
+                          color: '#017827',
                         }}>
                           {form.specialValue}
                         </span>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Ban, Search, UserCheck, Eye, MessageSquare, ArrowLeft, User, Hash, MapPin, ShoppingBag, CreditCard, CheckCircle, Calendar, Send, XCircle, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -613,7 +613,7 @@ export function UsersPage({ subRoute = null, navigate }) {
                     setSelectedUserForAction(user)
                     setCurrentView('activateUser')
                   }}
-                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]"
+                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]"
                 >
                   <CheckCircle className="h-4 w-4" />
                   Activate User
@@ -736,7 +736,7 @@ export function UsersPage({ subRoute = null, navigate }) {
                           type="button"
                           onClick={() => handleResolveTicket(selectedTicket.id || selectedTicket.ticketId)}
                           disabled={loading}
-                          className="flex items-center gap-2 rounded-lg border border-green-300 bg-white px-4 py-2 text-sm font-bold text-green-600 transition-all hover:bg-green-50 disabled:opacity-50"
+                          className="flex items-center gap-2 rounded-lg border border-[rgba(1,120,39,0.4)] bg-white px-4 py-2 text-sm font-bold text-[#017827] transition-all hover:bg-[rgba(1,120,39,0.05)] disabled:opacity-50"
                         >
                           <CheckCircle className="h-4 w-4" />
                           Resolve
@@ -908,7 +908,7 @@ export function UsersPage({ subRoute = null, navigate }) {
           <div className="space-y-6">
             <div className="rounded-xl border border-gray-200 bg-white p-5">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                   <CheckCircle className="h-6 w-6" />
                 </div>
                 <div>
@@ -920,7 +920,7 @@ export function UsersPage({ subRoute = null, navigate }) {
                 </div>
               </div>
             </div>
-            <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+            <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
               <p className="text-sm text-gray-700">
                 Are you sure you want to activate this user? This action will restore their account access and allow them to use the platform.
               </p>
@@ -937,7 +937,7 @@ export function UsersPage({ subRoute = null, navigate }) {
                 type="button"
                 onClick={() => handleActivateUser(user.id || user._id)}
                 disabled={loading}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
               >
                 <CheckCircle className="h-4 w-4" />
                 {loading ? 'Processing...' : 'Activate User'}

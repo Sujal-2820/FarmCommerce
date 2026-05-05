@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Wallet, ShieldCheck, Eye, CheckCircle, XCircle, Calendar, IndianRupee, Filter, Search, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -176,7 +176,7 @@ export function SellerWithdrawalsPage({ subRoute = null, navigate }) {
                 }
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-600 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
             actionItems.push({
               label: 'Reject',
@@ -391,7 +391,7 @@ export function SellerWithdrawalsPage({ subRoute = null, navigate }) {
               </div>
               <div>
                 <p className="text-xs text-gray-600 mb-1">Amount</p>
-                <p className="text-sm font-bold text-green-600">{formatCurrency(selectedRequest.amount || 0)}</p>
+                <p className="text-sm font-bold text-[#017827]">{formatCurrency(selectedRequest.amount || 0)}</p>
               </div>
               <div>
                 <p className="text-xs text-gray-600 mb-1">Request Date</p>
@@ -451,7 +451,7 @@ export function SellerWithdrawalsPage({ subRoute = null, navigate }) {
                 <button
                   type="button"
                   onClick={handleApprove}
-                  className="flex-1 rounded-xl bg-green-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-green-700"
+                  className="flex-1 rounded-xl bg-[#017827] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#015c1f]"
                 >
                   Approve
                 </button>

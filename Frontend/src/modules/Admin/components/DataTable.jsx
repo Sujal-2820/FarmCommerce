@@ -1,9 +1,9 @@
-import { cn } from '../../../lib/cn'
+﻿import { cn } from '../../../lib/cn'
 
 const rowHoverColors = [
   'hover:bg-blue-50',
   'hover:bg-purple-50',
-  'hover:bg-green-50',
+  'hover:bg-[rgba(1,120,39,0.05)]',
   'hover:bg-yellow-50',
   'hover:bg-red-50',
   'hover:bg-pink-50',

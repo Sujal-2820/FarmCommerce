@@ -1,3 +1,7 @@
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+
 /**
  * @type {import('tailwindcss').Config}
  */
@@ -11,10 +15,10 @@ export default {
           secondary: 'hsl(220 18% 18%)',
         },
         brand: {
-          DEFAULT: 'hsl(142 52% 52%)',
-          foreground: 'hsl(0 0% 99%)',
-          soft: 'hsl(142 45% 25%)',
-          light: 'hsl(142 50% 35%)',
+          DEFAULT: '#017827',
+          foreground: '#ffffff',
+          soft: 'rgba(1, 120, 39, 0.15)',
+          light: '#0a9937',
         },
         muted: {
           DEFAULT: 'hsl(220 15% 25%)',
@@ -34,8 +38,8 @@ export default {
           soft: 'hsl(38 60% 25%)',
         },
         success: {
-          DEFAULT: 'hsl(142 52% 52%)',
-          soft: 'hsl(142 45% 25%)',
+          DEFAULT: '#017827',
+          soft: 'rgba(1, 120, 39, 0.15)',
         },
         danger: {
           DEFAULT: 'hsl(0 72% 58%)',
@@ -64,4 +68,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

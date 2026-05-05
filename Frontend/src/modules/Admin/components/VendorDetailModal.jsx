@@ -1,4 +1,4 @@
-import { Building2, MapPin, IndianRupee, Calendar, TrendingUp, AlertTriangle, History } from 'lucide-react'
+﻿import { Building2, MapPin, IndianRupee, Calendar, TrendingUp, AlertTriangle, History } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { Timeline } from './Timeline'
@@ -34,7 +34,7 @@ export function VendorDetailModal({ isOpen, onClose, vendor, onUpdateCreditPolic
         <div className="rounded-2xl border border-gray-200 bg-white p-5">
           <div className="flex items-start justify-between">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                 <Building2 className="h-6 w-6" />
               </div>
               <div>
@@ -75,7 +75,7 @@ export function VendorDetailModal({ isOpen, onClose, vendor, onUpdateCreditPolic
               <div
                 className={cn(
                   'h-full rounded-full transition-all',
-                  parseFloat(creditUtilization) > 80 ? 'bg-gradient-to-r from-red-500 to-red-600' : parseFloat(creditUtilization) > 60 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-green-500 to-green-600',
+                  parseFloat(creditUtilization) > 80 ? 'bg-gradient-to-r from-red-500 to-red-600' : parseFloat(creditUtilization) > 60 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' : 'bg-gradient-to-r from-[#017827] to-[#0a9937]',
                 )}
                 style={{ width: `${Math.min(creditUtilization, 100)}%` }}
               />
@@ -132,11 +132,11 @@ export function VendorDetailModal({ isOpen, onClose, vendor, onUpdateCreditPolic
           </div>
 
           {/* Credit Policy */}
-          <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+          <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-bold text-green-900">Credit Policy</h4>
-                <div className="mt-2 grid gap-2 text-xs text-green-800 sm:grid-cols-3">
+                <h4 className="text-sm font-bold text-[#014a19]">Credit Policy</h4>
+                <div className="mt-2 grid gap-2 text-xs text-[#015c1f] sm:grid-cols-3">
                   <div>
                     <span className="font-semibold">Limit: </span>
                     <span>{formatCurrency(creditLimit)}</span>
@@ -155,7 +155,7 @@ export function VendorDetailModal({ isOpen, onClose, vendor, onUpdateCreditPolic
                 <button
                   type="button"
                   onClick={() => onUpdateCreditPolicy(vendor)}
-                  className="rounded-lg border border-green-300 bg-white px-4 py-2 text-xs font-bold text-green-700 transition-all hover:bg-green-100"
+                  className="rounded-lg border border-[rgba(1,120,39,0.4)] bg-white px-4 py-2 text-xs font-bold text-[#017827] transition-all hover:bg-[rgba(1,120,39,0.1)]"
                 >
                   Update Policy
                 </button>

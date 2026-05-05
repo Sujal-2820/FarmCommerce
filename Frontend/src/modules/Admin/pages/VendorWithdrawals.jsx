@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Wallet, Factory, Eye, CheckCircle, XCircle, Calendar, IndianRupee, Filter, Search, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -197,7 +197,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
                 }
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-600 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
             actionItems.push({
               label: 'Reject',
@@ -245,7 +245,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
                   e.stopPropagation()
                   setOpenActionsDropdown(isDropdownOpen ? null : row.id)
                 }}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-700 transition-all hover:border-green-500 hover:bg-green-50 hover:text-green-700"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-700 transition-all hover:border-[#017827] hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827]"
                 title="Actions"
               >
                 <MoreVertical className="h-4 w-4" />
@@ -348,7 +348,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
       <div className="grid gap-6 md:grid-cols-3">
         <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-[0_4px_15px_rgba(0,0,0,0.08)]">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
               <Wallet className="h-6 w-6" />
             </div>
             <div>
@@ -435,7 +435,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
             <div className="rounded-2xl border border-gray-200 bg-white p-5">
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                     <Factory className="h-6 w-6" />
                   </div>
                   <div>
@@ -467,7 +467,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
 
             {/* Withdrawal Details */}
             <div className="space-y-4">
-              <div className="rounded-xl border border-green-200 bg-green-50 p-5">
+              <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-5">
                 <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
                   <IndianRupee className="h-4 w-4" />
                   <span>Withdrawal Amount</span>
@@ -534,7 +534,7 @@ export function VendorWithdrawalsPage({ subRoute = null, navigate }) {
                       type="button"
                       onClick={handleApprove}
                       disabled={actionLoading}
-                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4)] disabled:opacity-50"
+                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4)] disabled:opacity-50"
                     >
                       <CheckCircle className="h-4 w-4" />
                       {actionLoading ? 'Processing...' : 'Approve'}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { X, AlertTriangle } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { useVendorApi } from '../hooks/useVendorApi'
@@ -161,7 +161,7 @@ export function BankAccountForm({ isOpen, onClose, onSuccess }) {
         gap: '1rem',
         marginBottom: '1.5rem',
         paddingBottom: '1rem',
-        borderBottom: '1px solid rgba(34, 94, 65, 0.12)'
+        borderBottom: '1px solid rgba(1, 78, 23, 0.12)'
       }}>
         <button 
           type="button" 
@@ -174,7 +174,7 @@ export function BankAccountForm({ isOpen, onClose, onSuccess }) {
             width: '40px',
             height: '40px',
             borderRadius: '12px',
-            border: '1px solid rgba(34, 94, 65, 0.15)',
+            border: '1px solid rgba(1, 78, 23, 0.15)',
             background: 'rgba(255, 255, 255, 0.8)',
             color: 'var(--vendor-green-600)',
             cursor: loading ? 'not-allowed' : 'pointer',
@@ -182,7 +182,7 @@ export function BankAccountForm({ isOpen, onClose, onSuccess }) {
           }}
           onMouseEnter={(e) => {
             if (!loading) {
-              e.currentTarget.style.background = 'rgba(43, 118, 79, 0.1)'
+              e.currentTarget.style.background = 'rgba(1, 120, 39, 0.1)'
               e.currentTarget.style.transform = 'translateX(-2px)'
             }
           }}

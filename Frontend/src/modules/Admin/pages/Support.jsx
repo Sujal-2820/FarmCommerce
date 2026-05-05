@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import {
     Search,
     Filter,
@@ -33,7 +33,7 @@ export function SupportPage() {
     const statusConfig = {
         open: { label: 'Open', color: 'bg-blue-100 text-blue-700', icon: AlertCircle },
         in_progress: { label: 'In Progress', color: 'bg-amber-100 text-amber-700', icon: Clock },
-        resolved: { label: 'Resolved', color: 'bg-green-100 text-green-700', icon: CheckCircle },
+        resolved: { label: 'Resolved', color: 'bg-[rgba(1,120,39,0.1)] text-[#017827]', icon: CheckCircle },
         closed: { label: 'Closed', color: 'bg-gray-100 text-gray-700', icon: X }
     }
 
@@ -193,8 +193,8 @@ export function SupportPage() {
                                                 <User className="h-3 w-3 text-blue-600" />
                                             </div>
                                         ) : (
-                                            <div className="p-1 rounded bg-green-50 border border-green-100">
-                                                <Store className="h-3 w-3 text-green-600" />
+                                            <div className="p-1 rounded bg-[rgba(1,120,39,0.04)] border border-[rgba(1,120,39,0.12)]">
+                                                <Store className="h-3 w-3 text-[#017827]" />
                                             </div>
                                         )}
                                         <span className="text-[11px] font-bold text-gray-500 uppercase">{ticket.userType}</span>
@@ -229,7 +229,7 @@ export function SupportPage() {
                             <div className="flex items-start gap-4">
                                 <div className={cn(
                                     "p-3 rounded-2xl",
-                                    selectedTicket.ticket.userType === 'user' ? "bg-blue-50 text-blue-600" : "bg-green-50 text-green-600"
+                                    selectedTicket.ticket.userType === 'user' ? "bg-blue-50 text-blue-600" : "bg-[rgba(1,120,39,0.04)] text-[#017827]"
                                 )}>
                                     {selectedTicket.ticket.userType === 'user' ? <User className="h-6 w-6" /> : <Store className="h-6 w-6" />}
                                 </div>
@@ -268,7 +268,7 @@ export function SupportPage() {
                                         </button>
                                         <button
                                             onClick={() => handleUpdateStatus('resolved')}
-                                            className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors border-b border-gray-50"
+                                            className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827] transition-colors border-b border-gray-50"
                                         >
                                             Mark as Resolved
                                         </button>
@@ -372,7 +372,7 @@ export function SupportPage() {
                                         <button
                                             onClick={() => handleUpdateStatus('resolved')}
                                             disabled={selectedTicket.ticket.status === 'resolved' || selectedTicket.ticket.status === 'closed'}
-                                            className="px-4 py-2 rounded-xl bg-green-50 text-green-700 text-xs font-bold border border-green-100 hover:bg-green-100 transition-colors disabled:opacity-50"
+                                            className="px-4 py-2 rounded-xl bg-[rgba(1,120,39,0.04)] text-[#017827] text-xs font-bold border border-[rgba(1,120,39,0.12)] hover:bg-[rgba(1,120,39,0.1)] transition-colors disabled:opacity-50"
                                         >
                                             Resolve Ticket
                                         </button>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+﻿import { useState, useEffect, useMemo, useCallback } from 'react'
 import { Bell, Send, Users, Building2, ShieldCheck, Plus, Edit2, Trash2, MoreVertical, Search, Filter, AlertCircle, Smartphone, CheckCircle2 } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { DataTable } from '../components/DataTable'
@@ -164,7 +164,7 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
     const getStatusBadge = (status) => {
         switch (status) {
             case 'delivered':
-                return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700"><CheckCircle2 className="h-3 w-3" />Delivered</span>
+                return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-[rgba(1,120,39,0.1)] text-[#017827]"><CheckCircle2 className="h-3 w-3" />Delivered</span>
             case 'pending':
                 return <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">Pending</span>
             case 'failed':
@@ -252,14 +252,14 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
             </div>
 
             {/* Live System Notice */}
-            <div className="rounded-2xl border border-green-200 bg-gradient-to-r from-green-50 to-emerald-50 p-4">
+            <div className="rounded-2xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-r from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.04)] p-4">
                 <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-                        <Smartphone className="h-5 w-5 text-green-600" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(1,120,39,0.1)]">
+                        <Smartphone className="h-5 w-5 text-[#017827]" />
                     </div>
                     <div>
-                        <h3 className="font-bold text-green-800">Push Notifications — Live</h3>
-                        <p className="text-sm text-green-700 mt-1">
+                        <h3 className="font-bold text-[#015c1f]">Push Notifications — Live</h3>
+                        <p className="text-sm text-[#017827] mt-1">
                             Firebase Cloud Messaging is active. Notifications sent here will be delivered to all registered devices in real time.
                         </p>
                     </div>
@@ -408,7 +408,7 @@ export function PushNotificationsPage({ subRoute = null, navigate }) {
                             <label className="mb-2 block text-sm font-bold text-gray-900">Preview</label>
                             <div className="max-w-sm rounded-2xl border border-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 p-4 shadow-inner">
                                 <div className="flex items-start gap-3">
-                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-md">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-emerald-600 shadow-md">
                                         <Bell className="h-5 w-5 text-white" />
                                     </div>
                                     <div className="flex-1 min-w-0">

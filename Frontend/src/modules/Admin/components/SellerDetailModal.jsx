@@ -1,4 +1,4 @@
-import { User, Hash, Percent, Target, IndianRupee, TrendingUp, Users, Award } from 'lucide-react'
+﻿import { User, Hash, Percent, Target, IndianRupee, TrendingUp, Users, Award } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { cn } from '../../../lib/cn'
@@ -115,7 +115,7 @@ export function SellerDetailModal({ isOpen, onClose, seller, onEdit }) {
               className={cn(
                 'h-full rounded-full transition-all shadow-[0_2px_8px_rgba(234,179,8,0.3)]',
                 parseFloat(achieved) >= 100
-                  ? 'bg-gradient-to-r from-green-500 to-green-600'
+                  ? 'bg-gradient-to-r from-[#017827] to-[#0a9937]'
                   : parseFloat(achieved) >= 80
                   ? 'bg-gradient-to-r from-yellow-500 to-yellow-600'
                   : 'bg-gradient-to-r from-orange-500 to-orange-600',

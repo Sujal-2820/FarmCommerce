@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import { MapPin, X, Navigation } from 'lucide-react'
 
 /**
@@ -221,7 +221,7 @@ export function GoogleMapsLocationPicker({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for your address or use live location..."
-            className={`w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 pl-10 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all ${selectedLocation ? 'pr-32' : 'pr-28'}`}
+            className={`w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 pl-10 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all ${selectedLocation ? 'pr-32' : 'pr-28'}`}
             required={required}
           />
           <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -243,7 +243,7 @@ export function GoogleMapsLocationPicker({
             type="button"
             onClick={handleLiveLocation}
             disabled={isGettingLiveLocation}
-            className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-green-500 bg-green-50 text-green-700 hover:bg-green-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium whitespace-nowrap"
+            className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#017827] bg-[rgba(1,120,39,0.04)] text-[#017827] hover:bg-[rgba(1,120,39,0.1)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium whitespace-nowrap"
             title="Use your current location"
           >
             <Navigation className={`h-3.5 w-3.5 ${isGettingLiveLocation ? 'animate-spin' : ''}`} />

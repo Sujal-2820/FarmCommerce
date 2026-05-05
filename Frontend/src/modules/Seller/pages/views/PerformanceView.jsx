@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useState } from 'react'
+﻿import { useMemo, useEffect, useState } from 'react'
 import { useSellerState } from '../../context/SellerContext'
 import { useSellerApi } from '../../hooks/useSellerApi'
 import { cn } from '../../../../lib/cn'
@@ -211,7 +211,7 @@ export function PerformanceView({ onBack }) {
         <div className="seller-performance-breakdown-card">
           <div className="seller-performance-breakdown-card__header">
             <div className="seller-performance-breakdown-card__target">
-              <TrendingUpIcon className="h-5 w-5 text-[#1b8f5b]" />
+              <TrendingUpIcon className="h-5 w-5 text-[#017827]" />
               <div>
                 <p className="seller-performance-breakdown-card__target-label"><Trans>Total Sales</Trans></p>
                 <p className="seller-performance-breakdown-card__target-value">{formatCurrency(performanceData.thisMonthSales)}</p>
@@ -224,8 +224,8 @@ export function PerformanceView({ onBack }) {
           </div>
           <div className="seller-performance-breakdown-card__details">
             <div className="seller-performance-breakdown-card__detail-item seller-performance-breakdown-card__detail-item--achieved">
-              <div className="seller-performance-breakdown-card__detail-icon" style={{ background: 'rgba(27,143,91,0.1)' }}>
-                <WalletIcon className="h-4 w-4 text-[#1b8f5b]" />
+              <div className="seller-performance-breakdown-card__detail-icon" style={{ background: 'rgba(1, 120, 39,0.1)' }}>
+                <WalletIcon className="h-4 w-4 text-[#017827]" />
               </div>
               <div className="seller-performance-breakdown-card__detail-content">
                 <p className="seller-performance-breakdown-card__detail-label"><Trans>Total Commission</Trans></p>
@@ -261,7 +261,7 @@ export function PerformanceView({ onBack }) {
           <div className="seller-performance-commission-grid">
             <div className="seller-performance-commission-card seller-performance-commission-card--standard">
               <div className="seller-performance-commission-card__header">
-                <WalletIcon className="h-5 w-5 text-[#1b8f5b]" />
+                <WalletIcon className="h-5 w-5 text-[#017827]" />
                 <span className="seller-performance-commission-card__rate"><Trans>2% Rate</Trans></span>
               </div>
               <div className="seller-performance-commission-card__content">
@@ -295,8 +295,8 @@ export function PerformanceView({ onBack }) {
         </div>
         <div className="seller-performance-stats-grid">
           <div className="seller-stat-card-enhanced">
-            <div className="seller-stat-card-enhanced__icon" style={{ background: 'rgba(27,143,91,0.1)' }}>
-              <UsersIcon className="h-5 w-5 text-[#1b8f5b]" />
+            <div className="seller-stat-card-enhanced__icon" style={{ background: 'rgba(1, 120, 39,0.1)' }}>
+              <UsersIcon className="h-5 w-5 text-[#017827]" />
             </div>
             <div className="seller-stat-card-enhanced__content">
               <p className="seller-stat-card-enhanced__label"><Trans>Conversion Rate</Trans></p>

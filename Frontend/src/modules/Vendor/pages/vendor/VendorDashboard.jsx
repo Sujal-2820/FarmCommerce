@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+﻿import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useVendorDispatch, useVendorState } from '../../context/VendorContext'
 import { useVendorApi } from '../../hooks/useVendorApi'
@@ -2503,7 +2503,7 @@ function InventoryView({ openPanel, onNavigate }) {
                   className={cn(
                     'text-lg font-bold',
                     vendorStockStatus.tone === 'success'
-                      ? 'text-green-700'
+                      ? 'text-[#017827]'
                       : vendorStockStatus.tone === 'teal'
                         ? 'text-blue-700'
                         : vendorStockStatus.tone === 'warn'
@@ -3506,7 +3506,7 @@ function InventoryView({ openPanel, onNavigate }) {
                         className={cn(
                           'rounded-full px-2 py-0.5 text-xs font-semibold',
                           vendorStockStatus.tone === 'success'
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-[rgba(1,120,39,0.1)] text-[#017827]'
                             : vendorStockStatus.tone === 'teal'
                               ? 'bg-blue-100 text-blue-700'
                               : vendorStockStatus.tone === 'warn'
@@ -5762,8 +5762,8 @@ function ReportsView({ onNavigate }) {
                         <svg className="reports-line-chart__svg" viewBox={`0 0 ${(chartData.labels.length - 1) * 100} 200`} preserveAspectRatio="none">
                           <defs>
                             <linearGradient id="revenueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                              <stop offset="0%" stopColor="rgba(43, 118, 79, 0.3)" />
-                              <stop offset="100%" stopColor="rgba(43, 118, 79, 0.05)" />
+                              <stop offset="0%" stopColor="rgba(1, 120, 39, 0.3)" />
+                              <stop offset="100%" stopColor="rgba(1, 120, 39, 0.05)" />
                             </linearGradient>
                             <linearGradient id="ordersGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                               <stop offset="0%" stopColor="rgba(33, 150, 173, 0.3)" />
@@ -5780,7 +5780,7 @@ function ReportsView({ onNavigate }) {
                                 y1={y}
                                 x2={(chartData.labels.length - 1) * 100}
                                 y2={y}
-                                stroke="rgba(34, 94, 65, 0.08)"
+                                stroke="rgba(1, 78, 23, 0.08)"
                                 strokeWidth="1"
                                 strokeDasharray="2,2"
                               />
@@ -5809,7 +5809,7 @@ function ReportsView({ onNavigate }) {
                               .map((value, index) => `L ${(index + 1) * 100},${200 - (value / maxValue) * 200}`)
                               .join(' ')}`}
                             fill="none"
-                            stroke="rgba(43, 118, 79, 0.9)"
+                            stroke="rgba(1, 120, 39, 0.9)"
                             strokeWidth="2.5"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -5833,7 +5833,7 @@ function ReportsView({ onNavigate }) {
                               cx={index * 100}
                               cy={200 - (value / maxValue) * 200}
                               r="4"
-                              fill="rgba(43, 118, 79, 0.95)"
+                              fill="rgba(1, 120, 39, 0.95)"
                               stroke="rgba(255, 255, 255, 0.9)"
                               strokeWidth="2"
                             />
@@ -6275,7 +6275,7 @@ function EarningsView({ openPanel, onNavigate }) {
                     alignSelf: 'flex-start',
                     padding: '0.5rem 1rem',
                     borderRadius: '0.5rem',
-                    background: '#1b8f5b',
+                    background: '#017827',
                     color: 'white',
                     fontSize: '0.875rem',
                     fontWeight: '600',
@@ -6284,7 +6284,7 @@ function EarningsView({ openPanel, onNavigate }) {
                     transition: 'background 0.2s',
                   }}
                   onMouseEnter={(e) => e.target.style.background = '#157a4d'}
-                  onMouseLeave={(e) => e.target.style.background = '#1b8f5b'}
+                  onMouseLeave={(e) => e.target.style.background = '#017827'}
                 >
                   <Trans>Add Bank Account</Trans>
                 </button>

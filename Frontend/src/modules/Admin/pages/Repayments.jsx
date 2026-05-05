@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { ArrowLeft, IndianRupee, Calendar, Building2, Eye, CheckCircle, XCircle, Clock, Filter, CreditCard } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -315,7 +315,7 @@ export function RepaymentsPage({ navigate }) {
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Total Amount</p>
-                    <p className="mt-1 text-lg font-bold text-green-600">{formatCurrency(repayment.totalAmount || repayment.amount)}</p>
+                    <p className="mt-1 text-lg font-bold text-[#017827]">{formatCurrency(repayment.totalAmount || repayment.amount)}</p>
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Payment Method</p>
@@ -357,7 +357,7 @@ export function RepaymentsPage({ navigate }) {
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Credit After</p>
-                      <p className="mt-1 text-sm font-bold text-green-600">{formatCurrency(repayment.creditUsedAfter || 0)}</p>
+                      <p className="mt-1 text-sm font-bold text-[#017827]">{formatCurrency(repayment.creditUsedAfter || 0)}</p>
                     </div>
                   </div>
                 </div>
@@ -433,7 +433,7 @@ export function RepaymentsPage({ navigate }) {
                 <div className="border-t border-gray-200 pt-4">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-bold text-gray-900">Total Paid</span>
-                    <span className="text-lg font-bold text-green-600">{formatCurrency(repayment.totalAmount || repayment.amount)}</span>
+                    <span className="text-lg font-bold text-[#017827]">{formatCurrency(repayment.totalAmount || repayment.amount)}</span>
                   </div>
                 </div>
                 <div className="rounded-lg bg-gray-50 p-3">
@@ -467,7 +467,7 @@ export function RepaymentsPage({ navigate }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
           <p className="text-xs text-gray-500">Total Completed</p>
-          <p className="mt-1 text-2xl font-bold text-green-600">{summary.totalCompleted || 0}</p>
+          <p className="mt-1 text-2xl font-bold text-[#017827]">{summary.totalCompleted || 0}</p>
         </div>
         <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
           <p className="text-xs text-gray-500">Pending</p>

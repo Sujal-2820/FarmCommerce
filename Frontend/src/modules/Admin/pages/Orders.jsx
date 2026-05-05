@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { CalendarRange, Recycle, Truck, Eye, FileText, RefreshCw, AlertCircle, Warehouse, ArrowLeft, CheckCircle, CreditCard, Package, IndianRupee, Calendar, Download, Building2, MapPin, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -457,7 +457,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
       delivered: {
         label: 'Mark Delivered',
         icon: CheckCircle,
-        className: 'border-green-300 bg-green-50 text-green-700 hover:border-green-500 hover:bg-green-100',
+        className: 'border-[rgba(1,120,39,0.4)] bg-[rgba(1,120,39,0.04)] text-[#017827] hover:border-[#017827] hover:bg-[rgba(1,120,39,0.1)]',
         title: 'Mark as Delivered',
       },
       fully_paid: {
@@ -531,7 +531,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
               'inline-flex items-center rounded-full px-3 py-1 text-xs font-bold',
               type === 'User' || type === 'user'
                 ? 'bg-blue-100 text-blue-700'
-                : 'bg-green-100 text-green-700'
+                : 'bg-[rgba(1,120,39,0.1)] text-[#017827]'
             )}>
               {type}
             </span>
@@ -603,7 +603,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
                   showError(result.error.message || 'Failed to confirm status update', 5000)
                 }
               },
-              className: 'text-green-700 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
           }
 
@@ -645,7 +645,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
                 setCurrentView('escalation')
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-700 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
             actionItems.push({
               label: 'Revert to Vendor',
@@ -1144,7 +1144,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
         <div className="flex items-center gap-4">
           <button
             onClick={handleBackToList}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-700 transition-all hover:border-green-500 hover:bg-green-50 hover:text-green-700"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-700 transition-all hover:border-[#017827] hover:bg-[rgba(1,120,39,0.05)] hover:text-[#017827]"
             title="Back to Orders"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -1264,7 +1264,7 @@ export function OrdersPage({ subRoute = null, navigate }) {
               type="button"
               onClick={handleFulfill}
               disabled={loading}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
             >
               <CheckCircle className="h-4 w-4" />
               {loading ? 'Fulfilling...' : 'Fulfill from Warehouse'}

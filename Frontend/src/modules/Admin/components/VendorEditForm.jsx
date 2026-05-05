@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { Building2, ArrowLeft, Save, X, MapPin } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
@@ -137,7 +137,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
           {/* Vendor Header */}
           <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                 <Building2 className="h-6 w-6" />
               </div>
               <div>
@@ -162,7 +162,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
                 'w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2',
                 errors.name
                   ? 'border-red-300 bg-red-50 focus:ring-red-500/50'
-                  : 'border-gray-300 bg-white focus:border-green-500 focus:ring-green-500/50',
+                  : 'border-gray-300 bg-white focus:border-[#017827] focus:ring-[#017827]/50',
               )}
             />
             {errors.name && <p className="mt-1 text-xs text-red-600">{errors.name}</p>}
@@ -190,7 +190,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
                 'w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2',
                 errors.phone
                   ? 'border-red-300 bg-red-50 focus:ring-red-500/50'
-                  : 'border-gray-300 bg-white focus:border-green-500 focus:ring-green-500/50',
+                  : 'border-gray-300 bg-white focus:border-[#017827] focus:ring-[#017827]/50',
               )}
             />
             {errors.phone && <p className="mt-1 text-xs text-red-600">{errors.phone}</p>}
@@ -211,7 +211,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
                 'w-full rounded-xl border px-4 py-3 text-sm font-semibold transition-all focus:outline-none focus:ring-2',
                 errors.email
                   ? 'border-red-300 bg-red-50 focus:ring-red-500/50'
-                  : 'border-gray-300 bg-white focus:border-green-500 focus:ring-green-500/50',
+                  : 'border-gray-300 bg-white focus:border-[#017827] focus:ring-[#017827]/50',
               )}
             />
             {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
@@ -220,7 +220,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
           {/* Location Section */}
           <div className="border-t border-gray-200 pt-6">
             <div className="mb-4 flex items-center gap-2">
-              <MapPin className="h-5 w-5 text-green-600" />
+              <MapPin className="h-5 w-5 text-[#017827]" />
               <h3 className="text-lg font-bold text-gray-900">Location Information</h3>
             </div>
 
@@ -382,7 +382,7 @@ export function VendorEditForm({ vendor, onSave, onCancel, loading }) {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
             >
               <Save className="h-4 w-4" />
               {loading ? 'Saving...' : 'Save Changes'}

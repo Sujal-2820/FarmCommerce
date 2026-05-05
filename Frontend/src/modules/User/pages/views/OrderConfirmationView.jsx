@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { CheckIcon } from '../../components/icons'
 import { cn } from '../../../../lib/cn'
 
@@ -42,7 +42,7 @@ export function OrderConfirmationView({ order, onBackToHome }) {
               cy="50"
               r="45"
               fill="none"
-              stroke="rgba(27, 143, 91, 0.1)"
+              stroke="rgba(1, 120, 39, 0.1)"
               strokeWidth="4"
             />
             {/* Animated Progress Circle */}
@@ -51,7 +51,7 @@ export function OrderConfirmationView({ order, onBackToHome }) {
               cy="50"
               r="45"
               fill="none"
-              stroke="#1b8f5b"
+              stroke="#017827"
               strokeWidth="4"
               strokeDasharray={circumference}
               strokeDashoffset={strokeDashoffset}
@@ -94,7 +94,7 @@ export function OrderConfirmationView({ order, onBackToHome }) {
               </div>
               <div className="user-order-confirmation__detail-item">
                 <span className="user-order-confirmation__detail-label">Advance Paid</span>
-                <span className="user-order-confirmation__detail-value text-[#1b8f5b]">
+                <span className="user-order-confirmation__detail-value text-[#017827]">
                   ₹{order.advancePaid?.toLocaleString('en-IN') || '0'}
                 </span>
               </div>

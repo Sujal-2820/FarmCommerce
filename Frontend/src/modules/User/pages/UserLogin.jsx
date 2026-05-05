@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { OtpVerification } from '../../../components/auth/OtpVerification'
 import { useUserDispatch } from '../context/UserContext'
@@ -128,9 +128,9 @@ export function UserLogin({ onSuccess, onSwitchToRegister }) {
 
   if (step === 'otp') {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 px-6 py-12">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)] px-6 py-12">
         <div className="w-full max-w-md space-y-6">
-          <div className="rounded-3xl border border-green-200/60 bg-white/90 p-8 shadow-xl backdrop-blur-sm">
+          <div className="rounded-3xl border border-[rgba(1,120,39,0.15)] bg-white/90 p-8 shadow-xl backdrop-blur-sm">
             <OtpVerification
               phone={form.phone}
               onVerify={handleVerifyOtp}
@@ -147,20 +147,20 @@ export function UserLogin({ onSuccess, onSwitchToRegister }) {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 px-6 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[rgba(1,120,39,0.04)] via-white to-[rgba(1,120,39,0.04)] px-6 py-12">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
-            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[rgba(1,120,39,0.1)] mb-4">
+            <svg className="w-8 h-8 text-[#017827]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
           </div>
-          <p className="text-xs uppercase tracking-wide text-green-600 font-semibold">Welcome Back</p>
+          <p className="text-xs uppercase tracking-wide text-[#017827] font-semibold">Welcome Back</p>
           <h1 className="text-3xl font-bold text-gray-900">Sign in to IRA Sathi</h1>
           <p className="text-sm text-gray-600">Enter your contact number to continue</p>
         </div>
 
-        <div className="rounded-3xl border border-green-200/60 bg-white/90 p-8 shadow-xl backdrop-blur-sm">
+        <div className="rounded-3xl border border-[rgba(1,120,39,0.15)] bg-white/90 p-8 shadow-xl backdrop-blur-sm">
           <form onSubmit={handleRequestOtp} className="space-y-5">
             {error && (
               <div className="rounded-2xl bg-red-50 border border-red-200 p-4">
@@ -181,14 +181,14 @@ export function UserLogin({ onSuccess, onSwitchToRegister }) {
                 onChange={handleChange}
                 placeholder="+91 90000 00000"
                 maxLength={15}
-                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/20 transition-all"
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm focus:border-[#017827] focus:outline-none focus:ring-2 focus:ring-[#017827]/20 transition-all"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-full bg-gradient-to-r from-[#017827] to-[#015c1f] px-5 py-3.5 text-sm font-semibold text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Sending OTP...' : 'Continue'}
             </button>
@@ -198,7 +198,7 @@ export function UserLogin({ onSuccess, onSwitchToRegister }) {
               <button
                 type="button"
                 onClick={onSwitchToRegister}
-                className="text-green-600 font-semibold hover:underline"
+                className="text-[#017827] font-semibold hover:underline"
               >
                 Sign up
               </button>

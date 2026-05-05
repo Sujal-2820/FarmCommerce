@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import { Upload, X, Image as ImageIcon, Loader2, AlertCircle, CheckCircle } from 'lucide-react'
 import { CLOUDINARY_CONFIG } from '../config/cloudinary'
 
@@ -218,7 +218,7 @@ export function CarouselImageUpload({ image = '', onChange, disabled = false, ti
       {imageUrl && aspectRatio > 0 && (
         <div className={`rounded-lg border px-4 py-2 text-sm flex items-center gap-2 ${
           isAcceptableRatio
-            ? 'bg-green-50 border-green-200 text-green-800'
+            ? 'bg-[rgba(1,120,39,0.04)] border-[rgba(1,120,39,0.25)] text-[#015c1f]'
             : 'bg-gray-50 border-gray-200 text-gray-700'
         }`}>
           {isAcceptableRatio ? (

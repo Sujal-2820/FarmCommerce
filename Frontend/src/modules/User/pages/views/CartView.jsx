@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef } from 'react'
+﻿import { useMemo, useState, useEffect, useRef } from 'react'
 import { useUserState } from '../../context/UserContext'
 import { MIN_ORDER_VALUE } from '../../services/userData'
 import { PlusIcon, MinusIcon, TrashIcon, TruckIcon, ChevronRightIcon } from '../../components/icons'
@@ -252,10 +252,10 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
         {groupedCartItems.map((group, groupIndex) => (
           <div
             key={group.productId || `cart-group-${groupIndex}`}
-            className="rounded-2xl border border-[rgba(34,94,65,0.16)] bg-gradient-to-br from-white to-[rgba(239,246,240,0.92)] shadow-[0_20px_42px_-30px_rgba(16,44,30,0.36)] overflow-hidden"
+            className="rounded-2xl border border-[rgba(1, 78, 23,0.16)] bg-gradient-to-br from-white to-[rgba(239,246,240,0.92)] shadow-[0_20px_42px_-30px_rgba(1, 37, 11,0.36)] overflow-hidden"
           >
             {/* Product Header */}
-            <div className="flex gap-3 p-4 border-b border-[rgba(34,94,65,0.1)]">
+            <div className="flex gap-3 p-4 border-b border-[rgba(1, 78, 23,0.1)]">
               <div className="flex-shrink-0 w-20 h-20 rounded-2xl overflow-hidden bg-gray-100">
                 <img src={group.image} alt={group.name} className="w-full h-full object-cover" />
               </div>
@@ -275,7 +275,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
                 const isExpanded = expandedVariants[variantId] || false
 
                 return (
-                  <div key={variantId || variant.cartItemId || `variant-${groupIndex}-${variantIdx}`} className="rounded-xl bg-white border border-[rgba(34,94,65,0.1)] overflow-hidden">
+                  <div key={variantId || variant.cartItemId || `variant-${groupIndex}-${variantIdx}`} className="rounded-xl bg-white border border-[rgba(1, 78, 23,0.1)] overflow-hidden">
                     {/* Variant Header - Collapsible */}
                     <button
                       type="button"
@@ -315,7 +315,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
                           <p className="text-xs text-[rgba(26,42,34,0.6)]"><Trans>Standard variant</Trans></p>
                         )}
                         {/* Variant Price - Always visible */}
-                        <div className="text-sm font-bold text-[#1b8f5b] mt-1">
+                        <div className="text-sm font-bold text-[#017827] mt-1">
                           ₹{(variant.unitPrice || 0).toLocaleString('en-IN')} <Trans>per unit</Trans>
                           {(() => {
                             console.log(`💰 Variant ${variantIdx + 1} Price Display:`, {
@@ -337,7 +337,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
 
                     {/* Expanded Variant Details */}
                     {isExpanded && (
-                      <div className="px-3 pb-3 border-t border-[rgba(34,94,65,0.1)] bg-[rgba(240,245,242,0.2)]">
+                      <div className="px-3 pb-3 border-t border-[rgba(1, 78, 23,0.1)] bg-[rgba(240,245,242,0.2)]">
                         {variant.variantAttributes && Object.keys(variant.variantAttributes).length > 0 ? (
                           <div className="pt-2 space-y-1">
                             <p className="text-xs font-bold text-[rgba(26,42,34,0.7)] mb-2"><Trans>Variant Properties:</Trans></p>
@@ -357,8 +357,8 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
                     )}
 
                     {/* Variant Controls - Always visible */}
-                    <div className="flex items-center justify-between gap-3 p-3 border-t border-[rgba(34,94,65,0.1)] bg-[rgba(240,245,242,0.1)]">
-                      <div className="flex items-center gap-2 border border-[rgba(34,94,65,0.2)] rounded-xl bg-white">
+                    <div className="flex items-center justify-between gap-3 p-3 border-t border-[rgba(1, 78, 23,0.1)] bg-[rgba(240,245,242,0.1)]">
+                      <div className="flex items-center gap-2 border border-[rgba(1, 78, 23,0.2)] rounded-xl bg-white">
                         <button
                           type="button"
                           className="p-1.5 hover:bg-[rgba(240,245,242,0.5)] transition-colors"
@@ -425,7 +425,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
         ))}
       </div>
 
-      <div className="p-4 rounded-2xl border border-[rgba(34,94,65,0.16)] bg-gradient-to-br from-white to-[rgba(241,244,236,0.9)] shadow-[0_18px_38px_-28px_rgba(13,38,24,0.35)] space-y-3 user-cart-summary">
+      <div className="p-4 rounded-2xl border border-[rgba(1, 78, 23,0.16)] bg-gradient-to-br from-white to-[rgba(241,244,236,0.9)] shadow-[0_18px_38px_-28px_rgba(1, 32, 9,0.35)] space-y-3 user-cart-summary">
         <div className="flex items-center justify-between text-sm">
           <span className="text-[rgba(26,42,34,0.65)]"><Trans>Subtotal</Trans></span>
           <span className="font-semibold text-[#172022]">₹{totals.subtotal.toLocaleString('en-IN')}</span>
@@ -434,9 +434,9 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
           <span className="text-[rgba(26,42,34,0.65)]"><Trans>Delivery</Trans></span>
           <span className="font-semibold text-[#172022]">{totals.delivery === 0 ? <Trans>Free</Trans> : `₹${totals.delivery}`}</span>
         </div>
-        <div className="flex items-center justify-between pt-3 border-t border-[rgba(34,94,65,0.1)]">
+        <div className="flex items-center justify-between pt-3 border-t border-[rgba(1, 78, 23,0.1)]">
           <span className="text-base font-bold text-[#172022]"><Trans>Total</Trans></span>
-          <span className="text-xl font-bold text-[#1b8f5b]">₹{totals.total.toLocaleString('en-IN')}</span>
+          <span className="text-xl font-bold text-[#017827]">₹{totals.total.toLocaleString('en-IN')}</span>
         </div>
         {!totals.meetsMinimum && (
           <div className="p-3 rounded-xl bg-orange-50 border border-orange-200">
@@ -450,7 +450,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
           className={cn(
             'w-full py-4 px-6 rounded-2xl text-base font-bold transition-all duration-200 mt-4 user-cart-checkout-btn',
             totals.meetsMinimum
-              ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5'
+              ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5'
               : 'bg-gray-200 text-gray-500 cursor-not-allowed'
           )}
           onClick={onCheckout}
@@ -478,7 +478,7 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
                     <h4 className="user-cart-suggested__title"><TransText>{product.name}</TransText></h4>
                     {/* Variant indicator */}
                     {hasVariants && (
-                      <p className="text-[0.65rem] text-[rgba(27,143,91,0.75)] font-medium mb-1">
+                      <p className="text-[0.65rem] text-[rgba(1, 120, 39,0.75)] font-medium mb-1">
                         <Trans>Variants available</Trans>
                       </p>
                     )}
@@ -498,13 +498,13 @@ export function CartView({ onUpdateQuantity, onRemove, onCheckout, onAddToCart, 
         </div>
       )}
 
-      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-[rgba(34,94,65,0.1)] -mx-5">
+      <div className="sticky bottom-0 left-0 right-0 p-4 bg-white border-t border-[rgba(1, 78, 23,0.1)] -mx-5">
         <button
           type="button"
           className={cn(
             'w-full py-4 px-6 rounded-2xl text-base font-bold transition-all duration-200',
             totals.meetsMinimum
-              ? 'bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5'
+              ? 'bg-gradient-to-r from-[#017827] to-[#0a9937] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5'
               : 'bg-gray-200 text-gray-500 cursor-not-allowed'
           )}
           onClick={onCheckout}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import { Upload, X, Image as ImageIcon, Loader2, GripVertical } from 'lucide-react'
 import { CLOUDINARY_CONFIG } from '../config/cloudinary'
 import { cn } from '../../../lib/cn'
@@ -283,7 +283,7 @@ export function ImageUpload({ images = [], onChange, maxImages = 4, disabled = f
                 }}
               />
               {((typeof image === 'object' && image.isPrimary) || (index === 0)) && (
-                <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">
+                <div className="absolute top-2 right-2 bg-[#017827] text-white text-xs font-bold px-2 py-1 rounded">
                   Primary
                 </div>
               )}

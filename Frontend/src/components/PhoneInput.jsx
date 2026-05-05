@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { validatePhoneNumber, extractPhoneDigits } from '../utils/phoneValidation';
 
 /**
@@ -58,7 +58,7 @@ export function PhoneInput({
 
     return (
         <div className="phone-input-wrapper w-full">
-            <div className={`phone-input-container flex items-center border rounded-2xl px-4 py-3.5 bg-white transition-all ${touched && error ? 'border-red-500' : 'border-gray-200 focus-within:border-green-500 focus-within:ring-2 focus-within:ring-green-500/20'
+            <div className={`phone-input-container flex items-center border rounded-2xl px-4 py-3.5 bg-white transition-all ${touched && error ? 'border-red-500' : 'border-gray-200 focus-within:border-[#017827] focus-within:ring-2 focus-within:ring-[#017827]/20'
                 } ${className}`}>
                 {/* Indian Flag */}
                 <div className="flex items-center gap-2 pr-3 border-r border-gray-200">

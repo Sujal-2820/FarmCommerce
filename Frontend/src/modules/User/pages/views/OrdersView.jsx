@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+﻿import { useState, useMemo } from 'react'
 import { useUserState } from '../../context/UserContext'
 import { useUserApi } from '../../hooks/useUserApi'
 import { PackageIcon, TruckIcon, ClockIcon, CheckCircleIcon, CreditCardIcon } from '../../components/icons'
@@ -234,7 +234,7 @@ export function OrdersView() {
     const key = getStatusKey(status)
     if (key === 'awaiting') return 'bg-yellow-100 text-yellow-700'
     if (key === 'dispatched') return 'bg-indigo-100 text-indigo-700'
-    if (key === 'delivered') return 'bg-green-100 text-[#1b8f5b]'
+    if (key === 'delivered') return 'bg-[rgba(1,120,39,0.1)] text-[#017827]'
     return 'bg-gray-100 text-gray-700'
   }
 
@@ -460,7 +460,7 @@ export function OrdersView() {
                     </span>
                   </div>
                   {item.paymentStatus === 'fully_paid' && (
-                    <div className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700">
+                    <div className="inline-flex items-center gap-1 rounded-full bg-[rgba(1,120,39,0.1)] px-2.5 py-1 text-xs font-semibold text-[#017827]">
                       <CreditCardIcon className="h-3 w-3" />
                       <span><Trans>Fully Paid</Trans></span>
                     </div>
@@ -550,7 +550,7 @@ export function OrdersView() {
                         {item.paymentPreference === 'partial' && item.upfrontAmount !== undefined && (
                           <div className="flex justify-between text-sm">
                             <span className="text-gray-600"><Trans>Advance (30%)</Trans>:</span>
-                            <span className="text-green-600 font-medium">₹{item.upfrontAmount?.toLocaleString('en-IN') || '0'}</span>
+                            <span className="text-[#017827] font-medium">₹{item.upfrontAmount?.toLocaleString('en-IN') || '0'}</span>
                           </div>
                         )}
                         {item.paymentPreference === 'partial' && item.remainingAmount !== undefined && (
@@ -571,7 +571,7 @@ export function OrdersView() {
                       <span
                         className={cn(
                           'font-semibold',
-                          item.paymentStatus === 'fully_paid' && 'text-green-600',
+                          item.paymentStatus === 'fully_paid' && 'text-[#017827]',
                           item.paymentStatus === 'partial_paid' && 'text-orange-600',
                           item.paymentStatus === 'pending' && 'text-red-600'
                         )}
@@ -596,7 +596,7 @@ export function OrdersView() {
                     type="button"
                     onClick={() => handlePayRemaining(item)}
                     disabled={processingPayment === item.id || loading}
-                    className="mt-3 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#1b8f5b] to-[#2a9d61] text-white text-sm font-semibold hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="mt-3 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] text-white text-sm font-semibold hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     <CreditCardIcon className="h-4 w-4" />
                     {processingPayment === item.id || loading ? (

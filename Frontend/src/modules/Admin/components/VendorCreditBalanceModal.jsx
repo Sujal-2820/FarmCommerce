@@ -1,4 +1,4 @@
-import { Building2, IndianRupee, Calendar, AlertCircle, TrendingUp, TrendingDown } from 'lucide-react'
+﻿import { Building2, IndianRupee, Calendar, AlertCircle, TrendingUp, TrendingDown } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { Timeline } from './Timeline'
@@ -62,12 +62,12 @@ export function VendorCreditBalanceModal({ isOpen, onClose, vendor, creditData, 
               {formatCurrency(creditData.creditLimit || 0)}
             </p>
           </div>
-          <div className="rounded-xl border border-green-200 bg-green-50 p-4">
-            <div className="flex items-center gap-2 text-xs text-green-500 mb-2">
+          <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-4">
+            <div className="flex items-center gap-2 text-xs text-[#0a9937] mb-2">
               <IndianRupee className="h-4 w-4" />
               <span>Used Credit</span>
             </div>
-            <p className="text-xl font-bold text-green-900">
+            <p className="text-xl font-bold text-[#014a19]">
               {formatCurrency(creditData.usedCredit || 0)}
             </p>
           </div>
@@ -103,7 +103,7 @@ export function VendorCreditBalanceModal({ isOpen, onClose, vendor, creditData, 
             <div
               className={cn(
                 'h-full transition-all',
-                creditUtilization > 80 ? 'bg-red-500' : creditUtilization > 50 ? 'bg-orange-500' : 'bg-green-500',
+                creditUtilization > 80 ? 'bg-red-500' : creditUtilization > 50 ? 'bg-orange-500' : 'bg-[#017827]',
               )}
               style={{ width: `${Math.min(creditUtilization, 100)}%` }}
             />

@@ -1,4 +1,4 @@
-import { Trans } from '../../../components/Trans'
+﻿import { Trans } from '../../../components/Trans'
 import { UserIcon } from './icons'
 import { useNavigate } from 'react-router-dom'
 
@@ -61,7 +61,7 @@ export function AuthPromptMobile({ isOpen, onClose, actionType }) {
             </button>
             <button
               onClick={handleSignIn}
-              className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-green-600 to-green-700 text-white font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+              className="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#017827] to-[#015c1f] text-white font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
             >
               <UserIcon className="h-4 w-4" />
               <Trans>Sign In</Trans>

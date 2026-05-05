@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Award, Gift, Users, Edit2, Eye, Wallet, CheckCircle, XCircle, ArrowLeft, User, Hash, Percent, Target, IndianRupee, TrendingUp, Calendar, Search, Phone, FileText, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -445,7 +445,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                 className={cn(
                   'h-full rounded-full shadow-[0_2px_8px_rgba(234,179,8,0.3)]',
                   row.achieved >= 100
-                    ? 'bg-gradient-to-r from-green-500 to-green-600'
+                    ? 'bg-gradient-to-r from-[#017827] to-[#0a9937]'
                     : row.achieved >= 80
                       ? 'bg-gradient-to-r from-yellow-500 to-yellow-600'
                       : 'bg-gradient-to-r from-orange-500 to-orange-600',
@@ -513,7 +513,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                 setCurrentView('approveSeller')
                 setOpenActionsDropdown(null)
               },
-              className: 'text-green-700 hover:bg-green-50'
+              className: 'text-[#017827] hover:bg-[rgba(1,120,39,0.05)]'
             })
             actionItems.push({
               label: 'Reject seller',
@@ -815,7 +815,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                 className={cn(
                   'h-full rounded-full transition-all shadow-[0_2px_8px_rgba(234,179,8,0.3)]',
                   parseFloat(achieved) >= 100
-                    ? 'bg-gradient-to-r from-green-500 to-green-600'
+                    ? 'bg-gradient-to-r from-[#017827] to-[#0a9937]'
                     : parseFloat(achieved) >= 80
                       ? 'bg-gradient-to-r from-yellow-500 to-yellow-600'
                       : 'bg-gradient-to-r from-orange-500 to-orange-600',
@@ -1098,7 +1098,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${isNameChange ? 'bg-blue-100 text-blue-600' : 'bg-green-100 text-green-600'
+                        <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${isNameChange ? 'bg-blue-100 text-blue-600' : 'bg-[rgba(1,120,39,0.1)] text-[#017827]'
                           }`}>
                           {isNameChange ? <User className="h-5 w-5" /> : <Phone className="h-5 w-5" />}
                         </div>
@@ -1118,7 +1118,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                         </div>
                         <div className="flex items-center gap-2 text-sm">
                           <span className="text-gray-500">Requested:</span>
-                          <span className="font-semibold text-green-700">{request.requestedValue || 'N/A'}</span>
+                          <span className="font-semibold text-[#017827]">{request.requestedValue || 'N/A'}</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-gray-400">
                           <Calendar className="h-3 w-3" />
@@ -1220,7 +1220,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase text-gray-500">Requested {isNameChange ? 'Name' : 'Phone'}</p>
-                    <p className="mt-1 text-lg font-bold text-green-700">{request.requestedValue || 'N/A'}</p>
+                    <p className="mt-1 text-lg font-bold text-[#017827]">{request.requestedValue || 'N/A'}</p>
                   </div>
                 </div>
 
@@ -1303,7 +1303,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                   }
                 }}
                 disabled={changeRequestLoading}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
               >
                 <CheckCircle className="h-4 w-4" />
                 {changeRequestLoading ? 'Processing...' : `Approve ${isNameChange ? 'Name' : 'Phone'} Change`}
@@ -1333,7 +1333,7 @@ export function SellersPage({ subRoute = null, navigate }) {
           <div className="space-y-6">
             <div className="rounded-xl border border-gray-200 bg-white p-5">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-lg">
                   <CheckCircle className="h-6 w-6" />
                 </div>
                 <div>
@@ -1362,7 +1362,7 @@ export function SellersPage({ subRoute = null, navigate }) {
                 type="button"
                 onClick={() => handleApproveSeller(seller.id || seller._id)}
                 disabled={loading}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
               >
                 <CheckCircle className="h-4 w-4" />
                 {loading ? 'Processing...' : 'Approve IRA Partner'}

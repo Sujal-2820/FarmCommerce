@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { Layers3, MapPin, ToggleRight, Edit2, Trash2, ArrowLeft, Package, MoreVertical } from 'lucide-react'
 import { DataTable } from '../components/DataTable'
 import { StatusBadge } from '../components/StatusBadge'
@@ -36,7 +36,7 @@ export function ProductsPage({ subRoute = null, navigate }) {
   const [openActionsDropdown, setOpenActionsDropdown] = useState(null)
 
   const regionColors = [
-    { border: 'border-green-200', bg: 'bg-gradient-to-br from-green-50 to-green-100/50', text: 'text-green-700', progress: 'bg-gradient-to-r from-green-500 to-green-600' },
+    { border: 'border-[rgba(1,120,39,0.25)]', bg: 'bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50', text: 'text-[#017827]', progress: 'bg-gradient-to-r from-[#017827] to-[#0a9937]' },
     { border: 'border-yellow-200', bg: 'bg-gradient-to-br from-yellow-50 to-yellow-100/50', text: 'text-yellow-700', progress: 'bg-gradient-to-r from-yellow-500 to-yellow-600' },
     { border: 'border-blue-200', bg: 'bg-gradient-to-br from-blue-50 to-blue-100/50', text: 'text-blue-700', progress: 'bg-gradient-to-r from-blue-500 to-blue-600' },
     { border: 'border-purple-200', bg: 'bg-gradient-to-br from-purple-50 to-purple-100/50', text: 'text-purple-700', progress: 'bg-gradient-to-r from-purple-500 to-purple-600' },
@@ -496,7 +496,7 @@ export function ProductsPage({ subRoute = null, navigate }) {
                       className={cn(
                         'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-bold transition-all duration-200 hover:scale-105',
                         product.visibility === 'Active'
-                          ? 'border-green-200 bg-gradient-to-br from-green-500 to-green-600 text-white shadow-[0_2px_8px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_4px_12px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]'
+                          ? 'border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-[0_2px_8px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[0_4px_12px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]'
                           : 'border-gray-200 bg-white text-gray-700 shadow-[0_2px_8px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)] hover:border-yellow-300 hover:bg-yellow-50 hover:text-yellow-700'
                       )}
                     >

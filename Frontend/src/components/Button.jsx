@@ -3,7 +3,7 @@ import { cn } from '../lib/cn'
 
 const variants = {
   primary:
-    'bg-brand text-brand-foreground hover:bg-brand/90 focus-visible:outline-brand/80',
+    'bg-brand text-brand-foreground hover:opacity-90 focus-visible:outline-brand/80',
   outline:
     'border border-brand/40 text-brand hover:bg-brand-soft focus-visible:outline-brand/80',
   subtle:

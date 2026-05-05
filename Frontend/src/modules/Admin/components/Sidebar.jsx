@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { BarChart3, Bell, Building2, Factory, Home, Layers3, ShieldCheck, Users2, Wallet, Settings, ArrowRightLeft, IndianRupee, History, ChevronDown, ChevronRight, ImageIcon, Star, ListTodo, LifeBuoy } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 import { useAdminState } from '../context/AdminContext'
@@ -191,11 +191,11 @@ const colorStyles = {
     hover: 'hover:bg-purple-50 hover:border-purple-300',
   },
   green: {
-    active: 'bg-gradient-to-br from-green-500 to-green-600 text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]',
-    bg: 'bg-green-50',
-    text: 'text-green-600',
-    border: 'border-green-200',
-    hover: 'hover:bg-green-50 hover:border-green-300',
+    active: 'bg-gradient-to-br from-[#017827] to-[#0a9937] text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]',
+    bg: 'bg-[rgba(1,120,39,0.04)]',
+    text: 'text-[#017827]',
+    border: 'border-[rgba(1,120,39,0.25)]',
+    hover: 'hover:bg-[rgba(1,120,39,0.05)] hover:border-[rgba(1,120,39,0.4)]',
   },
   yellow: {
     active: 'bg-gradient-to-br from-yellow-500 to-yellow-600 text-white shadow-[0_2px_6px_rgba(0,0,0,0.1)]',

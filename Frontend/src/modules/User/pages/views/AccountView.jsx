@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { useUserState, useUserDispatch } from '../../context/UserContext'
 import { useUserApi } from '../../hooks/useUserApi'
 import { useToast } from '../../components/ToastNotification'
@@ -742,19 +742,19 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
             </div>
             <div className="user-account-view__panel-body">
               <div className="space-y-4">
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                   <h4 className="font-semibold text-[#172022] mb-2"><Trans>Help Center</Trans></h4>
                   <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                     <Trans>Browse FAQs and guides to find answers to common questions.</Trans>
                   </p>
                   <button
                     type="button"
-                    className="text-sm text-[#1b8f5b] font-semibold hover:underline"
+                    className="text-sm text-[#017827] font-semibold hover:underline"
                   >
                     <Trans>Visit Help Center</Trans> →
                   </button>
                 </div>
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                   <h4 className="font-semibold text-[#172022] mb-2"><Trans>Contact Support</Trans></h4>
                   <p className="text-sm text-[rgba(26,42,34,0.7)] mb-2">
                     <strong><Trans>Phone</Trans>:</strong> +91 1800-XXX-XXXX
@@ -767,7 +767,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                   </p>
                   <button
                     type="button"
-                    className="text-sm text-[#1b8f5b] font-semibold hover:underline"
+                    className="text-sm text-[#017827] font-semibold hover:underline"
                   >
                     <Trans>Start Chat</Trans> →
                   </button>
@@ -812,7 +812,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                   <select
                     value={reportForm.category}
                     onChange={(e) => setReportForm({ ...reportForm, category: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   >
                     <option value="general"><Trans>General Issue</Trans></option>
                     <option value="payment"><Trans>Payment Issue</Trans></option>
@@ -831,7 +831,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                     value={reportForm.subject}
                     onChange={(e) => setReportForm({ ...reportForm, subject: e.target.value })}
                     placeholder="Brief description of the issue" // TODO: Translate placeholder
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                   />
                 </div>
                 <div>
@@ -843,7 +843,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                     onChange={(e) => setReportForm({ ...reportForm, description: e.target.value })}
                     placeholder="Please provide detailed information about the issue" // TODO: Translate placeholder
                     rows={5}
-                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b] resize-none"
+                    className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827] resize-none"
                   />
                 </div>
               </div>
@@ -851,7 +851,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                 <button
                   type="button"
                   onClick={handleSubmitReport}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                  className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
                 >
                   <Trans>Submit Report</Trans>
                 </button>
@@ -896,7 +896,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 1: Request OTP for current phone */}
               {phoneUpdateStep === 1 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       We'll send an OTP to your current phone number <strong>{profile.phone}</strong> to verify your identity.
                     </p>
@@ -929,7 +929,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       }
                     }}
                     disabled={phoneUpdateLoading}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {phoneUpdateLoading ? <Trans>Sending...</Trans> : <Trans>Send OTP to Current Phone</Trans>}
                   </button>
@@ -939,7 +939,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 2: Verify OTP for current phone */}
               {phoneUpdateStep === 2 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       Enter the OTP sent to <strong>{profile.phone}</strong>
                     </p>
@@ -954,14 +954,14 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       onChange={(e) => setCurrentPhoneOTP(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="Enter 6-digit OTP" // TODO: Translate placeholder
                       maxLength={6}
-                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                     />
                   </div>
                   <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={() => setPhoneUpdateStep(1)}
-                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(34,94,65,0.2)] bg-white text-[#1b8f5b] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
+                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(1, 78, 23,0.2)] bg-white text-[#017827] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
                     >
                       <Trans>Back</Trans>
                     </button>
@@ -997,7 +997,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         }
                       }}
                       disabled={phoneUpdateLoading || !currentPhoneOTP || currentPhoneOTP.length !== 6}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {phoneUpdateLoading ? <Trans>Verifying...</Trans> : <Trans>Verify OTP</Trans>}
                     </button>
@@ -1008,7 +1008,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 3: Enter new phone number */}
               {phoneUpdateStep === 3 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       Current phone verified! Now enter your new phone number.
                     </p>
@@ -1022,7 +1022,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       value={newPhone}
                       onChange={(e) => setNewPhone(e.target.value.replace(/\D/g, ''))}
                       placeholder="Enter new phone number"
-                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                     />
                   </div>
                   <div className="flex gap-3">
@@ -1032,7 +1032,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         setPhoneUpdateStep(2)
                         setNewPhone('')
                       }}
-                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(34,94,65,0.2)] bg-white text-[#1b8f5b] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
+                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(1, 78, 23,0.2)] bg-white text-[#017827] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
                     >
                       <Trans>Back</Trans>
                     </button>
@@ -1072,7 +1072,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         }
                       }}
                       disabled={phoneUpdateLoading || !newPhone || newPhone.length < 10}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {phoneUpdateLoading ? <Trans>Sending...</Trans> : <Trans>Send OTP to New Phone</Trans>}
                     </button>
@@ -1083,7 +1083,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 4: Verify OTP for new phone */}
               {phoneUpdateStep === 4 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       Enter the OTP sent to <strong>{newPhone}</strong>
                     </p>
@@ -1098,7 +1098,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       onChange={(e) => setNewPhoneOTP(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="Enter 6-digit OTP" // TODO: Translate placeholder
                       maxLength={6}
-                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                     />
                   </div>
                   <div className="flex gap-3">
@@ -1108,7 +1108,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         setPhoneUpdateStep(3)
                         setNewPhoneOTP('')
                       }}
-                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(34,94,65,0.2)] bg-white text-[#1b8f5b] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
+                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(1, 78, 23,0.2)] bg-white text-[#017827] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
                     >
                       <Trans>Back</Trans>
                     </button>
@@ -1152,7 +1152,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         }
                       }}
                       disabled={phoneUpdateLoading || !newPhoneOTP || newPhoneOTP.length !== 6}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {phoneUpdateLoading ? <Trans>Updating...</Trans> : <Trans>Update Phone Number</Trans>}
                     </button>
@@ -1197,7 +1197,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 1: Request OTP for current phone */}
               {deliveryAddressOTPStep === 1 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       We'll send an OTP to your registered phone number <strong>{profile.phone}</strong> to verify your identity before updating the delivery address.
                     </p>
@@ -1230,7 +1230,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       }
                     }}
                     disabled={deliveryAddressOTPLoading}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {deliveryAddressOTPLoading ? <Trans>Sending...</Trans> : <Trans>Send OTP</Trans>}
                   </button>
@@ -1240,7 +1240,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 2: Verify OTP */}
               {deliveryAddressOTPStep === 2 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       Enter the OTP sent to <strong>{profile.phone}</strong>
                     </p>
@@ -1255,14 +1255,14 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       onChange={(e) => setDeliveryAddressOTP(e.target.value.replace(/\D/g, '').slice(0, 6))}
                       placeholder="Enter 6-digit OTP" // TODO: Translate placeholder
                       maxLength={6}
-                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(34,94,65,0.15)] bg-white text-sm focus:outline-none focus:border-[#1b8f5b]"
+                      className="w-full px-3 py-2.5 rounded-lg border border-[rgba(1, 78, 23,0.15)] bg-white text-sm focus:outline-none focus:border-[#017827]"
                     />
                   </div>
                   <div className="flex gap-3">
                     <button
                       type="button"
                       onClick={() => setDeliveryAddressOTPStep(1)}
-                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(34,94,65,0.2)] bg-white text-[#1b8f5b] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
+                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(1, 78, 23,0.2)] bg-white text-[#017827] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
                     >
                       <Trans>Back</Trans>
                     </button>
@@ -1298,7 +1298,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         }
                       }}
                       disabled={deliveryAddressOTPLoading || !deliveryAddressOTP || deliveryAddressOTP.length !== 6}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {deliveryAddressOTPLoading ? <Trans>Verifying...</Trans> : <Trans>Verify OTP</Trans>}
                     </button>
@@ -1309,7 +1309,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
               {/* Step 3: Select Address from Google Maps */}
               {deliveryAddressOTPStep === 3 && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                  <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                     <p className="text-sm text-[rgba(26,42,34,0.7)] mb-3">
                       Phone verified! Now select your delivery address using Google Maps. You can search for an address or use your live location.
                     </p>
@@ -1331,7 +1331,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                   />
 
                   {selectedDeliveryLocation && (
-                    <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.1)]">
+                    <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.1)]">
                       <p className="text-xs font-semibold text-[#172022] mb-2">Selected Address:</p>
                       <p className="text-sm text-[rgba(26,42,34,0.7)]">
                         {selectedDeliveryLocation.address}
@@ -1349,7 +1349,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         setDeliveryAddressOTPStep(2)
                         setSelectedDeliveryLocation(null)
                       }}
-                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(34,94,65,0.2)] bg-white text-[#1b8f5b] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
+                      className="flex-1 py-2.5 px-4 rounded-xl border border-[rgba(1, 78, 23,0.2)] bg-white text-[#017827] text-sm font-semibold hover:bg-[rgba(240,245,242,0.5)] transition-colors"
                     >
                       <Trans>Back</Trans>
                     </button>
@@ -1357,7 +1357,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       type="button"
                       onClick={handleSaveDeliveryAddress}
                       disabled={loading || !selectedDeliveryLocation}
-                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 py-2.5 px-4 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {loading ? <Trans>Saving...</Trans> : <Trans>Save Address</Trans>}
                     </button>
@@ -1390,25 +1390,25 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
             <div className="user-account-view__panel-body p-0">
               {ticketsLoading ? (
                 <div className="flex flex-col items-center justify-center py-20 bg-white">
-                  <div className="w-10 h-10 border-4 border-[rgba(27,143,91,0.1)] border-t-[#1b8f5b] rounded-full animate-spin mb-4"></div>
+                  <div className="w-10 h-10 border-4 border-[rgba(1, 120, 39,0.1)] border-t-[#017827] rounded-full animate-spin mb-4"></div>
                   <p className="text-sm text-[rgba(26,42,34,0.6)]"><Trans>Loading tickets...</Trans></p>
                 </div>
               ) : tickets.length > 0 ? (
-                <div className="divide-y divide-[rgba(34,94,65,0.08)] bg-white">
+                <div className="divide-y divide-[rgba(1, 78, 23,0.08)] bg-white">
                   {tickets.map((ticket) => (
                     <button
                       key={ticket.id}
                       onClick={() => fetchTicketDetails(ticket.id)}
-                      className="w-full text-left p-4 hover:bg-[rgba(27,143,91,0.02)] transition-colors flex items-center justify-between group"
+                      className="w-full text-left p-4 hover:bg-[rgba(1, 120, 39,0.02)] transition-colors flex items-center justify-between group"
                     >
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="text-xs font-bold text-[#1b8f5b] uppercase tracking-wider">{ticket.ticketId}</span>
+                          <span className="text-xs font-bold text-[#017827] uppercase tracking-wider">{ticket.ticketId}</span>
                           {ticket.hasUnread && (
                             <span className="w-2 h-2 rounded-full bg-red-500"></span>
                           )}
                         </div>
-                        <h4 className="text-sm font-bold text-[#172022] truncate group-hover:text-[#1b8f5b] transition-colors">
+                        <h4 className="text-sm font-bold text-[#172022] truncate group-hover:text-[#017827] transition-colors">
                           {ticket.subject}
                         </h4>
                         <div className="flex items-center gap-3 mt-1.5">
@@ -1416,7 +1416,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                             "text-[10px] font-bold px-1.5 py-0.5 rounded uppercase",
                             ticket.status === 'open' ? "bg-blue-100 text-blue-700" :
                               ticket.status === 'in_progress' ? "bg-amber-100 text-amber-700" :
-                                ticket.status === 'resolved' ? "bg-green-100 text-green-700" :
+                                ticket.status === 'resolved' ? "bg-[rgba(1,120,39,0.1)] text-[#017827]" :
                                   "bg-gray-100 text-gray-700"
                           )}>
                             <Trans>{ticket.status.replace('_', ' ')}</Trans>
@@ -1426,14 +1426,14 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                           </span>
                         </div>
                       </div>
-                      <ChevronRightIcon className="h-5 w-5 text-[rgba(26,42,34,0.3)] group-hover:text-[#1b8f5b] group-hover:translate-x-0.5 transition-all" />
+                      <ChevronRightIcon className="h-5 w-5 text-[rgba(26,42,34,0.3)] group-hover:text-[#017827] group-hover:translate-x-0.5 transition-all" />
                     </button>
                   ))}
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-20 px-6 text-center bg-white">
-                  <div className="w-16 h-16 rounded-full bg-[rgba(27,143,91,0.05)] flex items-center justify-center mb-4">
-                    <HelpCircleIcon className="w-8 h-8 text-[#1b8f5b] opacity-40" />
+                  <div className="w-16 h-16 rounded-full bg-[rgba(1, 120, 39,0.05)] flex items-center justify-center mb-4">
+                    <HelpCircleIcon className="w-8 h-8 text-[#017827] opacity-40" />
                   </div>
                   <h4 className="text-base font-bold text-[#172022] mb-1"><Trans>No tickets yet</Trans></h4>
                   <p className="text-sm text-[rgba(26,42,34,0.6)] max-w-xs mx-auto mb-6">
@@ -1444,7 +1444,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       setShowTicketsPanel(false)
                       setShowReportPanel(true)
                     }}
-                    className="py-2 px-6 rounded-xl bg-[#1b8f5b] text-white text-sm font-semibold hover:bg-[#2a9d61] transition-colors"
+                    className="py-2 px-6 rounded-xl bg-[#017827] text-white text-sm font-semibold hover:bg-[#0a9937] transition-colors"
                   >
                     <Trans>Report an Issue</Trans>
                   </button>
@@ -1474,7 +1474,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                 </button>
                 <div>
                   <h3 className="user-account-view__panel-title leading-tight"><Trans>Ticket Details</Trans></h3>
-                  <p className="text-[10px] font-bold text-[#1b8f5b] tracking-wider uppercase">{selectedTicket.ticket.ticketId}</p>
+                  <p className="text-[10px] font-bold text-[#017827] tracking-wider uppercase">{selectedTicket.ticket.ticketId}</p>
                 </div>
               </div>
               <button
@@ -1488,19 +1488,19 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
 
             <div className="user-account-view__panel-body flex-1 overflow-hidden flex flex-col p-0">
               {/* Ticket Info Strip */}
-              <div className="p-4 bg-[rgba(240,245,242,0.6)] border-b border-[rgba(34,94,65,0.08)] flex-shrink-0">
+              <div className="p-4 bg-[rgba(240,245,242,0.6)] border-b border-[rgba(1, 78, 23,0.08)] flex-shrink-0">
                 <h4 className="text-sm font-bold text-[#172022] mb-2">{selectedTicket.ticket.subject}</h4>
                 <div className="flex flex-wrap gap-2">
                   <span className={cn(
                     "text-[10px] font-bold px-1.5 py-0.5 rounded uppercase",
                     selectedTicket.ticket.status === 'open' ? "bg-blue-100 text-blue-700" :
                       selectedTicket.ticket.status === 'in_progress' ? "bg-amber-100 text-amber-700" :
-                        selectedTicket.ticket.status === 'resolved' ? "bg-green-100 text-green-700" :
+                        selectedTicket.ticket.status === 'resolved' ? "bg-[rgba(1,120,39,0.1)] text-[#017827]" :
                           "bg-gray-100 text-gray-700"
                   )}>
                     <Trans>{selectedTicket.ticket.status.replace('_', ' ')}</Trans>
                   </span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded uppercase bg-[rgba(34,94,65,0.08)] text-[rgba(26,42,34,0.7)]">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded uppercase bg-[rgba(1, 78, 23,0.08)] text-[rgba(26,42,34,0.7)]">
                     <Trans>{selectedTicket.ticket.category}</Trans>
                   </span>
                   {selectedTicket.ticket.orderNumber && (
@@ -1513,7 +1513,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
 
               {/* Messages Area */}
               <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white" id="ticket-messages-scroll">
-                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(34,94,65,0.06)] mb-6">
+                <div className="p-4 rounded-xl bg-[rgba(240,245,242,0.4)] border border-[rgba(1, 78, 23,0.06)] mb-6">
                   <p className="text-sm text-[rgba(26,42,34,0.8)] leading-relaxed">{selectedTicket.ticket.description}</p>
                   <p className="text-[10px] text-[rgba(26,42,34,0.4)] mt-2 font-medium">
                     {new Date(selectedTicket.ticket.createdAt).toLocaleString()}
@@ -1532,7 +1532,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                       "px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm",
                       msg.isFromAdmin
                         ? "bg-[#f8f9fa] border border-[rgba(0,0,0,0.05)] text-[#172022] rounded-tl-none"
-                        : "bg-[#1b8f5b] text-white rounded-tr-none"
+                        : "bg-[#017827] text-white rounded-tr-none"
                     )}>
                       {msg.message}
                     </div>
@@ -1545,18 +1545,18 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                         {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                       {!msg.isFromAdmin && msg.readAt && (
-                        <CheckIcon className="w-2.5 h-2.5 text-[#1b8f5b]" />
+                        <CheckIcon className="w-2.5 h-2.5 text-[#017827]" />
                       )}
                     </div>
                   </div>
                 ))}
 
                 {selectedTicket.ticket.status === 'resolved' && (
-                  <div className="py-4 px-6 bg-green-50 border border-green-100 rounded-xl text-center">
-                    <p className="text-sm font-bold text-green-800 mb-1"><Trans>This ticket has been marked as resolved</Trans></p>
-                    <p className="text-xs text-green-700 opacity-80"><Trans>If you still need help, you can send a message below to reopen it.</Trans></p>
+                  <div className="py-4 px-6 bg-[rgba(1,120,39,0.04)] border border-[rgba(1,120,39,0.12)] rounded-xl text-center">
+                    <p className="text-sm font-bold text-[#015c1f] mb-1"><Trans>This ticket has been marked as resolved</Trans></p>
+                    <p className="text-xs text-[#017827] opacity-80"><Trans>If you still need help, you can send a message below to reopen it.</Trans></p>
                     {selectedTicket.ticket.resolution && (
-                      <div className="mt-3 p-3 bg-white bg-opacity-50 rounded-lg text-sm italic text-green-900 border border-green-100">
+                      <div className="mt-3 p-3 bg-white bg-opacity-50 rounded-lg text-sm italic text-[#014a19] border border-[rgba(1,120,39,0.12)]">
                         " {selectedTicket.ticket.resolution} "
                       </div>
                     )}
@@ -1572,8 +1572,8 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
 
               {/* Input Area */}
               {selectedTicket.ticket.status !== 'closed' && (
-                <div className="p-4 bg-white border-t border-[rgba(34,94,65,0.08)] flex-shrink-0">
-                  <div className="flex items-end gap-2 bg-[#f8f9fa] border border-[rgba(34,94,65,0.1)] rounded-2xl p-2 focus-within:border-[#1b8f5b] transition-colors">
+                <div className="p-4 bg-white border-t border-[rgba(1, 78, 23,0.08)] flex-shrink-0">
+                  <div className="flex items-end gap-2 bg-[#f8f9fa] border border-[rgba(1, 78, 23,0.1)] rounded-2xl p-2 focus-within:border-[#017827] transition-colors">
                     <textarea
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
@@ -1590,7 +1590,7 @@ export function AccountView({ onNavigate, authenticated, isLaptopView, onShowAut
                     <button
                       onClick={handleSendMessage}
                       disabled={isSendingMessage || !newMessage.trim()}
-                      className="w-10 h-10 rounded-xl bg-[#1b8f5b] text-white flex items-center justify-center hover:bg-[#2a9d61] transition-colors disabled:opacity-50 disabled:bg-gray-300"
+                      className="w-10 h-10 rounded-xl bg-[#017827] text-white flex items-center justify-center hover:bg-[#0a9937] transition-colors disabled:opacity-50 disabled:bg-gray-300"
                     >
                       {isSendingMessage ? (
                         <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>

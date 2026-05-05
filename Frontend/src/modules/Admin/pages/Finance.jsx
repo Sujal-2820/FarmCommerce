@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+﻿import { useState, useEffect, useCallback } from 'react'
 import { BadgeIndianRupee, Sparkles, Building2, Eye, AlertCircle, Package, CheckCircle, XCircle, ArrowLeft, Calendar, MoreVertical } from 'lucide-react'
 import { StatusBadge } from '../components/StatusBadge'
 import { ProgressList } from '../components/ProgressList'
@@ -510,12 +510,12 @@ export function FinancePage({ subRoute = null, navigate }) {
                   {formatCurrency(creditData.creditLimit || 0)}
                 </p>
               </div>
-              <div className="rounded-xl border border-green-200 bg-green-50 p-4">
-                <div className="flex items-center gap-2 text-xs text-green-500 mb-2">
+              <div className="rounded-xl border border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)] p-4">
+                <div className="flex items-center gap-2 text-xs text-[#0a9937] mb-2">
                   <BadgeIndianRupee className="h-4 w-4" />
                   <span>Used Credit</span>
                 </div>
-                <p className="text-xl font-bold text-green-900">
+                <p className="text-xl font-bold text-[#014a19]">
                   {formatCurrency(creditData.usedCredit || 0)}
                 </p>
               </div>
@@ -551,7 +551,7 @@ export function FinancePage({ subRoute = null, navigate }) {
                 <div
                   className={cn(
                     'h-full transition-all',
-                    creditUtilization > 80 ? 'bg-red-500' : creditUtilization > 50 ? 'bg-orange-500' : 'bg-green-500',
+                    creditUtilization > 80 ? 'bg-red-500' : creditUtilization > 50 ? 'bg-orange-500' : 'bg-[#017827]',
                   )}
                   style={{ width: `${Math.min(creditUtilization, 100)}%` }}
                 />
@@ -726,12 +726,12 @@ export function FinancePage({ subRoute = null, navigate }) {
                 </div>
                 <div className={cn(
                   "rounded-xl border p-4",
-                  request.vendorPerformance?.hasOutstandingDues ? "border-red-200 bg-red-50" : "border-green-200 bg-green-50"
+                  request.vendorPerformance?.hasOutstandingDues ? "border-red-200 bg-red-50" : "border-[rgba(1,120,39,0.25)] bg-[rgba(1,120,39,0.04)]"
                 )}>
-                  <p className={cn("text-xs", request.vendorPerformance?.hasOutstandingDues ? "text-red-500" : "text-green-500")}>
+                  <p className={cn("text-xs", request.vendorPerformance?.hasOutstandingDues ? "text-red-500" : "text-[#0a9937]")}>
                     Outstanding Dues
                   </p>
-                  <p className={cn("mt-1 text-lg font-bold", request.vendorPerformance?.hasOutstandingDues ? "text-red-900" : "text-green-900")}>
+                  <p className={cn("mt-1 text-lg font-bold", request.vendorPerformance?.hasOutstandingDues ? "text-red-900" : "text-[#014a19]")}>
                     {formatCurrency(request.vendorPerformance?.outstandingAmount || 0)}
                   </p>
                 </div>
@@ -904,7 +904,7 @@ export function FinancePage({ subRoute = null, navigate }) {
                   type="button"
                   onClick={() => handleApprovePurchase(request.id)}
                   disabled={loading || approvingPurchase}
-                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
+                  className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)] disabled:opacity-50"
                 >
                   <CheckCircle className="h-4 w-4" />
                   {approvingPurchase ? 'Processing...' : 'Approve Request'}

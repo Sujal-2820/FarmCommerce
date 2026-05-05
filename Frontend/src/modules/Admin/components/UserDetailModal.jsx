@@ -1,4 +1,4 @@
-import { User, Hash, MapPin, ShoppingBag, CreditCard, MessageSquare, Ban, CheckCircle } from 'lucide-react'
+﻿import { User, Hash, MapPin, ShoppingBag, CreditCard, MessageSquare, Ban, CheckCircle } from 'lucide-react'
 import { Modal } from './Modal'
 import { StatusBadge } from './StatusBadge'
 import { Timeline } from './Timeline'
@@ -211,7 +211,7 @@ export function UserDetailModal({ isOpen, onClose, user, onBlock, onDeactivate, 
               <button
                 type="button"
                 onClick={() => onActivate(user.id)}
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(34,197,94,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(34,197,94,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]"
+                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#017827] to-[#0a9937] px-6 py-3 text-sm font-bold text-white shadow-[0_4px_15px_rgba(1, 120, 39,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] transition-all hover:shadow-[0_6px_20px_rgba(1, 120, 39,0.4),inset_0_1px_0_rgba(255,255,255,0.2)]"
               >
                 <CheckCircle className="h-4 w-4" />
                 Activate User

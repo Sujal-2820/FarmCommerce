@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext, useContext } from 'react'
+﻿import { useEffect, useState, createContext, useContext } from 'react'
 import { X, CheckCircle2, AlertTriangle, Info, XCircle } from 'lucide-react'
 import { cn } from '../../../lib/cn'
 
@@ -79,12 +79,12 @@ function ToastNotification({ toast, onDismiss }) {
   const iconConfig = {
     success: {
       icon: CheckCircle2,
-      bg: 'bg-gradient-to-br from-green-50 to-green-100/50',
-      border: 'border-green-200',
-      iconBg: 'bg-gradient-to-br from-green-500 to-green-600',
+      bg: 'bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50',
+      border: 'border-[rgba(1,120,39,0.25)]',
+      iconBg: 'bg-gradient-to-br from-[#017827] to-[#0a9937]',
       iconColor: 'text-white',
-      text: 'text-green-900',
-      shadow: 'shadow-[0_8px_24px_rgba(34,197,94,0.25),inset_0_1px_0_rgba(255,255,255,0.8)]',
+      text: 'text-[#014a19]',
+      shadow: 'shadow-[0_8px_24px_rgba(1, 120, 39,0.25),inset_0_1px_0_rgba(255,255,255,0.8)]',
     },
     error: {
       icon: XCircle,

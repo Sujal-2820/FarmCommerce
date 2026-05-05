@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
+﻿import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { useTranslation } from '../../../context/TranslationContext'
 import { Layout, Container } from '../components/Layout'
@@ -320,7 +320,7 @@ export function ProductDetailPage() {
             <p className="text-lg font-semibold text-gray-600 mb-4">Product not found</p>
             <button
               type="button"
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold"
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-[#017827] to-[#0a9937] text-white font-semibold"
               onClick={() => navigate(-1)}
             >
               Go Back
@@ -684,7 +684,7 @@ export function ProductDetailPage() {
                             className={cn(
                               'p-3 rounded-lg border-2 transition-all',
                               isSelected
-                                ? 'bg-green-50 border-green-500'
+                                ? 'bg-[rgba(1,120,39,0.04)] border-[#017827]'
                                 : 'bg-white border-gray-200'
                             )}
                           >
@@ -697,7 +697,7 @@ export function ProductDetailPage() {
                                   <span className="text-gray-600">
                                     Stock: <span className="font-semibold">{variantStock.displayStock || 0} {variantStock.stockUnit || 'kg'}</span>
                                   </span>
-                                  <span className="text-green-600 font-bold">
+                                  <span className="text-[#017827] font-bold">
                                     ₹{variantPrice.toLocaleString('en-IN')}
                                   </span>
                                 </div>
@@ -708,7 +708,7 @@ export function ProductDetailPage() {
                                 className={cn(
                                   'w-5 h-5 rounded border-2 flex items-center justify-center',
                                   isSelected
-                                    ? 'bg-green-500 border-green-500'
+                                    ? 'bg-[#017827] border-[#017827]'
                                     : 'bg-white border-gray-300'
                                 )}
                               >
@@ -751,7 +751,7 @@ export function ProductDetailPage() {
                                   </div>
                                   <div className="text-right">
                                     <p className="text-xs text-gray-600">Available: {maxQty}</p>
-                                    <p className="text-xs font-bold text-green-600">
+                                    <p className="text-xs font-bold text-[#017827]">
                                       Total: ₹{(variantPrice * variantQty).toLocaleString('en-IN')}
                                     </p>
                                   </div>
@@ -875,12 +875,12 @@ export function ProductDetailPage() {
               <div className="product-detail__stock">
                 <div className={cn(
                   'p-4 rounded-lg border-2',
-                  inStock ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'
+                  inStock ? 'bg-[rgba(1,120,39,0.04)] border-[#017827]' : 'bg-red-50 border-red-500'
                 )}>
                   <div className="flex items-center gap-2 mb-3">
                     <div className={cn(
                       'w-4 h-4 rounded-full',
-                      inStock ? 'bg-green-500' : 'bg-red-500'
+                      inStock ? 'bg-[#017827]' : 'bg-red-500'
                     )} />
                     <h3 className="text-lg font-bold text-gray-900">Stock Availability</h3>
                   </div>
@@ -889,7 +889,7 @@ export function ProductDetailPage() {
                       <span className="text-sm font-semibold text-gray-700">Status:</span>
                       <span className={cn(
                         'text-sm font-bold',
-                        inStock ? 'text-green-600' : 'text-red-600'
+                        inStock ? 'text-[#017827]' : 'text-red-600'
                       )}>
                         {stockStatus}
                       </span>

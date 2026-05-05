@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { ArrowUpRight, BarChart3, Download, PieChart, ArrowLeft, TrendingUp, Users, Building2, Package, Loader2 } from 'lucide-react'
 import { StatusBadge } from '../components/StatusBadge'
 import { FilterBar } from '../components/FilterBar'
@@ -175,7 +175,7 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                   const colors = [
                     { border: 'border-blue-200', bg: 'bg-gradient-to-br from-blue-50 to-blue-100/50', text: 'text-blue-700' },
                     { border: 'border-purple-200', bg: 'bg-gradient-to-br from-purple-50 to-purple-100/50', text: 'text-purple-700' },
-                    { border: 'border-green-200', bg: 'bg-gradient-to-br from-green-50 to-green-100/50', text: 'text-green-700' },
+                    { border: 'border-[rgba(1,120,39,0.25)]', bg: 'bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50', text: 'text-[#017827]' },
                     { border: 'border-yellow-200', bg: 'bg-gradient-to-br from-yellow-50 to-yellow-100/50', text: 'text-yellow-700' },
                   ]
                   const color = colors[index % colors.length]
@@ -226,7 +226,7 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                       const colorMap = [
                         'border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100/50',
                         'border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50',
-                        'border-green-200 bg-gradient-to-br from-green-50 to-green-100/50',
+                        'border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50',
                         'border-yellow-200 bg-gradient-to-br from-yellow-50 to-yellow-100/50',
                       ]
                       return (
@@ -288,10 +288,10 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatCurrency(salesData.summary?.totalRevenue || 0)}</p>
                 <p className="mt-1 text-xs text-blue-600">Last {period} days</p>
               </div>
-              <div className="rounded-3xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-6">
-                <p className="text-xs uppercase tracking-wide text-green-700 font-bold">Total Orders</p>
+              <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-6">
+                <p className="text-xs uppercase tracking-wide text-[#017827] font-bold">Total Orders</p>
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(salesData.summary?.totalOrders || 0)}</p>
-                <p className="mt-1 text-xs text-green-600">{salesData.summary?.deliveredOrders || 0} delivered</p>
+                <p className="mt-1 text-xs text-[#017827]">{salesData.summary?.deliveredOrders || 0} delivered</p>
               </div>
               <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50 p-6">
                 <p className="text-xs uppercase tracking-wide text-purple-700 font-bold">Avg Order Value</p>
@@ -370,10 +370,10 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(userData.summary?.totalUsers || 0)}</p>
                 <p className="mt-1 text-xs text-blue-600">{userData.summary?.activeUsers || 0} active</p>
               </div>
-              <div className="rounded-3xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-6">
-                <p className="text-xs uppercase tracking-wide text-green-700 font-bold">New Users</p>
+              <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-6">
+                <p className="text-xs uppercase tracking-wide text-[#017827] font-bold">New Users</p>
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(userData.summary?.newUsersInPeriod || 0)}</p>
-                <p className="mt-1 text-xs text-green-600">Last {period} days</p>
+                <p className="mt-1 text-xs text-[#017827]">Last {period} days</p>
               </div>
               <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50 p-6">
                 <p className="text-xs uppercase tracking-wide text-purple-700 font-bold">Active Users</p>
@@ -399,7 +399,7 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                     const colorMap = [
                       'border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100/50',
                       'border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50',
-                      'border-green-200 bg-gradient-to-br from-green-50 to-green-100/50',
+                      'border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50',
                       'border-yellow-200 bg-gradient-to-br from-yellow-50 to-yellow-100/50',
                       'border-orange-200 bg-gradient-to-br from-orange-50 to-orange-100/50',
                     ]
@@ -460,10 +460,10 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(vendorData.summary?.totalVendors || 0)}</p>
                 <p className="mt-1 text-xs text-blue-600">{vendorData.summary?.approvedVendors || 0} approved</p>
               </div>
-              <div className="rounded-3xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-6">
-                <p className="text-xs uppercase tracking-wide text-green-700 font-bold">Total Revenue</p>
+              <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-6">
+                <p className="text-xs uppercase tracking-wide text-[#017827] font-bold">Total Revenue</p>
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatCurrency(vendorData.summary?.totalVendorRevenue || 0)}</p>
-                <p className="mt-1 text-xs text-green-600">Last {period} days</p>
+                <p className="mt-1 text-xs text-[#017827]">Last {period} days</p>
               </div>
               <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50 p-6">
                 <p className="text-xs uppercase tracking-wide text-purple-700 font-bold">Credit Utilization</p>
@@ -542,10 +542,10 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(orderData.summary?.totalOrders || 0)}</p>
                 <p className="mt-1 text-xs text-blue-600">{orderData.summary?.ordersInPeriod || 0} in period</p>
               </div>
-              <div className="rounded-3xl border border-green-200 bg-gradient-to-br from-green-50 to-green-100/50 p-6">
-                <p className="text-xs uppercase tracking-wide text-green-700 font-bold">Delivered</p>
+              <div className="rounded-3xl border border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50 p-6">
+                <p className="text-xs uppercase tracking-wide text-[#017827] font-bold">Delivered</p>
                 <p className="mt-2 text-2xl font-bold text-gray-900">{formatNumber(orderData.summary?.deliveredOrders || 0)}</p>
-                <p className="mt-1 text-xs text-green-600">{Math.round(orderData.summary?.fulfillmentRate || 0)}% fulfillment rate</p>
+                <p className="mt-1 text-xs text-[#017827]">{Math.round(orderData.summary?.fulfillmentRate || 0)}% fulfillment rate</p>
               </div>
               <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50 p-6">
                 <p className="text-xs uppercase tracking-wide text-purple-700 font-bold">Avg Order Value</p>
@@ -571,7 +571,7 @@ export function AnalyticsPage({ subRoute = null, navigate }) {
                     const colorMap = [
                       'border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100/50',
                       'border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100/50',
-                      'border-green-200 bg-gradient-to-br from-green-50 to-green-100/50',
+                      'border-[rgba(1,120,39,0.25)] bg-gradient-to-br from-[rgba(1,120,39,0.04)] to-[rgba(1,120,39,0.1)]/50',
                       'border-yellow-200 bg-gradient-to-br from-yellow-50 to-yellow-100/50',
                     ]
                     return (
